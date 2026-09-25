@@ -142,6 +142,79 @@ def swap_network_circuit(terms: Sequence[Sequence], dt: float, steps: int,
     return cirq.Circuit(operations)
 
 
+def fused_network_circuit(terms: Sequence[Sequence], dt: float, steps: int, spin_position: Sequence[int],
+                          order: int = 1, scale: float = 1.0) -> cirq.Circuit:
+    """`steps` steps of the fused swap network at product-formula order 1, 2 or 4.
+
+    Order 1 is `swap_network_circuit`. Order 2 is the Strang palindrome: a forward pass at
+    dt/2 followed by the same pass reversed at dt/2 (the reversed pass undoes the swaps, so
+    the spin order is restored every step). Order 4 is Suzuki's recursion on the order-2 step
+    with u = 1/(4 - 4^(1/3)), the same coefficient otoc-core's builder uses. Fused gates cost
+    3 CZ each, so an order-2 step costs 2x and an order-4 step 10x a first-order step."""
+    if order == 1:
+        return swap_network_circuit(terms, dt, steps, spin_position, scale)
+
+    def strang(tau: float, position: list[int]) -> tuple[list[cirq.Operation], list[int]]:
+        # The mirrored half step retraces the forward pass: the same fused gates in reverse
+        # order. Each fused gate G = SWAP.R with R exchange-symmetric satisfies SWAP.G.SWAP = G,
+        # so applying it again on the (now swapped) pair is R(tau/2) once more and undoes the
+        # swap; the pass therefore restores the spin order exactly.
+        forward, _ = swap_network_step(terms, tau / 2, position, scale)
+        return forward + forward[::-1], list(position)
+
+    position = list(spin_position)
+    operations: list[cirq.Operation] = []
+    if order == 2:
+        for _ in range(steps):
+            ops, position = strang(dt, position)
+            operations.extend(ops)
+        return cirq.Circuit(operations)
+    if order == 4:
+        u = 1.0 / (4.0 - 4.0 ** (1.0 / 3.0))
+        for _ in range(steps):
+            for tau in (u * dt, u * dt, (1 - 4 * u) * dt, u * dt, u * dt):
+                ops, position = strang(tau, position)
+                operations.extend(ops)
+        return cirq.Circuit(operations)
+    raise ValueError(f"order must be 1, 2 or 4, got {order}")
+
+
+def time_of_flight_mapping(terms: Sequence[Sequence], num_qubits: int,
+                           measurement_site: int = 0, butterfly_site: int = 1) -> list[int]:
+    """Chain positions by classical time of flight (the dataset's own construction, CONTEXT.md
+    and the Google dataset note): the measurement spin at position 0, then spins ordered by the
+    shortest weighted path measurement -> spin -> butterfly with link weight 1/|d_ij|."""
+    import heapq
+    weights: dict[int, dict[int, float]] = {s: {} for s in range(num_qubits)}
+    for i, j, _, coeff in terms:
+        if coeff != 0.0:
+            w = 1.0 / abs(coeff)
+            weights[i][j] = min(w, weights[i].get(j, np.inf))
+            weights[j][i] = min(w, weights[j].get(i, np.inf))
+
+    def dijkstra(source: int) -> list[float]:
+        dist = [np.inf] * num_qubits
+        dist[source] = 0.0
+        heap = [(0.0, source)]
+        while heap:
+            d, s = heapq.heappop(heap)
+            if d > dist[s]:
+                continue
+            for t, w in weights[s].items():
+                if d + w < dist[t]:
+                    dist[t] = d + w
+                    heapq.heappush(heap, (d + w, t))
+        return dist
+
+    from_m, from_b = dijkstra(measurement_site), dijkstra(butterfly_site)
+    flight = [from_m[s] + from_b[s] for s in range(num_qubits)]
+    order = sorted(range(num_qubits), key=lambda s: (s != measurement_site, flight[s], s))
+    mapping = [0] * num_qubits
+    for position, spin in enumerate(order):
+        mapping[spin] = position
+    return mapping
+
+
 # ------------------------------------------------------------------ artifact assembly
 def circuit_json(circuit: cirq.Circuit) -> Any:
     return json.loads(cirq.to_json(circuit))

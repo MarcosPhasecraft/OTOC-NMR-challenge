@@ -2,17 +2,22 @@
 # generate(spec) function. See README.md in this directory and
 # TOOLKIT.md item 11 for why this exists and how it's invoked.
 #
-# The only thing that should change per problem is the pinned pip
-# install below -- add exactly what your baselines/solution actually
-# import, nothing else. Runtime network access is disabled when the
-# container is run (see run_isolated.py), so anything not baked in here
-# at build time is simply unavailable to a submission -- there is no way
-# for a submission to `pip install` its own dependency.
+# Per-problem pins: exactly what baselines/ and solution/ may import.
+# Runtime network access is disabled when the container is run, so a
+# submission cannot install anything itself -- if it isn't here, it
+# isn't available.
 
-FROM python:3.12-slim
+FROM python:3.13-slim
 
-# --- Per-problem: add what your generate() functions actually import ---
-RUN pip install --no-cache-dir numpy==1.26.4
+# --- Per-problem: what generate() functions may import --------------------
+# harness/ is mounted read-only at /harness and is on PYTHONPATH; it imports
+# numpy, cirq and otoc-core's circuit builder. otoc-core is installed from a
+# wheel built with `pip wheel --no-deps -w isolation/wheels /path/to/otoc-core`
+# (its own dependency list needs Phasecraft's private index; see README.md).
+COPY wheels/ /wheels/
+RUN pip install --no-cache-dir numpy==2.5.3 scipy==1.18.1 openfermion==1.8.1 cirq-core==1.7.0 \
+    && pip install --no-cache-dir --no-deps /wheels/otoc_core-*.whl \
+    && rm -rf /wheels
 # -------------------------------------------------------------------------
 
 RUN groupadd --gid 65532 runner \

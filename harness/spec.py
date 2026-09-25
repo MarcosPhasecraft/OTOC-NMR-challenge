@@ -24,6 +24,9 @@ from harness.vendor.gen_orderings import base_terms
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 MANIFEST_PATH = os.path.join(DATA_DIR, "manifest.json")
+BUDGETS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "budgets.json")
+#: The budget ladder (CONTEXT.md §8), as multipliers of the seed-calibrated cap.
+LADDER = (0.5, 1.0, 2.0, 4.0)
 NUM_TIMES = 8
 MEASUREMENT_SITE = 0
 BUTTERFLY_SITE = 1
@@ -93,15 +96,52 @@ def time_grid(tmax: float, num_times: int = NUM_TIMES) -> list[float]:
     return [float(tmax * k / num_times) for k in range(1, num_times + 1)]
 
 
+def load_budgets() -> dict[str, int]:
+    """Seed-calibrated caps `cap_i` per instance (CONTEXT.md §8), written by
+    `scripts/calibrate_budgets.py`; frozen with the referee."""
+    if not os.path.isfile(BUDGETS_PATH):
+        return {}
+    with open(BUDGETS_PATH) as handle:
+        return json.load(handle)
+
+
+def split_instance_id(instance_id: str) -> tuple[str, float | None]:
+    """`instance_4_d_5@2` -> ("instance_4_d_5", 2.0): the instance and its budget multiplier.
+    A bare name means no budget (calibration and tests only); `@inf` likewise."""
+    if "@" not in instance_id:
+        return instance_id, None
+    name, _, mult = instance_id.partition("@")
+    if mult == "inf":
+        return name, None
+    try:
+        value = float(mult)
+    except ValueError as error:
+        raise ValueError(f"bad budget multiplier in {instance_id!r}") from error
+    if value <= 0:
+        raise ValueError(f"budget multiplier must be positive in {instance_id!r}")
+    return name, value
+
+
+def format_multiplier(mult: float) -> str:
+    return f"{mult:g}"
+
+
 def build_spec(instance_id: str, cz_budget: int | None = None) -> dict[str, Any]:
     """The full description of one instance, as handed to a candidate.
 
-    `cz_budget` is set by the referee per budget on the ladder; `None` means unconstrained
-    (used only for baseline calibration and tests).
+    The id may carry a budget multiplier (`instance_4_d_5@2` = 2 x cap_i); an explicit
+    `cz_budget` overrides it. A bare id with no override means unconstrained, which is only
+    for baseline calibration and tests.
     """
+    instance_id, mult = split_instance_id(instance_id)
     entry = load_manifest().get(instance_id)
     if entry is None:
         raise KeyError(f"{instance_id!r} is not in data/manifest.json")
+    if cz_budget is None and mult is not None:
+        caps = load_budgets()
+        if instance_id not in caps:
+            raise KeyError(f"{instance_id!r} has no calibrated cap in harness/data/budgets.json")
+        cz_budget = int(round(mult * caps[instance_id]))
     matrix = load_coupling_matrix(instance_id)
     num_qubits = matrix.shape[0]
     if num_qubits != entry["num_qubits"]:
@@ -121,24 +161,30 @@ _SIZE = re.compile(r"^N=(\d+)$")
 
 
 def parse_instances(claim: str) -> list[str]:
-    """The sizes grammar: a comma-separated mix of instance ids, `N=<int>` and tier names.
+    """The sizes grammar: a comma-separated mix of `<instance>[@<mult>]`, `N=<int>[@<mult>]`
+    and `<tier>[@<mult>]`. Without `@<mult>` a token expands to the whole budget ladder
+    (`@0.5, @1, @2, @4`), so `tier0` names every scored (instance, budget) cell of tier 0.
 
-    Returns instance ids in manifest order, deduplicated. Unknown tokens raise, so a typo
-    cannot look like an empty claim.
+    Returns ids in manifest order, ladder order within an instance, deduplicated. Unknown
+    tokens raise, so a typo cannot look like an empty claim.
     """
     manifest = load_manifest()
-    chosen: list[str] = []
+    names: list[tuple[str, float | None]] = []
     for token in (t.strip() for t in claim.split(",")):
         if not token:
             continue
-        if token in manifest:
-            chosen.append(token)
-        elif token in TIERS:
-            chosen.extend(k for k, v in manifest.items() if v["tier"] == token)
-        elif _SIZE.match(token):
-            size = int(_SIZE.match(token).group(1))
-            chosen.extend(k for k, v in manifest.items() if v["num_qubits"] == size)
+        base, mult = split_instance_id(token)
+        mults = [mult] if "@" in token else list(LADDER)
+        if base in manifest:
+            bases = [base]
+        elif base in TIERS:
+            bases = [k for k, v in manifest.items() if v["tier"] == base]
+        elif _SIZE.match(base):
+            size = int(_SIZE.match(base).group(1))
+            bases = [k for k, v in manifest.items() if v["num_qubits"] == size]
         else:
             raise ValueError(f"unknown instance, size or tier: {token!r}")
+        names.extend((b, m) for b in bases for m in mults)
     order = {k: i for i, k in enumerate(manifest)}
-    return sorted(set(chosen), key=order.__getitem__)
+    unique = sorted(set(names), key=lambda x: (order[x[0]], -1.0 if x[1] is None else x[1]))
+    return [b if m is None else f"{b}@{format_multiplier(m)}" for b, m in unique]

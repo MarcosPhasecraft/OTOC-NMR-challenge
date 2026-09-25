@@ -49,9 +49,14 @@ def test_sign_convention_matches_vendored_orderings():
 
 def test_parse_instances_grammar():
     manifest = spec.load_manifest()
-    assert spec.parse_instances("tier0") == [k for k, v in manifest.items() if v["tier"] == "tier0"]
-    assert len(spec.parse_instances("N=10")) == 5
-    assert spec.parse_instances("instance_4_d_5, instance_4_d_5") == ["instance_4_d_5"]
+    tier0 = [k for k, v in manifest.items() if v["tier"] == "tier0"]
+    assert spec.parse_instances("tier0") == [f"{k}@{m:g}" for k in tier0 for m in spec.LADDER]
+    assert len(spec.parse_instances("N=10")) == 5 * len(spec.LADDER)
+    assert spec.parse_instances("N=10@1") == [f"{k}@1" for k, v in manifest.items() if v["num_qubits"] == 10]
+    assert spec.parse_instances("instance_4_d_5@inf, instance_4_d_5@inf") == ["instance_4_d_5"]
+    assert spec.parse_instances("instance_4_d_5@2,instance_4_d_5@0.5") == ["instance_4_d_5@0.5", "instance_4_d_5@2"]
+    with pytest.raises(ValueError):
+        spec.parse_instances("instance_4_d_5@-1")
     with pytest.raises(ValueError):
         spec.parse_instances("instance_does_not_exist")
     with pytest.raises(KeyError):
@@ -63,3 +68,14 @@ def test_excluded_instances_are_not_loadable():
     assert "instance_104_d_13" not in spec.load_manifest()
     assert os.path.isfile(os.path.join(spec.DATA_DIR, "instances", "instance_104_d_13",
                                        "hamiltonian_projected.npy"))  # data kept, instance excluded
+
+
+def test_budget_multiplier_reads_calibrated_cap(tmp_path, monkeypatch):
+    monkeypatch.setattr(spec, "BUDGETS_PATH", str(tmp_path / "budgets.json"))
+    with pytest.raises(KeyError):
+        spec.build_spec("instance_4_d_5@2")           # no calibration yet
+    (tmp_path / "budgets.json").write_text(json.dumps({"instance_4_d_5": 270}))
+    assert spec.build_spec("instance_4_d_5@2")["cz_budget"] == 540
+    assert spec.build_spec("instance_4_d_5@0.5")["cz_budget"] == 135
+    assert spec.build_spec("instance_4_d_5")["cz_budget"] is None
+    assert spec.build_spec("instance_4_d_5@2", cz_budget=99)["cz_budget"] == 99
