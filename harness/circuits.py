@@ -146,11 +146,21 @@ def swap_network_step(terms: Sequence[Sequence], dt: float, spin_position: Seque
     return operations, new_position
 
 
+def positions_after_network(spin_position: Sequence[int], steps: int, order: int = 1) -> list[int]:
+    """Where each spin sits after `steps` fused-network steps: a first-order pass reverses the
+    chain, so odd first-order step counts leave the spins reversed; the order-2 and order-4
+    steps are palindromes and restore the order. The artifact must report the butterfly
+    spin's position from this (`butterfly_positions`), or X_B acts on the wrong spin."""
+    n = len(spin_position)
+    if order == 1 and steps % 2 == 1:
+        return [n - 1 - p for p in spin_position]
+    return list(spin_position)
+
+
 def swap_network_circuit(terms: Sequence[Sequence], dt: float, steps: int,
                          spin_position: Sequence[int], scale: float = 1.0) -> cirq.Circuit:
     """`steps` fused swap-network first-order steps; the spin order reverses every step, so odd
-    step counts leave the spins reversed (the referee tracks positions only through the
-    initial mapping and the gates, so this is fine: the OTOC is basis-independent)."""
+    step counts leave the spins reversed: see `positions_after_network`."""
     position = list(spin_position)
     operations: list[cirq.Operation] = []
     for _ in range(steps):
@@ -237,7 +247,24 @@ def circuit_json(circuit: cirq.Circuit) -> Any:
     return json.loads(cirq.to_json(circuit))
 
 
-def make_artifact(initial_mapping: Sequence[int], circuits: Sequence[cirq.Circuit], note: str) -> dict[str, Any]:
-    return {"initial_mapping": [int(p) for p in initial_mapping],
-            "circuits": {str(k): circuit_json(c) for k, c in enumerate(circuits)},
-            "note": note}
+def make_artifact(initial_mapping: Sequence[int], circuits: Sequence[cirq.Circuit], note: str,
+                  butterfly_positions: Sequence[int] | None = None) -> dict[str, Any]:
+    artifact = {"initial_mapping": [int(p) for p in initial_mapping],
+                "circuits": {str(k): circuit_json(c) for k, c in enumerate(circuits)},
+                "note": note}
+    if butterfly_positions is not None:
+        artifact["butterfly_positions"] = [int(b) for b in butterfly_positions]
+    return artifact
+
+
+def network_artifact(terms: Sequence[Sequence], times: Sequence[float], steps_at_tmax: int,
+                     spin_position: Sequence[int], butterfly_site: int, order: int, note: str,
+                     scale: float = 1.0) -> dict[str, Any]:
+    """The artifact for a fused swap network at one product-formula order: one circuit per time
+    point (`steps_per_time`), and the butterfly position each circuit leaves spin
+    `butterfly_site` at."""
+    circs, butterfly = [], []
+    for steps_t, dt_t in steps_per_time(times, steps_at_tmax):
+        circs.append(fused_network_circuit(terms, dt_t, steps_t, spin_position, order, scale))
+        butterfly.append(positions_after_network(spin_position, steps_t, order)[butterfly_site])
+    return make_artifact(spin_position, circs, note, butterfly)

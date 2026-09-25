@@ -37,6 +37,12 @@ target-error objective and certificates).
 - Qubit labelling: the database's (carbons at sites 0, 1, rest as stored). **[agreed]** the
   artifact carries an `initial_mapping` (permutation of spins onto chain positions), applied
   before any gate and free of charge; time-of-flight order is one choice among many.
+- Where the butterfly acts: V may move spins (one brick-wall swap-network pass reverses the
+  chain), so the artifact also carries `butterfly_positions`, the chain position of spin 1
+  after each V(t_k); omitted, it defaults to `initial_mapping[1]`. The referee applies X
+  there, then V†, which returns every spin to its initial position, so the measurement
+  spin needs no such entry. The declared position is part of the submission: a wrong one
+  simply scores a different (wrong) quantity, like any other error in V.
 
 ## 3. Instances, tiers, access
 
@@ -96,7 +102,8 @@ For each instance and each budget on the ladder (§8):
    under `initial_mapping`; larger gates rejected); per-gate unitarity `‖G†G − I‖ ≤ 1e-8`,
    **rejected outright if violated, never re-projected**; finiteness; never raises.
 2. Assemble the echo around V (§2) after applying `initial_mapping`: V exactly as submitted,
-   the butterfly, then V† = the submitted gates reversed and inverted. The referee never
+   the butterfly X at `butterfly_positions[k]`, then V† = the submitted gates reversed and
+   inverted. The referee never
    edits, drops, merges or reorders the candidate's gates.
 3. **[agreed] No referee-side pruning.** Light-cone pruning is the candidate's to discover;
    the baselines are plain Trotter that prunes nothing itself. The referee counts what is

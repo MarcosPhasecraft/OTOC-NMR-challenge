@@ -12,6 +12,5 @@ def generate(spec):
     cz_per_step = 2 * 2 * CZ_PER_FUSED_GATE * n * (n - 1) // 2
     budget = spec.get("cz_budget")
     steps = 4 if budget is None else max(1, int(budget) // cz_per_step)
-    circs = [circuits.fused_network_circuit(spec["terms"], dt_t, steps_t, mapping, order=2)
-             for steps_t, dt_t in circuits.steps_per_time(spec["times"], steps)]
-    return circuits.make_artifact(mapping, circs, f"second-order fused swap network, {steps} steps")
+    return circuits.network_artifact(spec["terms"], spec["times"], steps, mapping, spec["butterfly_site"],
+                                     2, f"second-order fused swap network, {steps} steps")

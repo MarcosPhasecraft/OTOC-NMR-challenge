@@ -24,6 +24,5 @@ def generate(spec):
     n = spec["num_qubits"]
     mapping = circuits.time_of_flight_mapping(spec["terms"], n, spec["measurement_site"], spec["butterfly_site"])
     steps = steps_for_budget(spec)
-    circs = [circuits.fused_network_circuit(spec["terms"], dt_t, steps_t, mapping, order=1)
-             for steps_t, dt_t in circuits.steps_per_time(spec["times"], steps)]
-    return circuits.make_artifact(mapping, circs, f"seed: first-order fused swap network, {steps} steps")
+    return circuits.network_artifact(spec["terms"], spec["times"], steps, mapping, spec["butterfly_site"],
+                                     1, f"seed: first-order fused swap network, {steps} steps")

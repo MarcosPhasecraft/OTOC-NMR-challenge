@@ -65,10 +65,11 @@ def score(spec: dict[str, Any], artifact: Any, workers: int | None = None) -> di
     reference = load_reference(spec)
     n = int(spec["num_qubits"])
     m_pos = parsed.initial_mapping[spec["measurement_site"]]
-    b_pos = parsed.initial_mapping[spec["butterfly_site"]]
     times = list(range(len(spec["times"])))
 
-    jobs = [(parsed.circuits[k], n, m_pos, b_pos) for k in times]
+    # X_B acts where the artifact says the butterfly spin sits after V(t_k); the measurement
+    # spin is back at its initial position after V^dagger, so its position is fixed.
+    jobs = [(parsed.circuits[k], n, m_pos, parsed.butterfly_positions[k]) for k in times]
     workers = MAX_WORKERS if workers is None else workers
     if workers > 1 and len(jobs) > 1:
         with ProcessPoolExecutor(max_workers=workers) as pool:

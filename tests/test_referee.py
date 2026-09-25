@@ -28,9 +28,8 @@ def identity_artifact(instance_spec, n):
 def seed_artifact(instance_spec, steps, mapping=None, scale=1.0):
     n = instance_spec["num_qubits"]
     mapping = list(range(n)) if mapping is None else mapping
-    circs = [circuits.swap_network_circuit(instance_spec["terms"], dt_t, steps_t, mapping, scale)
-             for steps_t, dt_t in circuits.steps_per_time(instance_spec["times"], steps)]
-    return circuits.make_artifact(mapping, circs, f"swap-network seed, {steps} steps")
+    return circuits.network_artifact(instance_spec["terms"], instance_spec["times"], steps, mapping,
+                                     instance_spec["butterfly_site"], 1, f"swap-network seed, {steps} steps", scale)
 
 
 # ----------------------------------------------------------------------------- analytic
@@ -127,6 +126,9 @@ def test_rejections(instance_spec):
         "measurement": circuits.make_artifact(list(range(n)), [cirq.Circuit(cirq.measure(q(0)))] * 8, ""),
         "not-a-permutation": tamper(good, lambda a: a.__setitem__("initial_mapping", [0] * n)),
         "mapping-wrong-length": tamper(good, lambda a: a.__setitem__("initial_mapping", list(range(n - 1)))),
+        "butterfly-out-of-range": tamper(good, lambda a: a.__setitem__("butterfly_positions", [n] * 8)),
+        "butterfly-wrong-length": tamper(good, lambda a: a.__setitem__("butterfly_positions", [1] * 7)),
+        "butterfly-not-int": tamper(good, lambda a: a.__setitem__("butterfly_positions", [1.0] * 8)),
         "missing-time": tamper(good, lambda a: a["circuits"].pop("7")),
         "extra-time": tamper(good, lambda a: a["circuits"].__setitem__("8", a["circuits"]["0"])),
         "not-json-circuit": tamper(good, lambda a: a["circuits"].__setitem__("0", {"cirq_type": "Nonsense"})),
@@ -226,6 +228,41 @@ def test_seed_converges_to_reference(instance_spec):
     fine = score(instance_spec, seed_artifact(instance_spec, 24), workers=1)["rmse"]
     assert fine < coarse / 4
     assert fine < 0.05
+
+
+def test_swapnet_ladder_matches_error_bounds_database():
+    """The database's first-order swap-network step ladder (otoc-trotter-error-bounds,
+    dC_rsearch/<instance>__swapnet__p1.json, integrated RMS error E at r steps, 20 Haar
+    samples): the referee's exact value must land within that sampling noise. Odd step counts
+    leave the chain reversed, so this also pins the artifact's `butterfly_positions`."""
+    database = {"instance_35_d_5": {8: 0.0667, 16: 0.0209},
+                "instance_63_d_5": {8: 0.1228, 16: 0.0472}}
+    for instance, ladder in database.items():
+        instance_spec = spec.build_spec(instance)
+        n = instance_spec["num_qubits"]
+        # the database's swapnet ordering runs on the identity layout (spin s at position s);
+        # any other layout is a different Trotter ordering with a different error
+        for steps, expected in ladder.items():
+            artifact = seed_artifact(instance_spec, steps, list(range(n)))
+            assert score(instance_spec, artifact, workers=1)["rmse"] == pytest.approx(expected, abs=0.012), (instance, steps)
+
+
+def test_butterfly_position_defaults_to_initial_mapping(instance_spec):
+    """Without `butterfly_positions` the referee applies X_B where the initial mapping put the
+    spin; a one-pass network moved it to the mirror position, so the two disagree, and
+    declaring the mirror position gives the same OTOC as a two-pass, order-restoring circuit
+    at the same total time would in the dt -> 0 limit (here: just check the mechanics)."""
+    n = instance_spec["num_qubits"]
+    artifact = seed_artifact(instance_spec, 8)                     # odd step counts at odd times
+    assert artifact["butterfly_positions"] == [n - 1 - 1 if k % 2 == 0 else 1 for k in range(8)]
+    naive = dict(artifact); naive.pop("butterfly_positions")
+    declared = score(instance_spec, artifact, workers=1)["otoc"]
+    undeclared = score(instance_spec, naive, workers=1)["otoc"]
+    for k in range(8):
+        if k % 2 == 1:      # even step count: chain order restored, both agree
+            assert declared[k] == pytest.approx(undeclared[k])
+        else:
+            assert declared[k] != pytest.approx(undeclared[k])
 
 
 def test_steps_per_time_evolves_each_point_for_its_own_time():

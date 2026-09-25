@@ -3,8 +3,15 @@
     artifact = {
         "initial_mapping": [int],                 # spin s sits at chain position initial_mapping[s]
         "circuits": {"0": <cirq JSON>, ..., "7": <cirq JSON>},   # forward V(t_k) per time index
+        "butterfly_positions": [int],             # optional: chain position of the butterfly spin
+                                                  # after V(t_k), per time index (see below)
         "note": str,                              # free text, never read by the referee
     }
+
+The echo is V, then X on the butterfly spin, then V^dagger. A circuit may move spins around
+(a swap network reverses the chain every pass), so the artifact says where the butterfly spin
+sits when V ends; omitted, it is taken to be where `initial_mapping` put it. The measurement
+spin needs no such entry: V^dagger returns every spin to its initial position.
 
 A circuit is a cirq circuit on `cirq.LineQubit(p)` for chain positions p. Every operation must
 be a single-qubit gate or a two-qubit gate on adjacent positions, with a unitary matrix cirq can
@@ -35,6 +42,7 @@ class Gate:
 class ParsedArtifact:
     initial_mapping: tuple[int, ...]
     circuits: dict[int, list[Gate]]   # time index -> gate list, circuit order
+    butterfly_positions: tuple[int, ...]   # per time index, the position X_B acts on
 
 
 def _fail(checks: dict[str, Any], reason: str) -> dict[str, Any]:
@@ -105,8 +113,16 @@ def parse_artifact(spec: dict[str, Any], artifact: Any) -> tuple[ParsedArtifact 
             return None, _fail(checks, f"circuit {key}: {reason}")
         checks[f"circuit_{key}"] = f"ok ({len(gates)} gates)"
         parsed[int(key)] = gates
+    default_b = mapping[int(spec["butterfly_site"])]
+    positions = artifact.get("butterfly_positions", [default_b] * len(expected))
+    checks["butterfly_positions_valid"] = (
+        isinstance(positions, list) and len(positions) == len(expected)
+        and all(isinstance(b, int) and not isinstance(b, bool) and 0 <= b < n for b in positions))
+    if not checks["butterfly_positions_valid"]:
+        return None, _fail(checks, f"butterfly_positions must be {len(expected)} chain positions in 0..{n - 1}")
     checks["note_is_text"] = isinstance(artifact.get("note", ""), str)
-    return ParsedArtifact(tuple(mapping), parsed), {"passed": True, "checks": checks, "reason": ""}
+    return (ParsedArtifact(tuple(mapping), parsed, tuple(positions)),
+            {"passed": True, "checks": checks, "reason": ""})
 
 
 def verify(spec: dict[str, Any], artifact: Any) -> dict[str, Any]:

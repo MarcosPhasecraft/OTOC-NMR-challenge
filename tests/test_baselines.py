@@ -59,9 +59,9 @@ def test_strang_step_restores_spin_order_and_is_second_order(instance_spec):
     mapping = list(range(n))
 
     def rmse(order, steps):
-        circs = [circuits.fused_network_circuit(instance_spec["terms"], dt_t, steps_t, mapping, order)
-                 for steps_t, dt_t in circuits.steps_per_time(instance_spec["times"], steps)]
-        return score(instance_spec, circuits.make_artifact(mapping, circs, ""), workers=1)["rmse"]
+        artifact = circuits.network_artifact(instance_spec["terms"], instance_spec["times"], steps, mapping,
+                                             instance_spec["butterfly_site"], order, "")
+        return score(instance_spec, artifact, workers=1)["rmse"]
 
     e2_8, e2_16 = rmse(2, 8), rmse(2, 16)
     assert e2_16 < e2_8 / 2.5

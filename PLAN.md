@@ -44,6 +44,7 @@ before that.
 ```
 { "initial_mapping": [int],            # spin -> chain position, a permutation
   "circuits": { "<time index>": <cirq circuit JSON> },   # forward V(t_k), gates on chain positions
+  "butterfly_positions": [int],        # optional: where spin 1 sits after each V(t_k); default initial_mapping[1]
   "note": str }
 ```
 Gates: single-qubit unitaries, or two-qubit unitaries on adjacent chain positions. Anything
