@@ -8,10 +8,10 @@ before that.
 
 1. [x] Scaffold from Sagecraft (commit `ebc5666`), contract as `CONTEXT.md`, data with
    provenance (`data/`), `gen_orderings.py` vendored (`harness/vendor/`).
-2. [ ] Loader: `harness/spec.py` — `build_spec(instance_id)`, `parse_instances(claim)`,
+2. [x] Loader: `harness/spec.py` — `build_spec(instance_id)`, `parse_instances(claim)`,
    manifest `data/manifest.json` (tier, N, tmax per instance; 788 instances with tmax).
-3. [ ] Tier-0 references: exact `C(t_k)`, parity ED, stored `harness/data/references/`.
-4. [ ] Referee: `harness/artifact.py` (schema, `verify`), `harness/echo.py`,
+3. [x] Tier-0 references: exact `C(t_k)`, parity ED, stored `harness/data/references/`.
+4. [x] Referee (exact engine; sampled engine in Phase 1): `harness/artifact.py` (schema, `verify`), `harness/echo.py`,
    `harness/cost.py` (KAK CZ count), `harness/engines.py` (exact tier 0; qsim sampled
    later), `harness/score.py`; `harness/__init__.py` exposes `build_spec`,
    `parse_instances`, `verify`, `score`, `FROZEN_GLOBS`.

@@ -1,0 +1,3942 @@
+{
+ "instance_0_d_10": {
+  "num_qubits": 20,
+  "tmax": 3.3534248898839785,
+  "tier": "tier3"
+ },
+ "instance_0_d_11": {
+  "num_qubits": 18,
+  "tmax": 2.8550711081165185,
+  "tier": "tier3"
+ },
+ "instance_0_d_13": {
+  "num_qubits": 17,
+  "tmax": 0.9595010801860283,
+  "tier": "tier3"
+ },
+ "instance_0_d_5": {
+  "num_qubits": 17,
+  "tmax": 0.47388592666067064,
+  "tier": "tier3"
+ },
+ "instance_100_d_10": {
+  "num_qubits": 20,
+  "tmax": 3.204838775387321,
+  "tier": "tier3"
+ },
+ "instance_100_d_14": {
+  "num_qubits": 15,
+  "tmax": 10.95526472425595,
+  "tier": "tier1"
+ },
+ "instance_100_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.6221921017642292,
+  "tier": "tier1"
+ },
+ "instance_100_d_8": {
+  "num_qubits": 16,
+  "tmax": 2.4394688170346073,
+  "tier": "tier2"
+ },
+ "instance_101_d_10": {
+  "num_qubits": 16,
+  "tmax": 1.8576147949720103,
+  "tier": "tier2"
+ },
+ "instance_101_d_11": {
+  "num_qubits": 19,
+  "tmax": 1.9492171956955382,
+  "tier": "tier3"
+ },
+ "instance_101_d_13": {
+  "num_qubits": 16,
+  "tmax": 3.803929467296557,
+  "tier": "tier2"
+ },
+ "instance_101_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7977460058978907,
+  "tier": "tier1"
+ },
+ "instance_101_d_8": {
+  "num_qubits": 12,
+  "tmax": 0.6973830190001903,
+  "tier": "tier0"
+ },
+ "instance_102_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.8404985112183354,
+  "tier": "tier3"
+ },
+ "instance_102_d_12": {
+  "num_qubits": 19,
+  "tmax": 4.376097784763024,
+  "tier": "tier3"
+ },
+ "instance_102_d_14": {
+  "num_qubits": 13,
+  "tmax": 16.39304977444303,
+  "tier": "tier1"
+ },
+ "instance_102_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.0641115106384933,
+  "tier": "tier2"
+ },
+ "instance_103_d_10": {
+  "num_qubits": 20,
+  "tmax": 2.530388237593495,
+  "tier": "tier3"
+ },
+ "instance_103_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.849955460577971,
+  "tier": "tier3"
+ },
+ "instance_103_d_13": {
+  "num_qubits": 16,
+  "tmax": 3.9245536034339086,
+  "tier": "tier2"
+ },
+ "instance_103_d_15": {
+  "num_qubits": 13,
+  "tmax": 3.8565363710001592,
+  "tier": "tier1"
+ },
+ "instance_103_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.9763994899498406,
+  "tier": "tier2"
+ },
+ "instance_103_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.2780238057481292,
+  "tier": "tier2"
+ },
+ "instance_104_d_14": {
+  "num_qubits": 16,
+  "tmax": 5.642430383330128,
+  "tier": "tier2"
+ },
+ "instance_104_d_5": {
+  "num_qubits": 13,
+  "tmax": 1.2292847092856773,
+  "tier": "tier1"
+ },
+ "instance_104_d_6": {
+  "num_qubits": 14,
+  "tmax": 2.329279192837993,
+  "tier": "tier1"
+ },
+ "instance_104_d_7": {
+  "num_qubits": 16,
+  "tmax": 0.8489618190228347,
+  "tier": "tier2"
+ },
+ "instance_104_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.1842240816027605,
+  "tier": "tier2"
+ },
+ "instance_104_d_9": {
+  "num_qubits": 16,
+  "tmax": 5.920615406800939,
+  "tier": "tier2"
+ },
+ "instance_105_d_10": {
+  "num_qubits": 17,
+  "tmax": 2.581282615134203,
+  "tier": "tier3"
+ },
+ "instance_105_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.412148317727747,
+  "tier": "tier3"
+ },
+ "instance_105_d_12": {
+  "num_qubits": 16,
+  "tmax": 1.6759437503268875,
+  "tier": "tier2"
+ },
+ "instance_105_d_14": {
+  "num_qubits": 16,
+  "tmax": 1.8989510319470397,
+  "tier": "tier2"
+ },
+ "instance_105_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.1391207253972508,
+  "tier": "tier1"
+ },
+ "instance_105_d_8": {
+  "num_qubits": 16,
+  "tmax": 0.9989175641752548,
+  "tier": "tier2"
+ },
+ "instance_105_d_9": {
+  "num_qubits": 15,
+  "tmax": 1.1763375563501173,
+  "tier": "tier1"
+ },
+ "instance_106_d_10": {
+  "num_qubits": 19,
+  "tmax": 2.541189022687061,
+  "tier": "tier3"
+ },
+ "instance_106_d_11": {
+  "num_qubits": 18,
+  "tmax": 2.678779302886642,
+  "tier": "tier3"
+ },
+ "instance_106_d_5": {
+  "num_qubits": 13,
+  "tmax": 1.7124433143266717,
+  "tier": "tier1"
+ },
+ "instance_106_d_7": {
+  "num_qubits": 15,
+  "tmax": 5.434579685078377,
+  "tier": "tier1"
+ },
+ "instance_107_d_14": {
+  "num_qubits": 15,
+  "tmax": 2.4670799668002235,
+  "tier": "tier1"
+ },
+ "instance_108_d_11": {
+  "num_qubits": 19,
+  "tmax": 3.804383963889985,
+  "tier": "tier3"
+ },
+ "instance_108_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.6581267125328909,
+  "tier": "tier1"
+ },
+ "instance_108_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.9599624397719768,
+  "tier": "tier2"
+ },
+ "instance_109_d_10": {
+  "num_qubits": 20,
+  "tmax": 0.8668409100642217,
+  "tier": "tier3"
+ },
+ "instance_109_d_11": {
+  "num_qubits": 19,
+  "tmax": 2.418654439156877,
+  "tier": "tier3"
+ },
+ "instance_109_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.6578881188757817,
+  "tier": "tier1"
+ },
+ "instance_10_d_10": {
+  "num_qubits": 23,
+  "tmax": 0.8520429183602755,
+  "tier": "tier3"
+ },
+ "instance_10_d_11": {
+  "num_qubits": 19,
+  "tmax": 2.020621494439076,
+  "tier": "tier3"
+ },
+ "instance_10_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.9812564131352383,
+  "tier": "tier1"
+ },
+ "instance_10_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.940619370697929,
+  "tier": "tier2"
+ },
+ "instance_110_d_5": {
+  "num_qubits": 18,
+  "tmax": 1.9230441866204275,
+  "tier": "tier3"
+ },
+ "instance_111_d_10": {
+  "num_qubits": 17,
+  "tmax": 2.1362161373534088,
+  "tier": "tier3"
+ },
+ "instance_111_d_5": {
+  "num_qubits": 15,
+  "tmax": 2.1149714526451655,
+  "tier": "tier1"
+ },
+ "instance_111_d_6": {
+  "num_qubits": 16,
+  "tmax": 3.0927501476557473,
+  "tier": "tier2"
+ },
+ "instance_111_d_7": {
+  "num_qubits": 15,
+  "tmax": 2.5597537606723737,
+  "tier": "tier1"
+ },
+ "instance_111_d_8": {
+  "num_qubits": 15,
+  "tmax": 1.914246029630016,
+  "tier": "tier1"
+ },
+ "instance_111_d_9": {
+  "num_qubits": 13,
+  "tmax": 0.8716653438647951,
+  "tier": "tier1"
+ },
+ "instance_112_d_10": {
+  "num_qubits": 15,
+  "tmax": 0.9372459682643162,
+  "tier": "tier1"
+ },
+ "instance_112_d_15": {
+  "num_qubits": 15,
+  "tmax": 11.441651493202263,
+  "tier": "tier1"
+ },
+ "instance_112_d_5": {
+  "num_qubits": 13,
+  "tmax": 1.6828430642536976,
+  "tier": "tier1"
+ },
+ "instance_112_d_7": {
+  "num_qubits": 15,
+  "tmax": 0.7994116796778159,
+  "tier": "tier1"
+ },
+ "instance_113_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.4811946709525259,
+  "tier": "tier1"
+ },
+ "instance_113_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.1159068731464374,
+  "tier": "tier1"
+ },
+ "instance_113_d_7": {
+  "num_qubits": 15,
+  "tmax": 2.870773881570866,
+  "tier": "tier1"
+ },
+ "instance_113_d_8": {
+  "num_qubits": 15,
+  "tmax": 3.04022135330252,
+  "tier": "tier1"
+ },
+ "instance_114_d_11": {
+  "num_qubits": 17,
+  "tmax": 3.555814743880909,
+  "tier": "tier3"
+ },
+ "instance_114_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.5553975457256862,
+  "tier": "tier1"
+ },
+ "instance_114_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.4214962469862042,
+  "tier": "tier2"
+ },
+ "instance_114_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.8963623873497235,
+  "tier": "tier1"
+ },
+ "instance_114_d_8": {
+  "num_qubits": 16,
+  "tmax": 0.7207551717004561,
+  "tier": "tier2"
+ },
+ "instance_115_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.4801720505488879,
+  "tier": "tier2"
+ },
+ "instance_116_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.4545018831703507,
+  "tier": "tier1"
+ },
+ "instance_116_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.3378856485974664,
+  "tier": "tier1"
+ },
+ "instance_116_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.2003883638575,
+  "tier": "tier2"
+ },
+ "instance_117_d_11": {
+  "num_qubits": 18,
+  "tmax": 6.299426733293931,
+  "tier": "tier3"
+ },
+ "instance_117_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.1564369686421156,
+  "tier": "tier2"
+ },
+ "instance_118_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.21285508601239,
+  "tier": "tier3"
+ },
+ "instance_118_d_11": {
+  "num_qubits": 18,
+  "tmax": 2.0460704830501255,
+  "tier": "tier3"
+ },
+ "instance_118_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.793647913863681,
+  "tier": "tier1"
+ },
+ "instance_118_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.1694939451666857,
+  "tier": "tier2"
+ },
+ "instance_119_d_10": {
+  "num_qubits": 18,
+  "tmax": 0.8747169717237877,
+  "tier": "tier3"
+ },
+ "instance_119_d_11": {
+  "num_qubits": 18,
+  "tmax": 15.032565501795025,
+  "tier": "tier3"
+ },
+ "instance_119_d_12": {
+  "num_qubits": 19,
+  "tmax": 0.9888983087384988,
+  "tier": "tier3"
+ },
+ "instance_119_d_14": {
+  "num_qubits": 16,
+  "tmax": 3.170831222602687,
+  "tier": "tier2"
+ },
+ "instance_119_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.5235119888175613,
+  "tier": "tier1"
+ },
+ "instance_119_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.658304588045207,
+  "tier": "tier1"
+ },
+ "instance_119_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.4825950402132377,
+  "tier": "tier2"
+ },
+ "instance_119_d_9": {
+  "num_qubits": 16,
+  "tmax": 0.9234121345399178,
+  "tier": "tier2"
+ },
+ "instance_11_d_10": {
+  "num_qubits": 24,
+  "tmax": 1.7393052881487454,
+  "tier": "tier3"
+ },
+ "instance_11_d_11": {
+  "num_qubits": 19,
+  "tmax": 1.852289151581846,
+  "tier": "tier3"
+ },
+ "instance_11_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.4648776205100078,
+  "tier": "tier1"
+ },
+ "instance_11_d_8": {
+  "num_qubits": 16,
+  "tmax": 2.5820610040561265,
+  "tier": "tier2"
+ },
+ "instance_120_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.2861383078977553,
+  "tier": "tier3"
+ },
+ "instance_120_d_12": {
+  "num_qubits": 18,
+  "tmax": 1.7221056361089997,
+  "tier": "tier3"
+ },
+ "instance_120_d_15": {
+  "num_qubits": 16,
+  "tmax": 1.8510217634985573,
+  "tier": "tier2"
+ },
+ "instance_120_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.710325960364011,
+  "tier": "tier0"
+ },
+ "instance_120_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.7341316665378577,
+  "tier": "tier1"
+ },
+ "instance_120_d_7": {
+  "num_qubits": 16,
+  "tmax": 2.8440174145852004,
+  "tier": "tier2"
+ },
+ "instance_120_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.9892788881682077,
+  "tier": "tier2"
+ },
+ "instance_121_d_10": {
+  "num_qubits": 19,
+  "tmax": 2.547082444991243,
+  "tier": "tier3"
+ },
+ "instance_121_d_13": {
+  "num_qubits": 14,
+  "tmax": 1.7690599644700666,
+  "tier": "tier1"
+ },
+ "instance_121_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.094780386131658,
+  "tier": "tier2"
+ },
+ "instance_121_d_9": {
+  "num_qubits": 14,
+  "tmax": 0.7421910527907988,
+  "tier": "tier1"
+ },
+ "instance_122_d_11": {
+  "num_qubits": 20,
+  "tmax": 2.9830530210963944,
+  "tier": "tier3"
+ },
+ "instance_122_d_12": {
+  "num_qubits": 19,
+  "tmax": 4.733035059479332,
+  "tier": "tier3"
+ },
+ "instance_122_d_14": {
+  "num_qubits": 16,
+  "tmax": 4.1366765089674615,
+  "tier": "tier2"
+ },
+ "instance_122_d_15": {
+  "num_qubits": 16,
+  "tmax": 3.1194905104656523,
+  "tier": "tier2"
+ },
+ "instance_122_d_8": {
+  "num_qubits": 12,
+  "tmax": 0.6661575568523661,
+  "tier": "tier0"
+ },
+ "instance_123_d_10": {
+  "num_qubits": 20,
+  "tmax": 2.390263332382232,
+  "tier": "tier3"
+ },
+ "instance_123_d_11": {
+  "num_qubits": 19,
+  "tmax": 2.875226684972468,
+  "tier": "tier3"
+ },
+ "instance_123_d_5": {
+  "num_qubits": 12,
+  "tmax": 1.1421429626246318,
+  "tier": "tier0"
+ },
+ "instance_123_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.6411643659200221,
+  "tier": "tier1"
+ },
+ "instance_123_d_9": {
+  "num_qubits": 16,
+  "tmax": 0.621284217835827,
+  "tier": "tier2"
+ },
+ "instance_124_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.3978966135746969,
+  "tier": "tier3"
+ },
+ "instance_124_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.9997710211895323,
+  "tier": "tier0"
+ },
+ "instance_124_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.8657499798082268,
+  "tier": "tier1"
+ },
+ "instance_124_d_8": {
+  "num_qubits": 14,
+  "tmax": 1.1456353908781005,
+  "tier": "tier1"
+ },
+ "instance_125_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.9997579762633197,
+  "tier": "tier1"
+ },
+ "instance_126_d_12": {
+  "num_qubits": 18,
+  "tmax": 3.2738556926329663,
+  "tier": "tier3"
+ },
+ "instance_126_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7235189487631359,
+  "tier": "tier1"
+ },
+ "instance_126_d_8": {
+  "num_qubits": 16,
+  "tmax": 0.9626148425615917,
+  "tier": "tier2"
+ },
+ "instance_126_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.4712659519561724,
+  "tier": "tier2"
+ },
+ "instance_127_d_11": {
+  "num_qubits": 19,
+  "tmax": 3.1496053968282824,
+  "tier": "tier3"
+ },
+ "instance_127_d_12": {
+  "num_qubits": 19,
+  "tmax": 4.458771442737275,
+  "tier": "tier3"
+ },
+ "instance_127_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.7417149357465127,
+  "tier": "tier1"
+ },
+ "instance_127_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.031033063419078,
+  "tier": "tier2"
+ },
+ "instance_128_d_10": {
+  "num_qubits": 19,
+  "tmax": 0.9221144383648275,
+  "tier": "tier3"
+ },
+ "instance_128_d_12": {
+  "num_qubits": 19,
+  "tmax": 1.5511265646010124,
+  "tier": "tier3"
+ },
+ "instance_128_d_14": {
+  "num_qubits": 15,
+  "tmax": 5.008509396424452,
+  "tier": "tier1"
+ },
+ "instance_128_d_15": {
+  "num_qubits": 16,
+  "tmax": 1.1332688455977702,
+  "tier": "tier2"
+ },
+ "instance_128_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.6004046694757718,
+  "tier": "tier1"
+ },
+ "instance_128_d_9": {
+  "num_qubits": 15,
+  "tmax": 4.585450586087585,
+  "tier": "tier1"
+ },
+ "instance_129_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.9416192928900208,
+  "tier": "tier1"
+ },
+ "instance_129_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.6030579895797354,
+  "tier": "tier1"
+ },
+ "instance_12_d_10": {
+  "num_qubits": 18,
+  "tmax": 1.2578306416188003,
+  "tier": "tier3"
+ },
+ "instance_12_d_12": {
+  "num_qubits": 18,
+  "tmax": 3.912767320743317,
+  "tier": "tier3"
+ },
+ "instance_12_d_14": {
+  "num_qubits": 15,
+  "tmax": 10.261549879722093,
+  "tier": "tier1"
+ },
+ "instance_12_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.0729599857897218,
+  "tier": "tier2"
+ },
+ "instance_12_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.721232591434104,
+  "tier": "tier1"
+ },
+ "instance_12_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.4207371904125519,
+  "tier": "tier2"
+ },
+ "instance_130_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.965149557285451,
+  "tier": "tier1"
+ },
+ "instance_131_d_5": {
+  "num_qubits": 16,
+  "tmax": 3.228875618020453,
+  "tier": "tier2"
+ },
+ "instance_131_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.2493652248409626,
+  "tier": "tier1"
+ },
+ "instance_131_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.7642190944453402,
+  "tier": "tier2"
+ },
+ "instance_132_d_10": {
+  "num_qubits": 18,
+  "tmax": 0.7210943646093946,
+  "tier": "tier3"
+ },
+ "instance_132_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.985647439099003,
+  "tier": "tier1"
+ },
+ "instance_132_d_8": {
+  "num_qubits": 16,
+  "tmax": 2.2459125180138773,
+  "tier": "tier2"
+ },
+ "instance_132_d_9": {
+  "num_qubits": 12,
+  "tmax": 0.8090019603896104,
+  "tier": "tier0"
+ },
+ "instance_133_d_12": {
+  "num_qubits": 19,
+  "tmax": 3.6164338376282843,
+  "tier": "tier3"
+ },
+ "instance_133_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.9371436249262383,
+  "tier": "tier2"
+ },
+ "instance_133_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.0663445380618022,
+  "tier": "tier2"
+ },
+ "instance_133_d_7": {
+  "num_qubits": 15,
+  "tmax": 0.965875673492985,
+  "tier": "tier1"
+ },
+ "instance_134_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.2243605353197775,
+  "tier": "tier3"
+ },
+ "instance_134_d_11": {
+  "num_qubits": 17,
+  "tmax": 0.9024278508244906,
+  "tier": "tier3"
+ },
+ "instance_134_d_14": {
+  "num_qubits": 15,
+  "tmax": 1.5496170264115925,
+  "tier": "tier1"
+ },
+ "instance_134_d_9": {
+  "num_qubits": 15,
+  "tmax": 1.4025087301856225,
+  "tier": "tier1"
+ },
+ "instance_135_d_11": {
+  "num_qubits": 19,
+  "tmax": 2.918820546330678,
+  "tier": "tier3"
+ },
+ "instance_135_d_15": {
+  "num_qubits": 16,
+  "tmax": 3.8795546460941277,
+  "tier": "tier2"
+ },
+ "instance_135_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.8729447729812922,
+  "tier": "tier2"
+ },
+ "instance_135_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.2148236939458985,
+  "tier": "tier1"
+ },
+ "instance_135_d_9": {
+  "num_qubits": 15,
+  "tmax": 0.9483862491115935,
+  "tier": "tier1"
+ },
+ "instance_136_d_10": {
+  "num_qubits": 20,
+  "tmax": 2.1381859817260076,
+  "tier": "tier3"
+ },
+ "instance_136_d_11": {
+  "num_qubits": 20,
+  "tmax": 2.197128034273157,
+  "tier": "tier3"
+ },
+ "instance_136_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.7587266599387156,
+  "tier": "tier2"
+ },
+ "instance_136_d_6": {
+  "num_qubits": 12,
+  "tmax": 0.7440683512379686,
+  "tier": "tier0"
+ },
+ "instance_136_d_7": {
+  "num_qubits": 15,
+  "tmax": 0.8945293833494449,
+  "tier": "tier1"
+ },
+ "instance_136_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.470763288321742,
+  "tier": "tier2"
+ },
+ "instance_137_d_10": {
+  "num_qubits": 18,
+  "tmax": 0.9778186579834569,
+  "tier": "tier3"
+ },
+ "instance_137_d_14": {
+  "num_qubits": 16,
+  "tmax": 10.067707680177126,
+  "tier": "tier2"
+ },
+ "instance_137_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.749428197844105,
+  "tier": "tier0"
+ },
+ "instance_137_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.1699789591011887,
+  "tier": "tier1"
+ },
+ "instance_137_d_7": {
+  "num_qubits": 16,
+  "tmax": 4.679931975852968,
+  "tier": "tier2"
+ },
+ "instance_137_d_8": {
+  "num_qubits": 16,
+  "tmax": 0.7376059849942219,
+  "tier": "tier2"
+ },
+ "instance_138_d_10": {
+  "num_qubits": 20,
+  "tmax": 3.126464132814182,
+  "tier": "tier3"
+ },
+ "instance_138_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.664589475386046,
+  "tier": "tier2"
+ },
+ "instance_138_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.3794465667334224,
+  "tier": "tier2"
+ },
+ "instance_138_d_8": {
+  "num_qubits": 15,
+  "tmax": 1.20249709465657,
+  "tier": "tier1"
+ },
+ "instance_138_d_9": {
+  "num_qubits": 15,
+  "tmax": 2.6983064857441272,
+  "tier": "tier1"
+ },
+ "instance_139_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.748046875889596,
+  "tier": "tier3"
+ },
+ "instance_139_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.47887848970295177,
+  "tier": "tier0"
+ },
+ "instance_139_d_9": {
+  "num_qubits": 15,
+  "tmax": 1.2644032898126893,
+  "tier": "tier1"
+ },
+ "instance_13_d_12": {
+  "num_qubits": 18,
+  "tmax": 1.708991258393883,
+  "tier": "tier3"
+ },
+ "instance_13_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.8393346973910777,
+  "tier": "tier2"
+ },
+ "instance_13_d_7": {
+  "num_qubits": 15,
+  "tmax": 0.8765615044002122,
+  "tier": "tier1"
+ },
+ "instance_13_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.1005333679903686,
+  "tier": "tier2"
+ },
+ "instance_140_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.5603951485106392,
+  "tier": "tier1"
+ },
+ "instance_140_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.6340906221382518,
+  "tier": "tier2"
+ },
+ "instance_140_d_8": {
+  "num_qubits": 16,
+  "tmax": 2.13745974659302,
+  "tier": "tier2"
+ },
+ "instance_140_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.316370598997335,
+  "tier": "tier2"
+ },
+ "instance_141_d_14": {
+  "num_qubits": 16,
+  "tmax": 1.7150554811988457,
+  "tier": "tier2"
+ },
+ "instance_141_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.9423764081005548,
+  "tier": "tier1"
+ },
+ "instance_141_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.1008305959566855,
+  "tier": "tier2"
+ },
+ "instance_141_d_9": {
+  "num_qubits": 13,
+  "tmax": 2.0231519593721567,
+  "tier": "tier1"
+ },
+ "instance_143_d_11": {
+  "num_qubits": 20,
+  "tmax": 4.438581660543302,
+  "tier": "tier3"
+ },
+ "instance_143_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.1761654025699044,
+  "tier": "tier1"
+ },
+ "instance_143_d_7": {
+  "num_qubits": 14,
+  "tmax": 8.251855982404319,
+  "tier": "tier1"
+ },
+ "instance_143_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.266149911978695,
+  "tier": "tier2"
+ },
+ "instance_144_d_11": {
+  "num_qubits": 20,
+  "tmax": 0.8994892425344282,
+  "tier": "tier3"
+ },
+ "instance_144_d_12": {
+  "num_qubits": 15,
+  "tmax": 1.00411012157115,
+  "tier": "tier1"
+ },
+ "instance_144_d_6": {
+  "num_qubits": 15,
+  "tmax": 3.524460161134647,
+  "tier": "tier1"
+ },
+ "instance_144_d_9": {
+  "num_qubits": 16,
+  "tmax": 4.53064694600978,
+  "tier": "tier2"
+ },
+ "instance_145_d_15": {
+  "num_qubits": 16,
+  "tmax": 2.126924084590326,
+  "tier": "tier2"
+ },
+ "instance_145_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.5819481851241777,
+  "tier": "tier0"
+ },
+ "instance_145_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.7466338300040055,
+  "tier": "tier2"
+ },
+ "instance_146_d_11": {
+  "num_qubits": 20,
+  "tmax": 2.8215517426803824,
+  "tier": "tier3"
+ },
+ "instance_146_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.862735918042562,
+  "tier": "tier1"
+ },
+ "instance_146_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.2338119210113938,
+  "tier": "tier1"
+ },
+ "instance_147_d_12": {
+  "num_qubits": 18,
+  "tmax": 1.5293534676639693,
+  "tier": "tier3"
+ },
+ "instance_147_d_14": {
+  "num_qubits": 16,
+  "tmax": 1.6075579392198727,
+  "tier": "tier2"
+ },
+ "instance_147_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.9245579758366205,
+  "tier": "tier1"
+ },
+ "instance_147_d_6": {
+  "num_qubits": 12,
+  "tmax": 0.8131108814694127,
+  "tier": "tier0"
+ },
+ "instance_148_d_11": {
+  "num_qubits": 17,
+  "tmax": 2.616946641174429,
+  "tier": "tier3"
+ },
+ "instance_148_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.9563878727751276,
+  "tier": "tier1"
+ },
+ "instance_148_d_7": {
+  "num_qubits": 16,
+  "tmax": 2.025547565018562,
+  "tier": "tier2"
+ },
+ "instance_148_d_8": {
+  "num_qubits": 10,
+  "tmax": 9.889908367471689,
+  "tier": "tier0"
+ },
+ "instance_149_d_10": {
+  "num_qubits": 20,
+  "tmax": 3.2690077002173403,
+  "tier": "tier3"
+ },
+ "instance_149_d_12": {
+  "num_qubits": 19,
+  "tmax": 3.8909081991749543,
+  "tier": "tier3"
+ },
+ "instance_149_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.5882743055226423,
+  "tier": "tier1"
+ },
+ "instance_149_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.9663900224709976,
+  "tier": "tier1"
+ },
+ "instance_149_d_7": {
+  "num_qubits": 13,
+  "tmax": 1.073673280159497,
+  "tier": "tier1"
+ },
+ "instance_14_d_10": {
+  "num_qubits": 25,
+  "tmax": 1.9493430723769951,
+  "tier": "tier3"
+ },
+ "instance_14_d_11": {
+  "num_qubits": 17,
+  "tmax": 4.349655040525597,
+  "tier": "tier3"
+ },
+ "instance_14_d_12": {
+  "num_qubits": 17,
+  "tmax": 1.340742214383589,
+  "tier": "tier3"
+ },
+ "instance_14_d_13": {
+  "num_qubits": 14,
+  "tmax": 11.608235829176222,
+  "tier": "tier1"
+ },
+ "instance_14_d_14": {
+  "num_qubits": 16,
+  "tmax": 7.115379570313482,
+  "tier": "tier2"
+ },
+ "instance_14_d_7": {
+  "num_qubits": 15,
+  "tmax": 2.120946608584472,
+  "tier": "tier1"
+ },
+ "instance_150_d_5": {
+  "num_qubits": 18,
+  "tmax": 4.26685219619357,
+  "tier": "tier3"
+ },
+ "instance_150_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.1761623466217033,
+  "tier": "tier1"
+ },
+ "instance_150_d_7": {
+  "num_qubits": 16,
+  "tmax": 4.212323647012502,
+  "tier": "tier2"
+ },
+ "instance_151_d_5": {
+  "num_qubits": 17,
+  "tmax": 0.6201561874565575,
+  "tier": "tier3"
+ },
+ "instance_152_d_12": {
+  "num_qubits": 20,
+  "tmax": 1.229371364110599,
+  "tier": "tier3"
+ },
+ "instance_152_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.0989785516902137,
+  "tier": "tier1"
+ },
+ "instance_152_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.4631412338209766,
+  "tier": "tier2"
+ },
+ "instance_153_d_13": {
+  "num_qubits": 15,
+  "tmax": 14.650399880516837,
+  "tier": "tier1"
+ },
+ "instance_153_d_5": {
+  "num_qubits": 13,
+  "tmax": 6.508462961972141,
+  "tier": "tier1"
+ },
+ "instance_153_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.6872924192711584,
+  "tier": "tier1"
+ },
+ "instance_153_d_7": {
+  "num_qubits": 15,
+  "tmax": 0.7549956952871786,
+  "tier": "tier1"
+ },
+ "instance_153_d_9": {
+  "num_qubits": 16,
+  "tmax": 0.8043192044034352,
+  "tier": "tier2"
+ },
+ "instance_154_d_12": {
+  "num_qubits": 20,
+  "tmax": 1.2893800235257271,
+  "tier": "tier3"
+ },
+ "instance_154_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.5166336752244199,
+  "tier": "tier0"
+ },
+ "instance_154_d_6": {
+  "num_qubits": 13,
+  "tmax": 2.0333921319062442,
+  "tier": "tier1"
+ },
+ "instance_154_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.2979827700980306,
+  "tier": "tier2"
+ },
+ "instance_154_d_8": {
+  "num_qubits": 14,
+  "tmax": 3.564481152484223,
+  "tier": "tier1"
+ },
+ "instance_154_d_9": {
+  "num_qubits": 14,
+  "tmax": 1.4027135709410745,
+  "tier": "tier1"
+ },
+ "instance_155_d_10": {
+  "num_qubits": 16,
+  "tmax": 0.998248004606861,
+  "tier": "tier2"
+ },
+ "instance_155_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.7838957627380883,
+  "tier": "tier3"
+ },
+ "instance_155_d_12": {
+  "num_qubits": 20,
+  "tmax": 1.672294950595162,
+  "tier": "tier3"
+ },
+ "instance_155_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.745912323367733,
+  "tier": "tier2"
+ },
+ "instance_155_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.3040698298778062,
+  "tier": "tier2"
+ },
+ "instance_155_d_7": {
+  "num_qubits": 15,
+  "tmax": 2.5849549357722728,
+  "tier": "tier1"
+ },
+ "instance_156_d_13": {
+  "num_qubits": 19,
+  "tmax": 3.0375142721263724,
+  "tier": "tier3"
+ },
+ "instance_156_d_6": {
+  "num_qubits": 14,
+  "tmax": 2.5932994759084744,
+  "tier": "tier1"
+ },
+ "instance_156_d_8": {
+  "num_qubits": 16,
+  "tmax": 3.3890522943911994,
+  "tier": "tier2"
+ },
+ "instance_157_d_10": {
+  "num_qubits": 20,
+  "tmax": 2.2006797702879557,
+  "tier": "tier3"
+ },
+ "instance_157_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.862390575462555,
+  "tier": "tier2"
+ },
+ "instance_158_d_11": {
+  "num_qubits": 18,
+  "tmax": 4.205490767793525,
+  "tier": "tier3"
+ },
+ "instance_159_d_14": {
+  "num_qubits": 16,
+  "tmax": 1.7665744714448515,
+  "tier": "tier2"
+ },
+ "instance_159_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.3094518120703946,
+  "tier": "tier2"
+ },
+ "instance_159_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.7877842105678391,
+  "tier": "tier2"
+ },
+ "instance_159_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.6162755368470116,
+  "tier": "tier2"
+ },
+ "instance_15_d_12": {
+  "num_qubits": 18,
+  "tmax": 3.729367825446316,
+  "tier": "tier3"
+ },
+ "instance_15_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.0871400315053918,
+  "tier": "tier2"
+ },
+ "instance_15_d_7": {
+  "num_qubits": 16,
+  "tmax": 2.952868441440808,
+  "tier": "tier2"
+ },
+ "instance_15_d_9": {
+  "num_qubits": 13,
+  "tmax": 1.9150443918915452,
+  "tier": "tier1"
+ },
+ "instance_160_d_11": {
+  "num_qubits": 19,
+  "tmax": 3.3086967503531426,
+  "tier": "tier3"
+ },
+ "instance_160_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.095947300993303,
+  "tier": "tier2"
+ },
+ "instance_160_d_9": {
+  "num_qubits": 16,
+  "tmax": 4.046591146663325,
+  "tier": "tier2"
+ },
+ "instance_161_d_5": {
+  "num_qubits": 17,
+  "tmax": 0.6513212138205229,
+  "tier": "tier3"
+ },
+ "instance_161_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.8382990938417624,
+  "tier": "tier1"
+ },
+ "instance_162_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.413833924101156,
+  "tier": "tier2"
+ },
+ "instance_162_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.9776693198210753,
+  "tier": "tier2"
+ },
+ "instance_163_d_5": {
+  "num_qubits": 20,
+  "tmax": 2.2138395092578014,
+  "tier": "tier3"
+ },
+ "instance_163_d_6": {
+  "num_qubits": 20,
+  "tmax": 2.6718831351491503,
+  "tier": "tier3"
+ },
+ "instance_164_d_14": {
+  "num_qubits": 15,
+  "tmax": 11.623364099126087,
+  "tier": "tier1"
+ },
+ "instance_164_d_5": {
+  "num_qubits": 16,
+  "tmax": 2.131746580394623,
+  "tier": "tier2"
+ },
+ "instance_164_d_6": {
+  "num_qubits": 16,
+  "tmax": 5.641011540776569,
+  "tier": "tier2"
+ },
+ "instance_164_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.144422043439025,
+  "tier": "tier1"
+ },
+ "instance_165_d_10": {
+  "num_qubits": 17,
+  "tmax": 0.9397677949426905,
+  "tier": "tier3"
+ },
+ "instance_165_d_7": {
+  "num_qubits": 14,
+  "tmax": 0.9872290762789473,
+  "tier": "tier1"
+ },
+ "instance_166_d_5": {
+  "num_qubits": 17,
+  "tmax": 0.8827623710375584,
+  "tier": "tier3"
+ },
+ "instance_166_d_7": {
+  "num_qubits": 20,
+  "tmax": 1.3743009113282068,
+  "tier": "tier3"
+ },
+ "instance_167_d_10": {
+  "num_qubits": 19,
+  "tmax": 0.9485971772027781,
+  "tier": "tier3"
+ },
+ "instance_167_d_12": {
+  "num_qubits": 19,
+  "tmax": 2.4227614287396104,
+  "tier": "tier3"
+ },
+ "instance_167_d_14": {
+  "num_qubits": 15,
+  "tmax": 4.002731976398955,
+  "tier": "tier1"
+ },
+ "instance_167_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.8027664678783928,
+  "tier": "tier1"
+ },
+ "instance_167_d_7": {
+  "num_qubits": 10,
+  "tmax": 3.8061319852934203,
+  "tier": "tier0"
+ },
+ "instance_168_d_11": {
+  "num_qubits": 19,
+  "tmax": 3.3713993000057694,
+  "tier": "tier3"
+ },
+ "instance_168_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.7456987715298062,
+  "tier": "tier2"
+ },
+ "instance_168_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.7302921618605462,
+  "tier": "tier2"
+ },
+ "instance_168_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.068605844174639,
+  "tier": "tier2"
+ },
+ "instance_169_d_12": {
+  "num_qubits": 20,
+  "tmax": 0.9244442698081218,
+  "tier": "tier3"
+ },
+ "instance_169_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.608679237788821,
+  "tier": "tier1"
+ },
+ "instance_169_d_9": {
+  "num_qubits": 15,
+  "tmax": 1.2116796900072242,
+  "tier": "tier1"
+ },
+ "instance_16_d_10": {
+  "num_qubits": 23,
+  "tmax": 1.364483841151633,
+  "tier": "tier3"
+ },
+ "instance_16_d_14": {
+  "num_qubits": 15,
+  "tmax": 3.1577360151813023,
+  "tier": "tier1"
+ },
+ "instance_16_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.2078614356582233,
+  "tier": "tier1"
+ },
+ "instance_16_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.8983746353546196,
+  "tier": "tier1"
+ },
+ "instance_16_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.060566916159223,
+  "tier": "tier2"
+ },
+ "instance_170_d_7": {
+  "num_qubits": 13,
+  "tmax": 1.60546486886873,
+  "tier": "tier1"
+ },
+ "instance_171_d_11": {
+  "num_qubits": 19,
+  "tmax": 0.9795961049788291,
+  "tier": "tier3"
+ },
+ "instance_171_d_14": {
+  "num_qubits": 16,
+  "tmax": 6.037341401402834,
+  "tier": "tier2"
+ },
+ "instance_171_d_7": {
+  "num_qubits": 13,
+  "tmax": 0.9757300628602972,
+  "tier": "tier1"
+ },
+ "instance_171_d_9": {
+  "num_qubits": 16,
+  "tmax": 6.751986280353827,
+  "tier": "tier2"
+ },
+ "instance_172_d_10": {
+  "num_qubits": 20,
+  "tmax": 2.917599646922683,
+  "tier": "tier3"
+ },
+ "instance_172_d_13": {
+  "num_qubits": 16,
+  "tmax": 3.8233350181523176,
+  "tier": "tier2"
+ },
+ "instance_172_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.4562447943007464,
+  "tier": "tier1"
+ },
+ "instance_172_d_8": {
+  "num_qubits": 15,
+  "tmax": 1.906887719518866,
+  "tier": "tier1"
+ },
+ "instance_173_d_10": {
+  "num_qubits": 20,
+  "tmax": 2.268933399566936,
+  "tier": "tier3"
+ },
+ "instance_173_d_11": {
+  "num_qubits": 19,
+  "tmax": 1.6343869898293981,
+  "tier": "tier3"
+ },
+ "instance_173_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.8905932587203744,
+  "tier": "tier1"
+ },
+ "instance_173_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.114565914366296,
+  "tier": "tier1"
+ },
+ "instance_173_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.3133666391749985,
+  "tier": "tier2"
+ },
+ "instance_173_d_9": {
+  "num_qubits": 16,
+  "tmax": 3.6195783632585394,
+  "tier": "tier2"
+ },
+ "instance_174_d_12": {
+  "num_qubits": 19,
+  "tmax": 2.652874000985873,
+  "tier": "tier3"
+ },
+ "instance_174_d_15": {
+  "num_qubits": 16,
+  "tmax": 4.435754667169596,
+  "tier": "tier2"
+ },
+ "instance_174_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.8660095761011751,
+  "tier": "tier2"
+ },
+ "instance_174_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.1889415765815032,
+  "tier": "tier2"
+ },
+ "instance_175_d_10": {
+  "num_qubits": 18,
+  "tmax": 2.8274994788914496,
+  "tier": "tier3"
+ },
+ "instance_175_d_8": {
+  "num_qubits": 11,
+  "tmax": 7.015610112408175,
+  "tier": "tier0"
+ },
+ "instance_175_d_9": {
+  "num_qubits": 16,
+  "tmax": 0.9318898091639625,
+  "tier": "tier2"
+ },
+ "instance_176_d_12": {
+  "num_qubits": 16,
+  "tmax": 3.874276549335025,
+  "tier": "tier2"
+ },
+ "instance_176_d_14": {
+  "num_qubits": 15,
+  "tmax": 1.3991204187235238,
+  "tier": "tier1"
+ },
+ "instance_176_d_5": {
+  "num_qubits": 12,
+  "tmax": 1.0125099212089834,
+  "tier": "tier0"
+ },
+ "instance_176_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.1595105502277523,
+  "tier": "tier1"
+ },
+ "instance_176_d_8": {
+  "num_qubits": 16,
+  "tmax": 3.8397418550757045,
+  "tier": "tier2"
+ },
+ "instance_177_d_12": {
+  "num_qubits": 18,
+  "tmax": 3.799639763314569,
+  "tier": "tier3"
+ },
+ "instance_177_d_14": {
+  "num_qubits": 16,
+  "tmax": 1.6967094022293014,
+  "tier": "tier2"
+ },
+ "instance_177_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.6937200351028231,
+  "tier": "tier1"
+ },
+ "instance_177_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.0006931933448344,
+  "tier": "tier1"
+ },
+ "instance_177_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.0694223148640556,
+  "tier": "tier1"
+ },
+ "instance_177_d_8": {
+  "num_qubits": 14,
+  "tmax": 3.2359780332115746,
+  "tier": "tier1"
+ },
+ "instance_178_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.9675372175834016,
+  "tier": "tier3"
+ },
+ "instance_178_d_13": {
+  "num_qubits": 16,
+  "tmax": 4.5509788327594,
+  "tier": "tier2"
+ },
+ "instance_178_d_8": {
+  "num_qubits": 14,
+  "tmax": 1.8446986468473971,
+  "tier": "tier1"
+ },
+ "instance_179_d_15": {
+  "num_qubits": 13,
+  "tmax": 19.859316955302337,
+  "tier": "tier1"
+ },
+ "instance_179_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.6528536346355973,
+  "tier": "tier0"
+ },
+ "instance_179_d_7": {
+  "num_qubits": 12,
+  "tmax": 1.4040307453342875,
+  "tier": "tier0"
+ },
+ "instance_179_d_8": {
+  "num_qubits": 15,
+  "tmax": 2.099230437950551,
+  "tier": "tier1"
+ },
+ "instance_179_d_9": {
+  "num_qubits": 12,
+  "tmax": 19.558971974971836,
+  "tier": "tier0"
+ },
+ "instance_17_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.1786310124894923,
+  "tier": "tier3"
+ },
+ "instance_17_d_14": {
+  "num_qubits": 15,
+  "tmax": 14.924716952790948,
+  "tier": "tier1"
+ },
+ "instance_17_d_15": {
+  "num_qubits": 15,
+  "tmax": 6.269088577099481,
+  "tier": "tier1"
+ },
+ "instance_17_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.2342202744796644,
+  "tier": "tier2"
+ },
+ "instance_17_d_8": {
+  "num_qubits": 15,
+  "tmax": 0.9873586155127964,
+  "tier": "tier1"
+ },
+ "instance_17_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.11587007481207,
+  "tier": "tier2"
+ },
+ "instance_180_d_12": {
+  "num_qubits": 19,
+  "tmax": 2.5933881864993156,
+  "tier": "tier3"
+ },
+ "instance_180_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.2020760420697032,
+  "tier": "tier1"
+ },
+ "instance_180_d_7": {
+  "num_qubits": 13,
+  "tmax": 0.8774689955858586,
+  "tier": "tier1"
+ },
+ "instance_180_d_9": {
+  "num_qubits": 16,
+  "tmax": 0.9141071890576753,
+  "tier": "tier2"
+ },
+ "instance_181_d_14": {
+  "num_qubits": 13,
+  "tmax": 8.236459855618998,
+  "tier": "tier1"
+ },
+ "instance_182_d_12": {
+  "num_qubits": 18,
+  "tmax": 1.57866291301749,
+  "tier": "tier3"
+ },
+ "instance_182_d_14": {
+  "num_qubits": 15,
+  "tmax": 7.898952228568815,
+  "tier": "tier1"
+ },
+ "instance_182_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.9399803763507895,
+  "tier": "tier2"
+ },
+ "instance_182_d_7": {
+  "num_qubits": 14,
+  "tmax": 0.678370371717872,
+  "tier": "tier1"
+ },
+ "instance_183_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.3851911320730679,
+  "tier": "tier3"
+ },
+ "instance_183_d_11": {
+  "num_qubits": 14,
+  "tmax": 1.6000872188149182,
+  "tier": "tier1"
+ },
+ "instance_183_d_13": {
+  "num_qubits": 16,
+  "tmax": 1.752361793797152,
+  "tier": "tier2"
+ },
+ "instance_183_d_15": {
+  "num_qubits": 16,
+  "tmax": 3.1952329346926454,
+  "tier": "tier2"
+ },
+ "instance_183_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.1456284099018015,
+  "tier": "tier1"
+ },
+ "instance_183_d_7": {
+  "num_qubits": 13,
+  "tmax": 1.2227975046109658,
+  "tier": "tier1"
+ },
+ "instance_183_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.1624387096558328,
+  "tier": "tier2"
+ },
+ "instance_184_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.0487422543691225,
+  "tier": "tier3"
+ },
+ "instance_184_d_11": {
+  "num_qubits": 17,
+  "tmax": 3.610316106935553,
+  "tier": "tier3"
+ },
+ "instance_184_d_12": {
+  "num_qubits": 16,
+  "tmax": 1.4903087832657005,
+  "tier": "tier2"
+ },
+ "instance_184_d_6": {
+  "num_qubits": 14,
+  "tmax": 4.061201219335771,
+  "tier": "tier1"
+ },
+ "instance_184_d_7": {
+  "num_qubits": 13,
+  "tmax": 1.4605587752644311,
+  "tier": "tier1"
+ },
+ "instance_185_d_10": {
+  "num_qubits": 20,
+  "tmax": 0.8300241425147122,
+  "tier": "tier3"
+ },
+ "instance_185_d_14": {
+  "num_qubits": 16,
+  "tmax": 4.092164347883764,
+  "tier": "tier2"
+ },
+ "instance_185_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.1148911993858504,
+  "tier": "tier1"
+ },
+ "instance_185_d_7": {
+  "num_qubits": 12,
+  "tmax": 0.7811745141377479,
+  "tier": "tier0"
+ },
+ "instance_186_d_5": {
+  "num_qubits": 18,
+  "tmax": 1.4678808070222837,
+  "tier": "tier3"
+ },
+ "instance_186_d_6": {
+  "num_qubits": 18,
+  "tmax": 0.9601310540038276,
+  "tier": "tier3"
+ },
+ "instance_186_d_7": {
+  "num_qubits": 15,
+  "tmax": 0.6894701966832288,
+  "tier": "tier1"
+ },
+ "instance_186_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.2974302912548292,
+  "tier": "tier2"
+ },
+ "instance_187_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.3948147683208076,
+  "tier": "tier3"
+ },
+ "instance_187_d_15": {
+  "num_qubits": 16,
+  "tmax": 7.815351404322936,
+  "tier": "tier2"
+ },
+ "instance_187_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.4985067550615799,
+  "tier": "tier0"
+ },
+ "instance_187_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.8868513106382756,
+  "tier": "tier1"
+ },
+ "instance_187_d_7": {
+  "num_qubits": 16,
+  "tmax": 2.2897302594542426,
+  "tier": "tier2"
+ },
+ "instance_187_d_9": {
+  "num_qubits": 16,
+  "tmax": 0.9966168639963899,
+  "tier": "tier2"
+ },
+ "instance_188_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.6080041584378446,
+  "tier": "tier3"
+ },
+ "instance_188_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.7353067638743064,
+  "tier": "tier1"
+ },
+ "instance_188_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.8373002284047963,
+  "tier": "tier2"
+ },
+ "instance_189_d_10": {
+  "num_qubits": 18,
+  "tmax": 2.464287763891776,
+  "tier": "tier3"
+ },
+ "instance_189_d_11": {
+  "num_qubits": 18,
+  "tmax": 3.22929852101715,
+  "tier": "tier3"
+ },
+ "instance_189_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.3605641963653317,
+  "tier": "tier1"
+ },
+ "instance_189_d_7": {
+  "num_qubits": 16,
+  "tmax": 0.6548925944328702,
+  "tier": "tier2"
+ },
+ "instance_189_d_9": {
+  "num_qubits": 15,
+  "tmax": 1.1431348163684587,
+  "tier": "tier1"
+ },
+ "instance_18_d_12": {
+  "num_qubits": 18,
+  "tmax": 4.571768973233998,
+  "tier": "tier3"
+ },
+ "instance_18_d_15": {
+  "num_qubits": 15,
+  "tmax": 4.217201862578831,
+  "tier": "tier1"
+ },
+ "instance_18_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.9161327482422716,
+  "tier": "tier1"
+ },
+ "instance_190_d_11": {
+  "num_qubits": 18,
+  "tmax": 2.0819652081889917,
+  "tier": "tier3"
+ },
+ "instance_190_d_12": {
+  "num_qubits": 13,
+  "tmax": 5.578990281944453,
+  "tier": "tier1"
+ },
+ "instance_190_d_14": {
+  "num_qubits": 13,
+  "tmax": 16.73553323847063,
+  "tier": "tier1"
+ },
+ "instance_190_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.5674826654214526,
+  "tier": "tier2"
+ },
+ "instance_190_d_6": {
+  "num_qubits": 16,
+  "tmax": 2.514618718256528,
+  "tier": "tier2"
+ },
+ "instance_190_d_7": {
+  "num_qubits": 11,
+  "tmax": 1.1293020639199063,
+  "tier": "tier0"
+ },
+ "instance_191_d_5": {
+  "num_qubits": 19,
+  "tmax": 2.486976918580393,
+  "tier": "tier3"
+ },
+ "instance_191_d_6": {
+  "num_qubits": 18,
+  "tmax": 1.5373568414886047,
+  "tier": "tier3"
+ },
+ "instance_192_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.70607723420038,
+  "tier": "tier3"
+ },
+ "instance_192_d_11": {
+  "num_qubits": 17,
+  "tmax": 2.875336046955624,
+  "tier": "tier3"
+ },
+ "instance_192_d_13": {
+  "num_qubits": 18,
+  "tmax": 3.6314015906699852,
+  "tier": "tier3"
+ },
+ "instance_192_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.6816158864721766,
+  "tier": "tier2"
+ },
+ "instance_192_d_8": {
+  "num_qubits": 12,
+  "tmax": 0.6760186295266817,
+  "tier": "tier0"
+ },
+ "instance_192_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.9006248116216504,
+  "tier": "tier2"
+ },
+ "instance_193_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.6675853382178576,
+  "tier": "tier1"
+ },
+ "instance_194_d_11": {
+  "num_qubits": 18,
+  "tmax": 1.486569562270081,
+  "tier": "tier3"
+ },
+ "instance_194_d_12": {
+  "num_qubits": 18,
+  "tmax": 2.0529114258704917,
+  "tier": "tier3"
+ },
+ "instance_194_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.3811806897464391,
+  "tier": "tier1"
+ },
+ "instance_194_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.2427797488364702,
+  "tier": "tier1"
+ },
+ "instance_195_d_11": {
+  "num_qubits": 19,
+  "tmax": 2.763937457284438,
+  "tier": "tier3"
+ },
+ "instance_195_d_12": {
+  "num_qubits": 20,
+  "tmax": 3.0015481806293325,
+  "tier": "tier3"
+ },
+ "instance_195_d_13": {
+  "num_qubits": 19,
+  "tmax": 1.4806158517206398,
+  "tier": "tier3"
+ },
+ "instance_195_d_15": {
+  "num_qubits": 16,
+  "tmax": 8.933562293886057,
+  "tier": "tier2"
+ },
+ "instance_196_d_11": {
+  "num_qubits": 18,
+  "tmax": 1.2366735241255902,
+  "tier": "tier3"
+ },
+ "instance_196_d_14": {
+  "num_qubits": 15,
+  "tmax": 1.1729247396841394,
+  "tier": "tier1"
+ },
+ "instance_196_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.259387946532394,
+  "tier": "tier2"
+ },
+ "instance_197_d_5": {
+  "num_qubits": 17,
+  "tmax": 0.6282111341513541,
+  "tier": "tier3"
+ },
+ "instance_197_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.7374806139682799,
+  "tier": "tier1"
+ },
+ "instance_197_d_7": {
+  "num_qubits": 16,
+  "tmax": 0.8621469005197228,
+  "tier": "tier2"
+ },
+ "instance_198_d_12": {
+  "num_qubits": 13,
+  "tmax": 1.3201719004804122,
+  "tier": "tier1"
+ },
+ "instance_198_d_13": {
+  "num_qubits": 14,
+  "tmax": 7.105236868682253,
+  "tier": "tier1"
+ },
+ "instance_198_d_14": {
+  "num_qubits": 16,
+  "tmax": 2.503794833853007,
+  "tier": "tier2"
+ },
+ "instance_198_d_15": {
+  "num_qubits": 16,
+  "tmax": 5.410204513243807,
+  "tier": "tier2"
+ },
+ "instance_198_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7424821582869536,
+  "tier": "tier1"
+ },
+ "instance_198_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.0927585995953362,
+  "tier": "tier2"
+ },
+ "instance_199_d_14": {
+  "num_qubits": 16,
+  "tmax": 1.8069583271962237,
+  "tier": "tier2"
+ },
+ "instance_199_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.0710514313388626,
+  "tier": "tier2"
+ },
+ "instance_199_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.8819374666166655,
+  "tier": "tier1"
+ },
+ "instance_199_d_7": {
+  "num_qubits": 13,
+  "tmax": 0.8593418439229452,
+  "tier": "tier1"
+ },
+ "instance_199_d_8": {
+  "num_qubits": 14,
+  "tmax": 1.6715308619062925,
+  "tier": "tier1"
+ },
+ "instance_19_d_10": {
+  "num_qubits": 22,
+  "tmax": 1.9126588744256376,
+  "tier": "tier3"
+ },
+ "instance_19_d_11": {
+  "num_qubits": 19,
+  "tmax": 1.5761598076592125,
+  "tier": "tier3"
+ },
+ "instance_19_d_13": {
+  "num_qubits": 15,
+  "tmax": 14.031755553606612,
+  "tier": "tier1"
+ },
+ "instance_19_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.4701072561856228,
+  "tier": "tier2"
+ },
+ "instance_19_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.5442646403346576,
+  "tier": "tier2"
+ },
+ "instance_1_d_12": {
+  "num_qubits": 18,
+  "tmax": 1.9366197074722498,
+  "tier": "tier3"
+ },
+ "instance_1_d_6": {
+  "num_qubits": 16,
+  "tmax": 2.5467397111788936,
+  "tier": "tier2"
+ },
+ "instance_1_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.7030422951350763,
+  "tier": "tier1"
+ },
+ "instance_20_d_13": {
+  "num_qubits": 15,
+  "tmax": 2.914185635230748,
+  "tier": "tier1"
+ },
+ "instance_20_d_14": {
+  "num_qubits": 16,
+  "tmax": 2.6631086448610977,
+  "tier": "tier2"
+ },
+ "instance_20_d_15": {
+  "num_qubits": 16,
+  "tmax": 1.3566360496491099,
+  "tier": "tier2"
+ },
+ "instance_20_d_8": {
+  "num_qubits": 16,
+  "tmax": 2.452034893160428,
+  "tier": "tier2"
+ },
+ "instance_21_d_11": {
+  "num_qubits": 19,
+  "tmax": 1.7599630854667314,
+  "tier": "tier3"
+ },
+ "instance_21_d_14": {
+  "num_qubits": 15,
+  "tmax": 14.547747133586432,
+  "tier": "tier1"
+ },
+ "instance_21_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.3224134511414245,
+  "tier": "tier1"
+ },
+ "instance_21_d_8": {
+  "num_qubits": 14,
+  "tmax": 1.0578760139659313,
+  "tier": "tier1"
+ },
+ "instance_21_d_9": {
+  "num_qubits": 13,
+  "tmax": 1.182811347537375,
+  "tier": "tier1"
+ },
+ "instance_22_d_13": {
+  "num_qubits": 14,
+  "tmax": 3.308452781757792,
+  "tier": "tier1"
+ },
+ "instance_22_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.9506221801994502,
+  "tier": "tier2"
+ },
+ "instance_22_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.1320848360442362,
+  "tier": "tier2"
+ },
+ "instance_22_d_9": {
+  "num_qubits": 14,
+  "tmax": 0.9738347773530399,
+  "tier": "tier1"
+ },
+ "instance_23_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.6841054046407425,
+  "tier": "tier2"
+ },
+ "instance_23_d_6": {
+  "num_qubits": 20,
+  "tmax": 0.7715169397820179,
+  "tier": "tier3"
+ },
+ "instance_24_d_12": {
+  "num_qubits": 19,
+  "tmax": 1.2801275175780968,
+  "tier": "tier3"
+ },
+ "instance_24_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.579627959874146,
+  "tier": "tier0"
+ },
+ "instance_24_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.8040564584948355,
+  "tier": "tier2"
+ },
+ "instance_24_d_8": {
+  "num_qubits": 14,
+  "tmax": 3.5867166267380597,
+  "tier": "tier1"
+ },
+ "instance_25_d_12": {
+  "num_qubits": 19,
+  "tmax": 1.2857219925832881,
+  "tier": "tier3"
+ },
+ "instance_25_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.724921019465064,
+  "tier": "tier2"
+ },
+ "instance_26_d_10": {
+  "num_qubits": 23,
+  "tmax": 1.6933256781227666,
+  "tier": "tier3"
+ },
+ "instance_26_d_12": {
+  "num_qubits": 18,
+  "tmax": 5.7485840662963,
+  "tier": "tier3"
+ },
+ "instance_26_d_15": {
+  "num_qubits": 16,
+  "tmax": 2.5889108210839114,
+  "tier": "tier2"
+ },
+ "instance_26_d_7": {
+  "num_qubits": 11,
+  "tmax": 0.5603255286667954,
+  "tier": "tier0"
+ },
+ "instance_27_d_12": {
+  "num_qubits": 18,
+  "tmax": 4.332965946742891,
+  "tier": "tier3"
+ },
+ "instance_27_d_13": {
+  "num_qubits": 16,
+  "tmax": 1.2330424079975484,
+  "tier": "tier2"
+ },
+ "instance_27_d_14": {
+  "num_qubits": 12,
+  "tmax": 1.7657162805843842,
+  "tier": "tier0"
+ },
+ "instance_27_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.6594412548842192,
+  "tier": "tier1"
+ },
+ "instance_27_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.9982648234339446,
+  "tier": "tier2"
+ },
+ "instance_28_d_12": {
+  "num_qubits": 14,
+  "tmax": 1.126467762696728,
+  "tier": "tier1"
+ },
+ "instance_28_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.5485657354669253,
+  "tier": "tier2"
+ },
+ "instance_28_d_7": {
+  "num_qubits": 13,
+  "tmax": 3.113835080436912,
+  "tier": "tier1"
+ },
+ "instance_29_d_11": {
+  "num_qubits": 18,
+  "tmax": 1.181451956931853,
+  "tier": "tier3"
+ },
+ "instance_29_d_13": {
+  "num_qubits": 16,
+  "tmax": 8.101998661086421,
+  "tier": "tier2"
+ },
+ "instance_29_d_14": {
+  "num_qubits": 16,
+  "tmax": 2.5868950816552676,
+  "tier": "tier2"
+ },
+ "instance_29_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.4161195718677744,
+  "tier": "tier2"
+ },
+ "instance_2_d_10": {
+  "num_qubits": 18,
+  "tmax": 1.0915535190026069,
+  "tier": "tier3"
+ },
+ "instance_2_d_11": {
+  "num_qubits": 18,
+  "tmax": 5.493575765635973,
+  "tier": "tier3"
+ },
+ "instance_2_d_12": {
+  "num_qubits": 20,
+  "tmax": 2.310312461986637,
+  "tier": "tier3"
+ },
+ "instance_2_d_6": {
+  "num_qubits": 16,
+  "tmax": 3.713189449184976,
+  "tier": "tier2"
+ },
+ "instance_30_d_10": {
+  "num_qubits": 20,
+  "tmax": 3.1916669279032726,
+  "tier": "tier3"
+ },
+ "instance_30_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.8058430176443341,
+  "tier": "tier1"
+ },
+ "instance_31_d_10": {
+  "num_qubits": 21,
+  "tmax": 1.3032217248651685,
+  "tier": "tier3"
+ },
+ "instance_31_d_13": {
+  "num_qubits": 16,
+  "tmax": 2.5129116925600368,
+  "tier": "tier2"
+ },
+ "instance_31_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.45822192646960413,
+  "tier": "tier0"
+ },
+ "instance_31_d_9": {
+  "num_qubits": 16,
+  "tmax": 4.466118989819935,
+  "tier": "tier2"
+ },
+ "instance_32_d_10": {
+  "num_qubits": 22,
+  "tmax": 1.2276014641268358,
+  "tier": "tier3"
+ },
+ "instance_32_d_11": {
+  "num_qubits": 20,
+  "tmax": 5.2367488177278805,
+  "tier": "tier3"
+ },
+ "instance_32_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.8093755219118304,
+  "tier": "tier1"
+ },
+ "instance_32_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.6472351698599386,
+  "tier": "tier2"
+ },
+ "instance_32_d_9": {
+  "num_qubits": 14,
+  "tmax": 1.2393025915992189,
+  "tier": "tier1"
+ },
+ "instance_33_d_10": {
+  "num_qubits": 23,
+  "tmax": 1.3551565618973942,
+  "tier": "tier3"
+ },
+ "instance_33_d_11": {
+  "num_qubits": 20,
+  "tmax": 3.759883458066597,
+  "tier": "tier3"
+ },
+ "instance_33_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.2387105324030652,
+  "tier": "tier1"
+ },
+ "instance_33_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.6241147652089947,
+  "tier": "tier1"
+ },
+ "instance_33_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.092318656377168,
+  "tier": "tier2"
+ },
+ "instance_33_d_8": {
+  "num_qubits": 14,
+  "tmax": 1.583837603210574,
+  "tier": "tier1"
+ },
+ "instance_34_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.0987009049619783,
+  "tier": "tier3"
+ },
+ "instance_34_d_15": {
+  "num_qubits": 16,
+  "tmax": 3.7705755722324406,
+  "tier": "tier2"
+ },
+ "instance_34_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.8850496215217076,
+  "tier": "tier1"
+ },
+ "instance_34_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.8456582815212705,
+  "tier": "tier1"
+ },
+ "instance_34_d_9": {
+  "num_qubits": 16,
+  "tmax": 8.067802351315573,
+  "tier": "tier2"
+ },
+ "instance_35_d_10": {
+  "num_qubits": 22,
+  "tmax": 1.0482015812553205,
+  "tier": "tier3"
+ },
+ "instance_35_d_12": {
+  "num_qubits": 19,
+  "tmax": 6.075230495117709,
+  "tier": "tier3"
+ },
+ "instance_35_d_5": {
+  "num_qubits": 10,
+  "tmax": 0.4954622772127801,
+  "tier": "tier0"
+ },
+ "instance_35_d_6": {
+  "num_qubits": 13,
+  "tmax": 6.524499608910205,
+  "tier": "tier1"
+ },
+ "instance_35_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.513885139381486,
+  "tier": "tier2"
+ },
+ "instance_36_d_13": {
+  "num_qubits": 16,
+  "tmax": 9.794669238111,
+  "tier": "tier2"
+ },
+ "instance_36_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.9432156909669736,
+  "tier": "tier1"
+ },
+ "instance_36_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.8496117024043417,
+  "tier": "tier2"
+ },
+ "instance_36_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.7265463022030783,
+  "tier": "tier2"
+ },
+ "instance_37_d_13": {
+  "num_qubits": 15,
+  "tmax": 4.923710929209179,
+  "tier": "tier1"
+ },
+ "instance_37_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.2495668746005548,
+  "tier": "tier1"
+ },
+ "instance_37_d_9": {
+  "num_qubits": 14,
+  "tmax": 1.111319512931519,
+  "tier": "tier1"
+ },
+ "instance_38_d_10": {
+  "num_qubits": 22,
+  "tmax": 1.2279887219717969,
+  "tier": "tier3"
+ },
+ "instance_38_d_11": {
+  "num_qubits": 17,
+  "tmax": 3.537099585072784,
+  "tier": "tier3"
+ },
+ "instance_38_d_12": {
+  "num_qubits": 17,
+  "tmax": 1.4938445859994636,
+  "tier": "tier3"
+ },
+ "instance_38_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.6764094562603562,
+  "tier": "tier2"
+ },
+ "instance_38_d_6": {
+  "num_qubits": 11,
+  "tmax": 3.745882201443582,
+  "tier": "tier0"
+ },
+ "instance_39_d_14": {
+  "num_qubits": 15,
+  "tmax": 4.368391439874597,
+  "tier": "tier1"
+ },
+ "instance_3_d_10": {
+  "num_qubits": 17,
+  "tmax": 0.990643906572126,
+  "tier": "tier3"
+ },
+ "instance_3_d_13": {
+  "num_qubits": 16,
+  "tmax": 3.4909431445816383,
+  "tier": "tier2"
+ },
+ "instance_3_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.5236083310429134,
+  "tier": "tier1"
+ },
+ "instance_3_d_8": {
+  "num_qubits": 15,
+  "tmax": 0.8988688770709112,
+  "tier": "tier1"
+ },
+ "instance_3_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.3125753713132147,
+  "tier": "tier2"
+ },
+ "instance_40_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7048700320935274,
+  "tier": "tier1"
+ },
+ "instance_40_d_7": {
+  "num_qubits": 14,
+  "tmax": 0.9799722759057239,
+  "tier": "tier1"
+ },
+ "instance_41_d_11": {
+  "num_qubits": 20,
+  "tmax": 3.178624912696762,
+  "tier": "tier3"
+ },
+ "instance_41_d_15": {
+  "num_qubits": 15,
+  "tmax": 14.796371397012285,
+  "tier": "tier1"
+ },
+ "instance_41_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.9811990674672948,
+  "tier": "tier1"
+ },
+ "instance_41_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.7410043640907256,
+  "tier": "tier2"
+ },
+ "instance_42_d_10": {
+  "num_qubits": 22,
+  "tmax": 1.3653475472902197,
+  "tier": "tier3"
+ },
+ "instance_42_d_11": {
+  "num_qubits": 18,
+  "tmax": 2.995938182023834,
+  "tier": "tier3"
+ },
+ "instance_42_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.831465858302783,
+  "tier": "tier0"
+ },
+ "instance_42_d_6": {
+  "num_qubits": 12,
+  "tmax": 0.9143328928314067,
+  "tier": "tier0"
+ },
+ "instance_42_d_7": {
+  "num_qubits": 16,
+  "tmax": 4.2349131530753095,
+  "tier": "tier2"
+ },
+ "instance_43_d_11": {
+  "num_qubits": 18,
+  "tmax": 5.590482831011052,
+  "tier": "tier3"
+ },
+ "instance_43_d_15": {
+  "num_qubits": 16,
+  "tmax": 2.710405037639038,
+  "tier": "tier2"
+ },
+ "instance_43_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.8088258449940822,
+  "tier": "tier2"
+ },
+ "instance_43_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.4414201835900138,
+  "tier": "tier1"
+ },
+ "instance_43_d_8": {
+  "num_qubits": 15,
+  "tmax": 1.980398629726895,
+  "tier": "tier1"
+ },
+ "instance_44_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.322910532145809,
+  "tier": "tier1"
+ },
+ "instance_45_d_12": {
+  "num_qubits": 16,
+  "tmax": 1.0626324619521106,
+  "tier": "tier2"
+ },
+ "instance_45_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.8328884557565359,
+  "tier": "tier1"
+ },
+ "instance_46_d_10": {
+  "num_qubits": 23,
+  "tmax": 1.9521786888871764,
+  "tier": "tier3"
+ },
+ "instance_46_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.6328413388377006,
+  "tier": "tier1"
+ },
+ "instance_46_d_7": {
+  "num_qubits": 14,
+  "tmax": 1.0948792095488218,
+  "tier": "tier1"
+ },
+ "instance_46_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.48573575125171,
+  "tier": "tier2"
+ },
+ "instance_46_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.358509529857607,
+  "tier": "tier2"
+ },
+ "instance_47_d_10": {
+  "num_qubits": 21,
+  "tmax": 0.9067337901677714,
+  "tier": "tier3"
+ },
+ "instance_47_d_12": {
+  "num_qubits": 19,
+  "tmax": 0.9411346866030323,
+  "tier": "tier3"
+ },
+ "instance_47_d_13": {
+  "num_qubits": 13,
+  "tmax": 15.629346173042563,
+  "tier": "tier1"
+ },
+ "instance_47_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.6445789283651746,
+  "tier": "tier2"
+ },
+ "instance_47_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.3747521102588858,
+  "tier": "tier1"
+ },
+ "instance_47_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.8917546543149615,
+  "tier": "tier2"
+ },
+ "instance_48_d_11": {
+  "num_qubits": 19,
+  "tmax": 0.9397317920730185,
+  "tier": "tier3"
+ },
+ "instance_48_d_14": {
+  "num_qubits": 16,
+  "tmax": 2.996504668481608,
+  "tier": "tier2"
+ },
+ "instance_48_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.4843883504189041,
+  "tier": "tier0"
+ },
+ "instance_49_d_10": {
+  "num_qubits": 23,
+  "tmax": 1.4874362807287338,
+  "tier": "tier3"
+ },
+ "instance_49_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.0278906556297087,
+  "tier": "tier1"
+ },
+ "instance_49_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.8052979871549142,
+  "tier": "tier2"
+ },
+ "instance_4_d_12": {
+  "num_qubits": 19,
+  "tmax": 4.402304342759343,
+  "tier": "tier3"
+ },
+ "instance_4_d_5": {
+  "num_qubits": 10,
+  "tmax": 0.4344639774898263,
+  "tier": "tier0"
+ },
+ "instance_4_d_6": {
+  "num_qubits": 15,
+  "tmax": 2.283620626601591,
+  "tier": "tier1"
+ },
+ "instance_4_d_7": {
+  "num_qubits": 13,
+  "tmax": 1.2788476557495674,
+  "tier": "tier1"
+ },
+ "instance_50_d_15": {
+  "num_qubits": 15,
+  "tmax": 4.335579207379808,
+  "tier": "tier1"
+ },
+ "instance_50_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.3951067622600883,
+  "tier": "tier1"
+ },
+ "instance_50_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.650466551900957,
+  "tier": "tier2"
+ },
+ "instance_51_d_10": {
+  "num_qubits": 17,
+  "tmax": 1.1651211786450903,
+  "tier": "tier3"
+ },
+ "instance_51_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.4550199947874345,
+  "tier": "tier2"
+ },
+ "instance_52_d_12": {
+  "num_qubits": 17,
+  "tmax": 1.5197776976035744,
+  "tier": "tier3"
+ },
+ "instance_52_d_13": {
+  "num_qubits": 16,
+  "tmax": 1.944124730076601,
+  "tier": "tier2"
+ },
+ "instance_52_d_5": {
+  "num_qubits": 16,
+  "tmax": 2.294993858988282,
+  "tier": "tier2"
+ },
+ "instance_52_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.40515758233577615,
+  "tier": "tier1"
+ },
+ "instance_52_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.430359699498305,
+  "tier": "tier2"
+ },
+ "instance_53_d_10": {
+  "num_qubits": 18,
+  "tmax": 4.757653447234589,
+  "tier": "tier3"
+ },
+ "instance_53_d_11": {
+  "num_qubits": 18,
+  "tmax": 2.213226238476557,
+  "tier": "tier3"
+ },
+ "instance_53_d_5": {
+  "num_qubits": 12,
+  "tmax": 0.7710386433608717,
+  "tier": "tier0"
+ },
+ "instance_53_d_8": {
+  "num_qubits": 15,
+  "tmax": 8.029243708247447,
+  "tier": "tier1"
+ },
+ "instance_53_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.5498221570011856,
+  "tier": "tier2"
+ },
+ "instance_54_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.4101973270539423,
+  "tier": "tier3"
+ },
+ "instance_54_d_12": {
+  "num_qubits": 16,
+  "tmax": 2.4589352661336905,
+  "tier": "tier2"
+ },
+ "instance_54_d_13": {
+  "num_qubits": 16,
+  "tmax": 2.1825769561907022,
+  "tier": "tier2"
+ },
+ "instance_54_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.6809208200758512,
+  "tier": "tier1"
+ },
+ "instance_54_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.6832654457306893,
+  "tier": "tier1"
+ },
+ "instance_54_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.859916360677651,
+  "tier": "tier2"
+ },
+ "instance_55_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.9268746618911554,
+  "tier": "tier3"
+ },
+ "instance_55_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.3714711051692305,
+  "tier": "tier1"
+ },
+ "instance_55_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.0853508334512494,
+  "tier": "tier1"
+ },
+ "instance_55_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.5425683978043974,
+  "tier": "tier2"
+ },
+ "instance_55_d_9": {
+  "num_qubits": 16,
+  "tmax": 3.0168744719135114,
+  "tier": "tier2"
+ },
+ "instance_56_d_10": {
+  "num_qubits": 18,
+  "tmax": 2.1426513044403377,
+  "tier": "tier3"
+ },
+ "instance_56_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.9096401075505709,
+  "tier": "tier1"
+ },
+ "instance_57_d_13": {
+  "num_qubits": 15,
+  "tmax": 3.941850492010901,
+  "tier": "tier1"
+ },
+ "instance_57_d_14": {
+  "num_qubits": 12,
+  "tmax": 4.203246940832695,
+  "tier": "tier0"
+ },
+ "instance_57_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.6420703942741,
+  "tier": "tier2"
+ },
+ "instance_57_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.5836190252562483,
+  "tier": "tier2"
+ },
+ "instance_58_d_10": {
+  "num_qubits": 17,
+  "tmax": 1.4546316773741446,
+  "tier": "tier3"
+ },
+ "instance_58_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.5637242279251031,
+  "tier": "tier2"
+ },
+ "instance_58_d_7": {
+  "num_qubits": 16,
+  "tmax": 0.9298059026636896,
+  "tier": "tier2"
+ },
+ "instance_59_d_11": {
+  "num_qubits": 17,
+  "tmax": 1.3291270836572,
+  "tier": "tier3"
+ },
+ "instance_59_d_12": {
+  "num_qubits": 17,
+  "tmax": 2.136260410974586,
+  "tier": "tier3"
+ },
+ "instance_59_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.9563770872198258,
+  "tier": "tier2"
+ },
+ "instance_59_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.7482453597450167,
+  "tier": "tier1"
+ },
+ "instance_59_d_8": {
+  "num_qubits": 12,
+  "tmax": 5.1761868417257935,
+  "tier": "tier0"
+ },
+ "instance_5_d_12": {
+  "num_qubits": 19,
+  "tmax": 3.961219223428557,
+  "tier": "tier3"
+ },
+ "instance_5_d_13": {
+  "num_qubits": 16,
+  "tmax": 1.2268915092947341,
+  "tier": "tier2"
+ },
+ "instance_5_d_15": {
+  "num_qubits": 16,
+  "tmax": 2.578770652437508,
+  "tier": "tier2"
+ },
+ "instance_5_d_8": {
+  "num_qubits": 15,
+  "tmax": 1.3802476130202623,
+  "tier": "tier1"
+ },
+ "instance_60_d_10": {
+  "num_qubits": 19,
+  "tmax": 0.8328922112590046,
+  "tier": "tier3"
+ },
+ "instance_60_d_11": {
+  "num_qubits": 15,
+  "tmax": 3.7011971570563165,
+  "tier": "tier1"
+ },
+ "instance_60_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.4845489729182328,
+  "tier": "tier2"
+ },
+ "instance_61_d_12": {
+  "num_qubits": 19,
+  "tmax": 10.639044830662609,
+  "tier": "tier3"
+ },
+ "instance_61_d_14": {
+  "num_qubits": 16,
+  "tmax": 7.793290521766854,
+  "tier": "tier2"
+ },
+ "instance_61_d_15": {
+  "num_qubits": 16,
+  "tmax": 12.04288016306549,
+  "tier": "tier2"
+ },
+ "instance_61_d_5": {
+  "num_qubits": 16,
+  "tmax": 0.9390943234706186,
+  "tier": "tier2"
+ },
+ "instance_61_d_9": {
+  "num_qubits": 15,
+  "tmax": 1.8619847404996097,
+  "tier": "tier1"
+ },
+ "instance_62_d_7": {
+  "num_qubits": 16,
+  "tmax": 2.828962208515003,
+  "tier": "tier2"
+ },
+ "instance_63_d_13": {
+  "num_qubits": 15,
+  "tmax": 1.7844413252719027,
+  "tier": "tier1"
+ },
+ "instance_63_d_5": {
+  "num_qubits": 10,
+  "tmax": 0.4336149374308754,
+  "tier": "tier0"
+ },
+ "instance_63_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.8373103190954694,
+  "tier": "tier2"
+ },
+ "instance_64_d_10": {
+  "num_qubits": 18,
+  "tmax": 1.1178449086757734,
+  "tier": "tier3"
+ },
+ "instance_64_d_11": {
+  "num_qubits": 19,
+  "tmax": 2.3086105448186336,
+  "tier": "tier3"
+ },
+ "instance_64_d_15": {
+  "num_qubits": 15,
+  "tmax": 1.4984283342148619,
+  "tier": "tier1"
+ },
+ "instance_64_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.871020433282631,
+  "tier": "tier1"
+ },
+ "instance_64_d_9": {
+  "num_qubits": 13,
+  "tmax": 0.9403760200432969,
+  "tier": "tier1"
+ },
+ "instance_65_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.4537319139266525,
+  "tier": "tier1"
+ },
+ "instance_65_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.7806792731889765,
+  "tier": "tier2"
+ },
+ "instance_65_d_7": {
+  "num_qubits": 14,
+  "tmax": 0.9894460811390393,
+  "tier": "tier1"
+ },
+ "instance_65_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.1761107489458915,
+  "tier": "tier2"
+ },
+ "instance_66_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.4475715470395314,
+  "tier": "tier3"
+ },
+ "instance_66_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.8351827859314715,
+  "tier": "tier1"
+ },
+ "instance_66_d_6": {
+  "num_qubits": 15,
+  "tmax": 1.2348893956284646,
+  "tier": "tier1"
+ },
+ "instance_66_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.0903729096561434,
+  "tier": "tier1"
+ },
+ "instance_67_d_12": {
+  "num_qubits": 19,
+  "tmax": 1.7382157851828481,
+  "tier": "tier3"
+ },
+ "instance_67_d_5": {
+  "num_qubits": 15,
+  "tmax": 3.4272726380005296,
+  "tier": "tier1"
+ },
+ "instance_67_d_7": {
+  "num_qubits": 16,
+  "tmax": 5.533729071624182,
+  "tier": "tier2"
+ },
+ "instance_67_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.8069028917524157,
+  "tier": "tier2"
+ },
+ "instance_68_d_10": {
+  "num_qubits": 16,
+  "tmax": 1.190017356438938,
+  "tier": "tier2"
+ },
+ "instance_68_d_11": {
+  "num_qubits": 20,
+  "tmax": 7.0595367374454705,
+  "tier": "tier3"
+ },
+ "instance_68_d_13": {
+  "num_qubits": 11,
+  "tmax": 3.2284245143151065,
+  "tier": "tier0"
+ },
+ "instance_68_d_5": {
+  "num_qubits": 12,
+  "tmax": 1.3945839609558655,
+  "tier": "tier0"
+ },
+ "instance_68_d_7": {
+  "num_qubits": 14,
+  "tmax": 1.1624028148038843,
+  "tier": "tier1"
+ },
+ "instance_68_d_9": {
+  "num_qubits": 15,
+  "tmax": 1.0914380907779224,
+  "tier": "tier1"
+ },
+ "instance_69_d_10": {
+  "num_qubits": 19,
+  "tmax": 2.168991821506335,
+  "tier": "tier3"
+ },
+ "instance_69_d_12": {
+  "num_qubits": 17,
+  "tmax": 0.7447173639077389,
+  "tier": "tier3"
+ },
+ "instance_6_d_11": {
+  "num_qubits": 19,
+  "tmax": 1.863583912426568,
+  "tier": "tier3"
+ },
+ "instance_6_d_13": {
+  "num_qubits": 15,
+  "tmax": 3.247403024004132,
+  "tier": "tier1"
+ },
+ "instance_6_d_14": {
+  "num_qubits": 15,
+  "tmax": 2.8314135032975334,
+  "tier": "tier1"
+ },
+ "instance_6_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.7190441856871164,
+  "tier": "tier1"
+ },
+ "instance_6_d_8": {
+  "num_qubits": 15,
+  "tmax": 0.9752562304336532,
+  "tier": "tier1"
+ },
+ "instance_6_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.7964158578251945,
+  "tier": "tier2"
+ },
+ "instance_70_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.9453734774738354,
+  "tier": "tier3"
+ },
+ "instance_70_d_12": {
+  "num_qubits": 18,
+  "tmax": 2.4689656759442604,
+  "tier": "tier3"
+ },
+ "instance_70_d_5": {
+  "num_qubits": 14,
+  "tmax": 2.3913544139648555,
+  "tier": "tier1"
+ },
+ "instance_70_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.2036171644419817,
+  "tier": "tier1"
+ },
+ "instance_70_d_7": {
+  "num_qubits": 13,
+  "tmax": 0.9764803193490267,
+  "tier": "tier1"
+ },
+ "instance_70_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.7839535966736102,
+  "tier": "tier2"
+ },
+ "instance_71_d_11": {
+  "num_qubits": 17,
+  "tmax": 7.13098847683696,
+  "tier": "tier3"
+ },
+ "instance_71_d_12": {
+  "num_qubits": 19,
+  "tmax": 12.9457788097017,
+  "tier": "tier3"
+ },
+ "instance_71_d_13": {
+  "num_qubits": 15,
+  "tmax": 3.8865771979550896,
+  "tier": "tier1"
+ },
+ "instance_71_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.0485963273858094,
+  "tier": "tier2"
+ },
+ "instance_71_d_7": {
+  "num_qubits": 16,
+  "tmax": 0.9691027485303247,
+  "tier": "tier2"
+ },
+ "instance_71_d_8": {
+  "num_qubits": 16,
+  "tmax": 0.8551753114861302,
+  "tier": "tier2"
+ },
+ "instance_72_d_10": {
+  "num_qubits": 19,
+  "tmax": 2.0149178319258363,
+  "tier": "tier3"
+ },
+ "instance_72_d_12": {
+  "num_qubits": 17,
+  "tmax": 1.8806189822643775,
+  "tier": "tier3"
+ },
+ "instance_72_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.0884970250504598,
+  "tier": "tier1"
+ },
+ "instance_72_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.8223394441618275,
+  "tier": "tier1"
+ },
+ "instance_73_d_10": {
+  "num_qubits": 17,
+  "tmax": 0.8537691577831411,
+  "tier": "tier3"
+ },
+ "instance_73_d_15": {
+  "num_qubits": 15,
+  "tmax": 5.2937630358207235,
+  "tier": "tier1"
+ },
+ "instance_73_d_7": {
+  "num_qubits": 13,
+  "tmax": 1.3777388395469217,
+  "tier": "tier1"
+ },
+ "instance_73_d_9": {
+  "num_qubits": 16,
+  "tmax": 3.4863751592532357,
+  "tier": "tier2"
+ },
+ "instance_74_d_11": {
+  "num_qubits": 18,
+  "tmax": 1.9271250232118862,
+  "tier": "tier3"
+ },
+ "instance_74_d_15": {
+  "num_qubits": 16,
+  "tmax": 4.388236959617889,
+  "tier": "tier2"
+ },
+ "instance_74_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.2455196239879647,
+  "tier": "tier1"
+ },
+ "instance_74_d_6": {
+  "num_qubits": 14,
+  "tmax": 0.6736254608506569,
+  "tier": "tier1"
+ },
+ "instance_74_d_9": {
+  "num_qubits": 12,
+  "tmax": 1.5542852708928934,
+  "tier": "tier0"
+ },
+ "instance_75_d_10": {
+  "num_qubits": 19,
+  "tmax": 2.3585866333378918,
+  "tier": "tier3"
+ },
+ "instance_75_d_11": {
+  "num_qubits": 19,
+  "tmax": 3.8176754826529185,
+  "tier": "tier3"
+ },
+ "instance_75_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.2457681566166705,
+  "tier": "tier1"
+ },
+ "instance_75_d_6": {
+  "num_qubits": 11,
+  "tmax": 0.6840002616657885,
+  "tier": "tier0"
+ },
+ "instance_75_d_7": {
+  "num_qubits": 14,
+  "tmax": 0.9150531973991356,
+  "tier": "tier1"
+ },
+ "instance_75_d_9": {
+  "num_qubits": 15,
+  "tmax": 3.155559358199526,
+  "tier": "tier1"
+ },
+ "instance_76_d_14": {
+  "num_qubits": 15,
+  "tmax": 12.004912397667184,
+  "tier": "tier1"
+ },
+ "instance_76_d_15": {
+  "num_qubits": 16,
+  "tmax": 4.866869526122171,
+  "tier": "tier2"
+ },
+ "instance_76_d_5": {
+  "num_qubits": 13,
+  "tmax": 0.604819902222273,
+  "tier": "tier1"
+ },
+ "instance_76_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.7327020575757144,
+  "tier": "tier1"
+ },
+ "instance_76_d_7": {
+  "num_qubits": 13,
+  "tmax": 1.0671437033850484,
+  "tier": "tier1"
+ },
+ "instance_77_d_10": {
+  "num_qubits": 20,
+  "tmax": 0.9583882063484078,
+  "tier": "tier3"
+ },
+ "instance_77_d_11": {
+  "num_qubits": 16,
+  "tmax": 1.4212266018603943,
+  "tier": "tier2"
+ },
+ "instance_77_d_14": {
+  "num_qubits": 16,
+  "tmax": 2.20152331350117,
+  "tier": "tier2"
+ },
+ "instance_77_d_15": {
+  "num_qubits": 14,
+  "tmax": 6.924353174157562,
+  "tier": "tier1"
+ },
+ "instance_77_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.8874547249404188,
+  "tier": "tier2"
+ },
+ "instance_78_d_12": {
+  "num_qubits": 16,
+  "tmax": 1.613745619771743,
+  "tier": "tier2"
+ },
+ "instance_78_d_14": {
+  "num_qubits": 16,
+  "tmax": 2.1068692222665466,
+  "tier": "tier2"
+ },
+ "instance_78_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.6641334069126563,
+  "tier": "tier1"
+ },
+ "instance_78_d_7": {
+  "num_qubits": 15,
+  "tmax": 1.4789007048078582,
+  "tier": "tier1"
+ },
+ "instance_79_d_14": {
+  "num_qubits": 16,
+  "tmax": 2.0103686855978338,
+  "tier": "tier2"
+ },
+ "instance_79_d_7": {
+  "num_qubits": 14,
+  "tmax": 1.874212891122043,
+  "tier": "tier1"
+ },
+ "instance_79_d_8": {
+  "num_qubits": 16,
+  "tmax": 3.3619393450723014,
+  "tier": "tier2"
+ },
+ "instance_7_d_15": {
+  "num_qubits": 14,
+  "tmax": 18.729307019182222,
+  "tier": "tier1"
+ },
+ "instance_7_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7192201549456961,
+  "tier": "tier1"
+ },
+ "instance_80_d_11": {
+  "num_qubits": 20,
+  "tmax": 3.360548709369419,
+  "tier": "tier3"
+ },
+ "instance_80_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.9572518425684193,
+  "tier": "tier2"
+ },
+ "instance_80_d_6": {
+  "num_qubits": 13,
+  "tmax": 1.785362728415492,
+  "tier": "tier1"
+ },
+ "instance_81_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.8512054387794847,
+  "tier": "tier3"
+ },
+ "instance_81_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.9109744683619432,
+  "tier": "tier2"
+ },
+ "instance_82_d_9": {
+  "num_qubits": 14,
+  "tmax": 2.1271867001710443,
+  "tier": "tier1"
+ },
+ "instance_83_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.9025717068399584,
+  "tier": "tier3"
+ },
+ "instance_83_d_11": {
+  "num_qubits": 17,
+  "tmax": 2.048134089682423,
+  "tier": "tier3"
+ },
+ "instance_83_d_12": {
+  "num_qubits": 19,
+  "tmax": 2.5254855406995977,
+  "tier": "tier3"
+ },
+ "instance_83_d_13": {
+  "num_qubits": 16,
+  "tmax": 5.066833659076348,
+  "tier": "tier2"
+ },
+ "instance_83_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7955216534477332,
+  "tier": "tier1"
+ },
+ "instance_83_d_7": {
+  "num_qubits": 14,
+  "tmax": 1.5467610183042584,
+  "tier": "tier1"
+ },
+ "instance_83_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.719150384846536,
+  "tier": "tier2"
+ },
+ "instance_84_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.0831372618712154,
+  "tier": "tier3"
+ },
+ "instance_84_d_12": {
+  "num_qubits": 19,
+  "tmax": 2.9174528909544835,
+  "tier": "tier3"
+ },
+ "instance_84_d_15": {
+  "num_qubits": 15,
+  "tmax": 5.517694467037112,
+  "tier": "tier1"
+ },
+ "instance_84_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.8996086868546146,
+  "tier": "tier1"
+ },
+ "instance_84_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.3829263121093462,
+  "tier": "tier2"
+ },
+ "instance_84_d_7": {
+  "num_qubits": 15,
+  "tmax": 2.7491018267196576,
+  "tier": "tier1"
+ },
+ "instance_84_d_9": {
+  "num_qubits": 16,
+  "tmax": 2.5766873523491456,
+  "tier": "tier2"
+ },
+ "instance_85_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7313268562092775,
+  "tier": "tier1"
+ },
+ "instance_86_d_5": {
+  "num_qubits": 15,
+  "tmax": 1.0277501209172382,
+  "tier": "tier1"
+ },
+ "instance_86_d_6": {
+  "num_qubits": 19,
+  "tmax": 0.8943068441156938,
+  "tier": "tier3"
+ },
+ "instance_86_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.5947007051265967,
+  "tier": "tier2"
+ },
+ "instance_87_d_10": {
+  "num_qubits": 18,
+  "tmax": 1.3323452215303704,
+  "tier": "tier3"
+ },
+ "instance_87_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.7068265856032214,
+  "tier": "tier0"
+ },
+ "instance_88_d_10": {
+  "num_qubits": 19,
+  "tmax": 3.934842253076617,
+  "tier": "tier3"
+ },
+ "instance_88_d_11": {
+  "num_qubits": 18,
+  "tmax": 1.2987166242648038,
+  "tier": "tier3"
+ },
+ "instance_88_d_15": {
+  "num_qubits": 16,
+  "tmax": 3.5704403228587367,
+  "tier": "tier2"
+ },
+ "instance_88_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.6892362409545452,
+  "tier": "tier1"
+ },
+ "instance_88_d_7": {
+  "num_qubits": 12,
+  "tmax": 1.6410278681140054,
+  "tier": "tier0"
+ },
+ "instance_88_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.49490695165328,
+  "tier": "tier2"
+ },
+ "instance_89_d_10": {
+  "num_qubits": 20,
+  "tmax": 1.3802404077736932,
+  "tier": "tier3"
+ },
+ "instance_89_d_11": {
+  "num_qubits": 19,
+  "tmax": 3.7591911341541073,
+  "tier": "tier3"
+ },
+ "instance_89_d_12": {
+  "num_qubits": 15,
+  "tmax": 6.278767527905236,
+  "tier": "tier1"
+ },
+ "instance_89_d_5": {
+  "num_qubits": 14,
+  "tmax": 1.1237662794109247,
+  "tier": "tier1"
+ },
+ "instance_89_d_6": {
+  "num_qubits": 14,
+  "tmax": 1.147712021000015,
+  "tier": "tier1"
+ },
+ "instance_89_d_7": {
+  "num_qubits": 16,
+  "tmax": 0.6762126318971527,
+  "tier": "tier2"
+ },
+ "instance_89_d_8": {
+  "num_qubits": 16,
+  "tmax": 2.008666331815913,
+  "tier": "tier2"
+ },
+ "instance_89_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.2018635707953895,
+  "tier": "tier2"
+ },
+ "instance_8_d_10": {
+  "num_qubits": 21,
+  "tmax": 1.3431125990100705,
+  "tier": "tier3"
+ },
+ "instance_8_d_15": {
+  "num_qubits": 15,
+  "tmax": 1.4525068944184993,
+  "tier": "tier1"
+ },
+ "instance_8_d_6": {
+  "num_qubits": 12,
+  "tmax": 0.5770245623499284,
+  "tier": "tier0"
+ },
+ "instance_90_d_10": {
+  "num_qubits": 18,
+  "tmax": 14.078606541111707,
+  "tier": "tier3"
+ },
+ "instance_90_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.8816435270742058,
+  "tier": "tier3"
+ },
+ "instance_90_d_14": {
+  "num_qubits": 15,
+  "tmax": 14.218185287118168,
+  "tier": "tier1"
+ },
+ "instance_90_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.7395954974414218,
+  "tier": "tier1"
+ },
+ "instance_90_d_6": {
+  "num_qubits": 16,
+  "tmax": 3.378390856194439,
+  "tier": "tier2"
+ },
+ "instance_91_d_5": {
+  "num_qubits": 20,
+  "tmax": 1.3830300268554094,
+  "tier": "tier3"
+ },
+ "instance_91_d_6": {
+  "num_qubits": 19,
+  "tmax": 1.561590814482868,
+  "tier": "tier3"
+ },
+ "instance_91_d_7": {
+  "num_qubits": 19,
+  "tmax": 3.2697799492780746,
+  "tier": "tier3"
+ },
+ "instance_91_d_8": {
+  "num_qubits": 15,
+  "tmax": 5.329319728820312,
+  "tier": "tier1"
+ },
+ "instance_92_d_11": {
+  "num_qubits": 16,
+  "tmax": 4.267976740050044,
+  "tier": "tier2"
+ },
+ "instance_92_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.2069773891321396,
+  "tier": "tier2"
+ },
+ "instance_92_d_6": {
+  "num_qubits": 16,
+  "tmax": 1.0301202887897003,
+  "tier": "tier2"
+ },
+ "instance_92_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.6161991677557905,
+  "tier": "tier2"
+ },
+ "instance_92_d_9": {
+  "num_qubits": 15,
+  "tmax": 2.3905721678318064,
+  "tier": "tier1"
+ },
+ "instance_93_d_11": {
+  "num_qubits": 20,
+  "tmax": 2.482729118889086,
+  "tier": "tier3"
+ },
+ "instance_93_d_12": {
+  "num_qubits": 18,
+  "tmax": 1.2079920007620888,
+  "tier": "tier3"
+ },
+ "instance_93_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.6938676766347137,
+  "tier": "tier0"
+ },
+ "instance_93_d_6": {
+  "num_qubits": 15,
+  "tmax": 0.656311848068204,
+  "tier": "tier1"
+ },
+ "instance_93_d_9": {
+  "num_qubits": 16,
+  "tmax": 1.0623334773213784,
+  "tier": "tier2"
+ },
+ "instance_94_d_10": {
+  "num_qubits": 18,
+  "tmax": 0.966772280766762,
+  "tier": "tier3"
+ },
+ "instance_94_d_12": {
+  "num_qubits": 17,
+  "tmax": 1.62138624302654,
+  "tier": "tier3"
+ },
+ "instance_94_d_13": {
+  "num_qubits": 14,
+  "tmax": 9.539893868171212,
+  "tier": "tier1"
+ },
+ "instance_94_d_5": {
+  "num_qubits": 15,
+  "tmax": 0.902083815247652,
+  "tier": "tier1"
+ },
+ "instance_94_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.5062103649175709,
+  "tier": "tier2"
+ },
+ "instance_95_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.7052760286510353,
+  "tier": "tier2"
+ },
+ "instance_96_d_10": {
+  "num_qubits": 19,
+  "tmax": 1.4847898863728206,
+  "tier": "tier3"
+ },
+ "instance_96_d_13": {
+  "num_qubits": 16,
+  "tmax": 1.867397568932297,
+  "tier": "tier2"
+ },
+ "instance_96_d_5": {
+  "num_qubits": 11,
+  "tmax": 0.8853661673649996,
+  "tier": "tier0"
+ },
+ "instance_96_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.972814589655136,
+  "tier": "tier1"
+ },
+ "instance_97_d_10": {
+  "num_qubits": 17,
+  "tmax": 4.505757391668687,
+  "tier": "tier3"
+ },
+ "instance_97_d_5": {
+  "num_qubits": 14,
+  "tmax": 0.575412306142052,
+  "tier": "tier1"
+ },
+ "instance_97_d_7": {
+  "num_qubits": 14,
+  "tmax": 1.1912493075192225,
+  "tier": "tier1"
+ },
+ "instance_98_d_12": {
+  "num_qubits": 18,
+  "tmax": 8.920348374509235,
+  "tier": "tier3"
+ },
+ "instance_98_d_6": {
+  "num_qubits": 16,
+  "tmax": 0.9691203688535217,
+  "tier": "tier2"
+ },
+ "instance_99_d_11": {
+  "num_qubits": 20,
+  "tmax": 1.0637567867791269,
+  "tier": "tier3"
+ },
+ "instance_99_d_5": {
+  "num_qubits": 16,
+  "tmax": 1.8248788830800027,
+  "tier": "tier2"
+ },
+ "instance_99_d_7": {
+  "num_qubits": 16,
+  "tmax": 1.7334106438171635,
+  "tier": "tier2"
+ },
+ "instance_99_d_9": {
+  "num_qubits": 13,
+  "tmax": 2.3581833116338453,
+  "tier": "tier1"
+ },
+ "instance_9_d_10": {
+  "num_qubits": 24,
+  "tmax": 1.3256147689733777,
+  "tier": "tier3"
+ },
+ "instance_9_d_6": {
+  "num_qubits": 13,
+  "tmax": 0.6858762752794156,
+  "tier": "tier1"
+ },
+ "instance_9_d_7": {
+  "num_qubits": 16,
+  "tmax": 3.7222237271823664,
+  "tier": "tier2"
+ },
+ "instance_9_d_8": {
+  "num_qubits": 16,
+  "tmax": 1.6903787285294747,
+  "tier": "tier2"
+ }
+}
