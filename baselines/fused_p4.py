@@ -13,7 +13,6 @@ def generate(spec):
     cz_per_step = 10 * 2 * CZ_PER_FUSED_GATE * n * (n - 1) // 2
     budget = spec.get("cz_budget")
     steps = 2 if budget is None else max(1, int(budget) // cz_per_step)
-    dt = spec["times"][-1] / steps
-    circs = [circuits.fused_network_circuit(spec["terms"], dt, max(1, round(t / dt)), mapping, order=4)
-             for t in spec["times"]]
+    circs = [circuits.fused_network_circuit(spec["terms"], dt_t, steps_t, mapping, order=4)
+             for steps_t, dt_t in circuits.steps_per_time(spec["times"], steps)]
     return circuits.make_artifact(mapping, circs, f"fourth-order fused swap network, {steps} steps")

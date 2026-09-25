@@ -66,6 +66,23 @@ def pauli_rotation(pauli: str, theta: float) -> np.ndarray:
     return np.cos(theta / 2) * np.eye(dim) - 1j * np.sin(theta / 2) * generator
 
 
+def steps_per_time(times: Sequence[float], steps_at_tmax: int) -> list[tuple[int, float]]:
+    """(steps, dt) for each time point of a grid, from the step count used at the last one.
+
+    Every point keeps as close as possible to the common step size tmax / steps_at_tmax, but
+    each circuit must evolve for exactly its own time, so the step size is re-derived per point
+    as t / steps (at least one step). With steps_at_tmax = 1, all eight circuits are one step
+    of their own duration; with a multiple of 8, the step size is the same at every point.
+    """
+    tmax = float(times[-1])
+    base_dt = tmax / int(steps_at_tmax)
+    out = []
+    for t in times:
+        steps = max(1, round(float(t) / base_dt))
+        out.append((steps, float(t) / steps))
+    return out
+
+
 # ------------------------------------------------------------------ product formulas, all-to-all
 def trotter_circuit(groups: Sequence[Sequence[Sequence]], dt: float, steps: int, order: int,
                     spin_position: Sequence[int]) -> cirq.Circuit:

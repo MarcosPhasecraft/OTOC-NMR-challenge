@@ -14,6 +14,11 @@ FROM python:3.13-slim
 # numpy, cirq and otoc-core's circuit builder. otoc-core is installed from a
 # wheel built with `pip wheel --no-deps -w isolation/wheels /path/to/otoc-core`
 # (its own dependency list needs Phasecraft's private index; see README.md).
+# Escape hatch for build hosts behind a TLS-intercepting proxy: pass
+#   --build-arg PIP_TRUSTED_HOST="pypi.org files.pythonhosted.org"
+# Leave it empty (the default) everywhere else so pip verifies certificates.
+ARG PIP_TRUSTED_HOST=
+ENV PIP_TRUSTED_HOST=${PIP_TRUSTED_HOST}
 COPY wheels/ /wheels/
 RUN pip install --no-cache-dir numpy==2.5.3 scipy==1.18.1 openfermion==1.8.1 cirq-core==1.7.0 \
     && pip install --no-cache-dir --no-deps /wheels/otoc_core-*.whl \

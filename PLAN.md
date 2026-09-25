@@ -11,9 +11,9 @@ before that.
 2. [x] Loader: `harness/spec.py` — `build_spec(instance_id)`, `parse_instances(claim)`,
    manifest `data/manifest.json` (tier, N, tmax per instance; 788 instances with tmax).
 3. [x] Tier-0 references: exact `C(t_k)`, parity ED, stored `harness/data/references/`.
-4. [x] Referee (exact engine; sampled engine in Phase 1): `harness/artifact.py` (schema, `verify`), `harness/echo.py`,
+4. [x] Referee (exact engine; sampled engine in Phase 1): `harness/artifact.py` (schema, `verify`; the echo is assembled in `engines.py`),
    `harness/cost.py` (KAK CZ count), `harness/engines.py` (exact tier 0; qsim sampled
-   later), `harness/score.py`; `harness/__init__.py` exposes `build_spec`,
+   later), `harness/score.py`, `harness/circuits.py` (shared builders); `harness/__init__.py` exposes `build_spec`,
    `parse_instances`, `verify`, `score`, `FROZEN_GLOBS`.
 5. [ ] Baselines (`baselines/`): seed (first order, swapnet order, time-of-flight
    `initial_mapping`, fused SWAP gates), XZY second order merged, XZY fourth order,
@@ -51,8 +51,10 @@ else is invalid.
 
 **verify(spec, artifact) → {"passed": bool, "checks": {...}, "reason": str}** — never raises.
 
-**score(spec, artifact) → {"rmse", "mean_abs", "max_abs", "signed_errors", "cz_count",
-"two_qubit_count", "rotation_count", "sampling_se", "regime"}** — a vector, never combined.
+**score(spec, artifact) → {"times", "reference_otoc" (development tiers only, else null),
+"otoc", "signed_errors", "rmse", "mean_abs", "max_abs", "cz_per_time", "cz_count" (the
+largest, which the budget applies to), "two_qubit_per_time", "two_qubit_count",
+"over_budget", "sampling_se", "regime"}** — a vector, never combined.
 
 **Instance ids**: database names, e.g. `instance_4_d_5`. `parse_instances` accepts a
 comma-separated list, `N=12`, or a tier name (`tier0`).

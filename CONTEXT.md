@@ -99,7 +99,8 @@ For each instance and each budget on the ladder (§8):
    the butterfly, then V† = the submitted gates reversed and inverted. The referee never
    edits, drops, merges or reorders the candidate's gates.
 3. **[agreed] No referee-side pruning.** Light-cone pruning is the candidate's to discover;
-   the baselines are plain, unpruned Trotter. The referee counts what is submitted.
+   the baselines are plain Trotter that prunes nothing itself. The referee counts what is
+   submitted.
 4. Count CZs by Cirq KAK (`two_qubit_matrix_to_cz_operations`, `allow_partial_czs=False`,
    Cirq's default tolerance 1e-8, pinned Cirq version), memoised by gate unitary. The
    decomposition only produces the number; the simulated gate is the submitted matrix.
@@ -108,9 +109,18 @@ For each instance and each budget on the ladder (§8):
    for arbitrary gates at N ≤ 12); tiers 1–3 with **qsim** on the cirq circuit, 250 draws
    `haar_state(seed, index)` shared with the stored per-draw exact values (§7). otoc-core's
    numpy engines serve as cross-checks only. **[agreed]**
-6. `score` (vector, never combined): `rmse` over the time grid, `mean_abs`, `max_abs`,
-   per-time signed errors, `cz_count`, raw 2q-gate count, sampling standard error
-   (0 in tier 0), `regime: exact|sampled`.
+6. `score` (vector, never combined), per instance and budget rung: `rmse` over the time
+   grid, `mean_abs`, `max_abs`; the **signed error at every time**, the candidate's **OTOC
+   value at every time**, the `times`, and on development tiers (0-1) the **reference curve**
+   itself; the **CZ count of every time's circuit** and the largest (`cz_count`, which the
+   budget applies to); two-qubit gate counts per time; `over_budget`; sampling standard error
+   (0 in tier 0); `regime: exact|sampled`. This is Google's error matrix (their landscape x
+   time is our instance x time) plus per-time costs, and it is what the results log stores.
+
+Feedback to the agent (handover §7): everything in the score vector, plus read access to the
+reference curves and the referee itself on tiers 0-1 (it may run any diagnostic it likes,
+including on single times or single gates, as often as it likes on tier 0). Tier 2 returns
+aggregates on a schedule; tier 3 nothing. The candidate program at runtime sees only the spec.
 
 Determinism: fixed seeds, frozen reference files under `FROZEN_GLOBS`, pinned cirq version.
 Finalists are re-scored on fresh draws and against the exact trace before any claim.
@@ -142,9 +152,14 @@ for the fault-tolerant view. **[agreed]**
 
 ## 8. Budget ladder and frontier
 
-- Per instance, the **seed-calibrated cap** `cap_i` = KAK CZ count of the unpruned seed (§9)
-  at the smallest step count whose mean error on the grid is ≤ 0.10 (reproduces Google's
-  10.4 % starting point by construction). **[agreed]** ladder `{0.5, 1, 2, 4} × cap_i`.
+- Per instance, the **seed-calibrated cap** `cap_i` = CZ count of the plain seed baseline
+  (§9: first order, no pruning, no rescaling) at the smallest step count at which its mean
+  error on the grid is ≤ 0.10. **This fixes the cost axis, not an accuracy target**: the x1
+  rung is the cost at which vanilla Trotter sits at the 10 % error Google's seed started
+  from (10.4 %), so a candidate's error at x1 is directly comparable to their 10.4 % → 0.82 %.
+  The referee scores whatever error the candidate achieves at that cost; lower is the point.
+  **[agreed]** ladder `{0.5, 1, 2, 4} × cap_i`. The calibration is stored in
+  `harness/data/budgets.json`, frozen with the referee.
 - The candidate is called once per budget with `cz_budget` set. Each call yields one point
   `(cz_count, rmse)`.
 - Leaderboard: per-budget table plus the nondominated set of measured points. No
@@ -171,12 +186,13 @@ All at every budget on the ladder, so the seed's own frontier is the floor.
 
 ## 10. Frozen/editable boundary and sign-off tests
 
-Frozen: `harness/` (loader, echo, prune, KAK count, engines, score), `baselines/`,
-reference data files, `isolation/`. Editable: `solution/` only, from Stage 2.
+Frozen: `harness/` (loader, artifact checks, echo assembly, KAK count, engines, score,
+circuit helpers), `baselines/`, reference and budget data files, `isolation/`. Editable:
+`solution/` only, from Stage 2.
 Sign-off before anything is editable (Sagecraft Step 3):
 - analytic: t = 0 → C = 1; commuting H (ZZ only) → seed error 0; single bond → closed form.
 - rejection: non-adjacent gate, non-unitary, over budget, wrong qubit count, malformed JSON.
-- reproduction: seed CZ count = 3N(N−1) per unpruned step; exact references agree with
+- reproduction: seed CZ count = 3N(N−1) per step; exact references agree with
   `dC_db` `C_exact` at the database's query times within their stated `se`; 5 re-measured
   `r(ε)` rows agree with `r_targets.csv` up to the metric-convention factor.
 - determinism: same candidate, same seeds → identical score bytes; registry fingerprint
@@ -185,8 +201,9 @@ Sign-off before anything is editable (Sagecraft Step 3):
 ## 11. Success criteria
 
 Stage R: on the development subset, the loop produces a readable policy whose frontier
-dominates the seed's; headline = rmse at `1 × cap_i` (seed ≈ 0.10 mean error) — Google's
-reference ratio is 10.4 % → 0.82 % mean (≈ 12×), ≈ 5× in RMS. Handover S1 floor: halve RMSE.
+dominates the seed's and the control's; headline = error at `1 × cap_i`, where the seed sits
+at ≈ 0.10 mean error by construction — Google's reference ratio is 10.4 % → 0.82 % mean
+(≈ 12×), ≈ 5× in RMS. Handover S1 floor: halve RMSE.
 Gain must survive fresh seeds and tier-2 validation.
 Stage G: frozen policy run on tier 2 and 3; report gain vs N and vs hardness; then the
 target-error objective (min cost at ε = 0.05) as a slice of the same frontier.

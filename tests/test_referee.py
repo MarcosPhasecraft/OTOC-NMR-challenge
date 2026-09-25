@@ -28,10 +28,8 @@ def identity_artifact(instance_spec, n):
 def seed_artifact(instance_spec, steps, mapping=None, scale=1.0):
     n = instance_spec["num_qubits"]
     mapping = list(range(n)) if mapping is None else mapping
-    tmax = instance_spec["times"][-1]
-    dt = tmax / steps
-    circs = [circuits.swap_network_circuit(instance_spec["terms"], dt, max(1, round(t / dt)), mapping, scale)
-             for t in instance_spec["times"]]
+    circs = [circuits.swap_network_circuit(instance_spec["terms"], dt_t, steps_t, mapping, scale)
+             for steps_t, dt_t in circuits.steps_per_time(instance_spec["times"], steps)]
     return circuits.make_artifact(mapping, circs, f"swap-network seed, {steps} steps")
 
 
@@ -219,10 +217,25 @@ def test_engine_matches_otoc_core_parity_sector(instance_spec):
 
 
 def test_seed_converges_to_reference(instance_spec):
-    coarse = score(instance_spec, seed_artifact(instance_spec, 2), workers=1)["rmse"]
-    fine = score(instance_spec, seed_artifact(instance_spec, 16), workers=1)["rmse"]
+    """Step counts that do not divide the 8-point grid, so every circuit's own duration matters
+    (a circuit built with the tmax step size at a shorter time evolves for the wrong time)."""
+    one = score(instance_spec, seed_artifact(instance_spec, 1), workers=1)
+    assert len(set(one["otoc"])) == len(one["otoc"])          # eight distinct times, eight distinct circuits
+    assert one["otoc"][0] > one["otoc"][-1]                    # scrambling: the OTOC decays with time
+    coarse = score(instance_spec, seed_artifact(instance_spec, 3), workers=1)["rmse"]
+    fine = score(instance_spec, seed_artifact(instance_spec, 24), workers=1)["rmse"]
     assert fine < coarse / 4
     assert fine < 0.05
+
+
+def test_steps_per_time_evolves_each_point_for_its_own_time():
+    times = [k / 8 for k in range(1, 9)]
+    for steps_at_tmax in (1, 3, 8, 24):
+        plan = circuits.steps_per_time(times, steps_at_tmax)
+        assert plan[-1] == (steps_at_tmax, pytest.approx(1 / steps_at_tmax))
+        for t, (steps, dt) in zip(times, plan):
+            assert steps >= 1 and steps * dt == pytest.approx(t)
+    assert [s for s, _ in circuits.steps_per_time(times, 8)] == list(range(1, 9))
 
 
 def test_score_is_deterministic(instance_spec):

@@ -42,9 +42,20 @@ def load_reference(spec: dict[str, Any]) -> dict[str, Any]:
         return json.load(handle)
 
 
+def _tier_of(num_qubits: int) -> str | None:
+    from harness.spec import tier_of
+    return tier_of(num_qubits)
+
+
 def _evaluate_one(args: tuple[list[Gate], int, int, int]) -> float:
     gates, n, m_pos, b_pos = args
-    return engines.exact_otoc(gates, n, m_pos, b_pos)
+    try:
+        from threadpoolctl import threadpool_limits
+    except ImportError:  # then the OPENBLAS_NUM_THREADS default in harness/__init__.py is what we have
+        return engines.exact_otoc(gates, n, m_pos, b_pos)
+    # one BLAS thread per worker process: the workers already fill the cores
+    with threadpool_limits(limits=1):
+        return engines.exact_otoc(gates, n, m_pos, b_pos)
 
 
 def score(spec: dict[str, Any], artifact: Any, workers: int | None = None) -> dict[str, Any]:
@@ -69,7 +80,14 @@ def score(spec: dict[str, Any], artifact: Any, workers: int | None = None) -> di
     signed = np.array(values) - np.array(reference["otoc"])
     max_cz = max(c["cz_count"] for c in counts)
     budget = spec.get("cz_budget")
+    # The reference curve is returned for development tiers (0 and 1) so a logged score row
+    # shows curve, reference and error side by side; it is withheld on tiers 2-3 (CONTEXT.md
+    # §3), where a candidate is scored but the agent must not see the answer.
+    tier = reference.get("tier") or _tier_of(n)
+    show_reference = tier in ("tier0", "tier1")
     return {
+        "times": [float(t) for t in spec["times"]],
+        "reference_otoc": [float(v) for v in reference["otoc"]] if show_reference else None,
         "rmse": float(np.sqrt(np.mean(signed ** 2))),
         "mean_abs": float(np.mean(np.abs(signed))),
         "max_abs": float(np.max(np.abs(signed))),
@@ -78,6 +96,7 @@ def score(spec: dict[str, Any], artifact: Any, workers: int | None = None) -> di
         "cz_count": int(max_cz),                       # the budget applies per circuit: the largest one
         "cz_per_time": [int(c["cz_count"]) for c in counts],
         "two_qubit_count": int(max(c["two_qubit_count"] for c in counts)),
+        "two_qubit_per_time": [int(c["two_qubit_count"]) for c in counts],
         "over_budget": bool(budget is not None and max_cz > int(budget)),
         "sampling_se": 0.0,
         "regime": "exact",

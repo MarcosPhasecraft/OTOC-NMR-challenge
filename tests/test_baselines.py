@@ -57,12 +57,10 @@ def test_strang_step_restores_spin_order_and_is_second_order(instance_spec):
     and halving dt cuts the error by ~4x where first order cuts it by ~2x."""
     n = instance_spec["num_qubits"]
     mapping = list(range(n))
-    tmax = instance_spec["times"][-1]
 
     def rmse(order, steps):
-        dt = tmax / steps
-        circs = [circuits.fused_network_circuit(instance_spec["terms"], dt, max(1, round(t / dt)), mapping, order)
-                 for t in instance_spec["times"]]
+        circs = [circuits.fused_network_circuit(instance_spec["terms"], dt_t, steps_t, mapping, order)
+                 for steps_t, dt_t in circuits.steps_per_time(instance_spec["times"], steps)]
         return score(instance_spec, circuits.make_artifact(mapping, circs, ""), workers=1)["rmse"]
 
     e2_8, e2_16 = rmse(2, 8), rmse(2, 16)
