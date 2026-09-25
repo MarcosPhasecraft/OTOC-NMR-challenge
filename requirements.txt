@@ -1,0 +1,8 @@
+numpy>=2.0
+scipy>=1.14
+openfermion>=1.8.1
+cirq-core==1.7.0
+qsimcirq>=0.22.1
+pytest>=8
+# otoc-core is installed separately and without its dependencies -- see README.md:
+#   pip install --no-deps "otoc-core @ git+ssh://git@github.com/PhaseCraft/otoc-core.git"

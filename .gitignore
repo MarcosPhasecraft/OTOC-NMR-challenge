@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.DS_Store
+.pytest_cache/
+.venv/
+venv/
+
+# Scratch files from the write-then-rename in cache.py and registry.py.
+# These only survive a crash between the write and the rename.
+*.tmp
+
+# The per-run attempt log is a personal working record, and several
+# people sharing a fork would conflict on every line. registry.json and
+# .score_cache.json are the opposite -- they're the project's record of
+# what actually passed, so commit those.
+results.jsonl

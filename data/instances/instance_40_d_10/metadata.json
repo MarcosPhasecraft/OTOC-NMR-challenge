@@ -1,0 +1,1 @@
+{"N_converged": 21, "N_max": 25, "pdb_id": "4I1V", "config_data": {"rng_seed": 1040, "instance_seed": 40, "ball_ratio": 2, "target_distance": 10.0, "distance_min": 9.75, "distance_max": 10.25}, "C-C distance": 9.823451042175293}

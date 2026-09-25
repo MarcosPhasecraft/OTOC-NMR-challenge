@@ -1,0 +1,167 @@
+# Runs this template's own test suite. Travels into every fork, so it
+# avoids anything fork-specific: no hardcoded branch name (a fork may not
+# call it "main"), no repository name, and no badge URL -- add your own
+# badge to README.md once your fork has a home, since a URL baked in here
+# would point at the template for everyone.
+#
+# `pytest` alone is the whole suite, including a fork's own tests/ --
+# see the testpaths note in pyproject.toml.
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A second push to the same branch supersedes the first; don't pay for both.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    # POSIX only: the suite plants named pipes and hard links (os.mkfifo,
+    # os.link) to check the inbox rejects them, and isolation/ is Docker.
+    # macOS is in the matrix because the template is developed there and
+    # Linux-only CI would miss a difference between them.
+    name: pytest (${{ matrix.os }}, py${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        # 3.9 is the floor: the code is standard-library-only and uses
+        # nothing newer (no builtin-generic annotations, no `X | Y` unions),
+        # but 3.8 is end-of-life so it isn't claimed as supported.
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        include:
+          - os: macos-latest
+            python-version: "3.12"
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+          # A fork adds its problem's own dependencies; the template has none.
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run the suite
+        run: pytest -q
+
+  no-docker:
+    # Three documents claim the suite needs no Docker. Nothing checked it,
+    # and a test that quietly started depending on the daemon would only
+    # break for whoever didn't have it running. This proves the claim the
+    # strong way: `docker` on PATH is a shim that records being called and
+    # fails, and the job fails if it was ever reached.
+    name: the suite needs no Docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Put a docker shim ahead of the real one
+        run: |
+          shim="$RUNNER_TEMP/shim"
+          mkdir -p "$shim"
+          printf '#!/bin/sh\necho "docker $*" >> %s\nexit 1\n' \
+            "$RUNNER_TEMP/docker-calls.log" > "$shim/docker"
+          chmod +x "$shim/docker"
+          echo "$shim" >> "$GITHUB_PATH"
+
+      - name: Run the suite
+        run: pytest -q
+
+      - name: Fail if anything reached for Docker
+        run: |
+          log="$RUNNER_TEMP/docker-calls.log"
+          if [ -s "$log" ]; then
+            echo "The suite invoked Docker, but it is documented as not needing it:"
+            cat "$log"
+            exit 1
+          fi
+          echo "No test invoked Docker."
+
+  sandbox:
+    # The only job that starts a container. A CI runner has Docker where a
+    # laptop may not, which is why the container tests are deselected from
+    # the default suite and run here instead.
+    #
+    # The rest of the suite checks the `docker run` *arguments*; these check
+    # that Docker honours them -- no network, nothing writable outside
+    # /tmp, an unprivileged user, and a container that really is killed and
+    # removed at the wall clock.
+    name: the sandbox really confines a submission
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Build the image
+        # Same command as isolation/README.md's one-time setup, with the
+        # build context given as a path rather than by cd-ing into it.
+        run: docker build -t sagecraft-runner:latest isolation
+
+      - name: Check the toolkit finds it usable
+        # Before pytest, not instead of it: the container tests *skip* when
+        # the sandbox is unavailable, and a skip exits 0. Failing here is
+        # what turns "Docker isn't working" into a red job rather than a
+        # green one that ran nothing.
+        #
+        # One line on purpose: a YAML block scalar keeps the indentation of
+        # every line inside it, and Python rejects indented top-level code.
+        run: python -c "from isolation.run_isolated import IMAGE, ensure_available; ensure_available(); print('ensure_available() is satisfied with ' + IMAGE)"
+
+      - name: Run the container tests
+        # shell: bash for pipefail -- the default `bash -e` would let tee's
+        # exit status mask a pytest failure.
+        shell: bash
+        run: |
+          log="$RUNNER_TEMP/docker-tests.log"
+          pytest -m docker -q -rs --strict-markers | tee "$log"
+          # A skipped container test means the sandbox fixture found no
+          # daemon, which here is a failure rather than a quiet pass.
+          #
+          # Match the container tests specifically. `-m docker` deselects
+          # the other modules but pytest still *imports* them to collect
+          # them, so an unrelated module-level importorskip -- test_jsonable
+          # needs numpy, which CI does not install -- also lands in the
+          # summary's skip count. Grepping for "N skipped" therefore failed
+          # a run in which all seven container tests had passed.
+          if grep -E '^SKIPPED' "$log" | grep -qE 'test_container\.py|sandbox unavailable'; then
+            echo "::error::Container tests skipped where Docker is available -- treating that as a failure."
+            grep -E '^SKIPPED' "$log"
+            exit 1
+          fi

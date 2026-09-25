@@ -1,0 +1,25 @@
+# Config only -- this project is deliberately NOT a pip-installable
+# package. See TOOLKIT.md's "How a fork gets the toolkit: vendored, not a
+# package": a fork clones this repo and runs from its root, so there is no
+# build system here and nothing to install.
+#
+# toolkit/ and isolation/ are pure standard library. The only development
+# dependency is pytest, pinned in requirements-dev.txt.
+
+[tool.pytest.ini_options]
+# tests/ is in here, not just toolkit/ and isolation/, because a fork's own
+# referee tests live there (PLAYBOOK.md Step 3) and they are the ones that
+# matter most -- without this, `pytest` and therefore CI would pass while
+# never running a single test the fork wrote. Keep tests/ present even if
+# empty; a testpath that doesn't exist is a collection error.
+testpaths = ["toolkit", "isolation", "tests"]
+
+# The suite is documented in three places as needing no Docker, and a CI
+# job proves it. isolation/tests/test_container.py is the one exception --
+# it starts real containers -- so it is marked and deselected here rather
+# than left to whoever remembers. `pytest -m docker` runs it; a later -m
+# on the command line overrides this one.
+markers = [
+    "docker: starts a real container; needs a running daemon and the built image",
+]
+addopts = "-m 'not docker'"

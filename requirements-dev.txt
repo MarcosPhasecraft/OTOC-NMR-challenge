@@ -1,0 +1,3 @@
+# Everything needed to run this template's own test suite.
+# toolkit/ and isolation/ themselves need nothing beyond the standard library.
+pytest>=7.0
