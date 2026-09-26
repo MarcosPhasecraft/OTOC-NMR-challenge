@@ -1,6 +1,6 @@
 # Leaderboard
 
-Generated 2026-09-26 11:53 UTC by `scripts/render_leaderboard.py` from `baselines/registry.json` and `.score_cache.json` (referee fingerprint `4c8615512ea7`). Do not edit by hand.
+Generated 2026-09-26 13:44 UTC by `scripts/render_leaderboard.py` from `baselines/registry.json` and `.score_cache.json` (referee fingerprint `4c8615512ea7`). Do not edit by hand.
 
 Development set: 12 tier-0 instances (N = 10-12), exact scoring. Each entry is called once per instance and budget rung (11 rungs, x0.25 to x8 of the seed-calibrated cap, ratio sqrt 2); every call is one measured (CZ, RMSE) point (CONTEXT.md §8).
 
@@ -187,4 +187,12 @@ Each kept entry is re-scored, next to the seed, on a fresh draw of four instance
 
 Tier-0 instances with long tmax and a weakly coupled carbon, where the seed needs 70-300 steps for 10 % error. Nobody optimises on them; cost at the target and error at x1 are reported for every entry that has been run there, as a second generalisation axis. Empty until calibrated.
 
-_no hard-set cells scored yet_
+### Cost at the target error (RMSE <= 0.05) -- hard set, not ranked
+
+CZ count of the cheapest measured point under the target, per instance; `ratio` is the geometric mean over instances of (entry CZ / seed CZ), lower is better. `miss` = the target was not met at any rung.
+
+| rank | entry | ratio to seed | met | mean CZ | instance_148_d_8 | instance_167_d_7 | instance_175_d_8 | instance_68_d_13 |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|
+| 1 | second-order fused swap network | 0.916 | 4/4 | 63570 | 24300 (x0.3536) | 138240 (x2) | 84480 (x2) | 7260 (x0.7071) |
+| 2 | seed: first-order fused swap network | 1.000 | 4/4 | 57495 | 69120 (x1) | 69120 (x1) | 84480 (x2) | 7260 (x0.7071) |
+| 3 | fourth-order fused swap network | 2.175 | 4/4 | 132750 | 67500 (x1) | 97200 (x1.4142) | 336600 (x8) | 29700 (x2.8284) |
