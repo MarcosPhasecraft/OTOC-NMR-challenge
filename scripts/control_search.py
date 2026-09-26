@@ -40,7 +40,7 @@ found by scripts/control_search.py (seed {search_seed}) on the development set. 
 no ideas: an agent has to beat this, not just the seed.
 
     layout={layout!r}, layout_seed={layout_seed}, scale={scale}, order={order}, spend={spend}
-    development-set cost ratio to the seed at RMSE 0.05: {ratio:.3f}
+    development-set cost ratio to the seed at RMSE 0.05, over the instances it meets: {ratio:.3f}
 """
 from harness import circuits
 
@@ -113,6 +113,8 @@ def in_process_runner(path):
 
 
 def primary(cache, fp, name, seed_scores, instances):
+    """(instances met, geometric-mean cost ratio over the instances met): the board's own
+    order -- an entry that meets the target on more instances ranks first, then the ratio."""
     ratios = []
     for instance in instances:
         cells = {c: cache.get(fp, name, c) for c in render_leaderboard.rungs(instance)}
@@ -120,9 +122,26 @@ def primary(cache, fp, name, seed_scores, instances):
         e = render_leaderboard.cost_at_target(cells, instance, spec.TARGET_RMSE)
         s = render_leaderboard.cost_at_target(seed_scores, instance, spec.TARGET_RMSE)
         if e is None or s is None:
-            return None
+            continue
         ratios.append(e[0] / s[0])
-    return math.exp(sum(math.log(r) for r in ratios) / len(ratios))
+    ratio = math.exp(sum(math.log(r) for r in ratios) / len(ratios)) if ratios else None
+    return len(ratios), ratio
+
+
+def select_best(record, cache, fp, seed_scores, instances):
+    """The best recorded configuration by (met, ratio), recomputed from the cache."""
+    scored = []
+    for r in record:
+        if r.get("failed"):
+            continue
+        met, ratio = primary(cache, fp, r["name"], seed_scores, instances)
+        if ratio is not None:
+            scored.append((-met, ratio, r))
+    if not scored:
+        raise SystemExit("no configuration met the target on any instance")
+    scored.sort(key=lambda t: (t[0], t[1]))
+    _, _, best = scored[0]
+    return best, -scored[0][0], scored[0][1]
 
 
 def main(argv=None) -> int:
@@ -131,6 +150,7 @@ def main(argv=None) -> int:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--instances", default=None)
     parser.add_argument("--out", default="baselines/control_random.py")
+    parser.add_argument("--select-only", action="store_true", help="no new draws; pick the best recorded configuration")
     args = parser.parse_args(argv)
     problem, registry, board_cache = load()
     fp = fingerprint(problem)
@@ -143,7 +163,7 @@ def main(argv=None) -> int:
     record = json.loads(RECORD.read_text()) if RECORD.exists() else []
     tried = {json.dumps(r["config"], sort_keys=True) for r in record}
     scratch = ROOT / ".control_candidate.py"
-    for k in range(args.configs):
+    for k in range(0 if args.select_only else args.configs):
         config = sample_config(rng)
         key = json.dumps(config, sort_keys=True)
         if key in tried:
@@ -151,17 +171,16 @@ def main(argv=None) -> int:
         name = f"control:{args.seed}:{k}"
         write_generator(scratch, config, args.configs, args.seed, float("nan"))
         report = sweep_entry(problem, cache, fp, name, str(scratch), instances, in_process_runner(scratch), log=None)
-        ratio = primary(cache, fp, name, seed_scores, instances)
-        record.append({"name": name, "config": config, "ratio": ratio, "failed": [f["cell"] for f in report["failed"]]})
+        met, ratio = primary(cache, fp, name, seed_scores, instances)
+        record.append({"name": name, "config": config, "met": met, "ratio": ratio,
+                       "failed": [f["cell"] for f in report["failed"]]})
         RECORD.write_text(json.dumps(record, indent=1) + "\n")
-        print(f"{name}: {config} -> ratio {ratio if ratio is None else round(ratio, 4)}", flush=True)
-    valid = [r for r in record if r["ratio"] is not None and not r["failed"]]
-    if not valid:
-        raise SystemExit("no configuration met the target everywhere")
-    best = min(valid, key=lambda r: r["ratio"])
-    write_generator(ROOT / args.out, best["config"], len(record), args.seed, best["ratio"])
+        print(f"{name}: {config} -> met {met}/{len(instances)}, ratio over met "
+              f"{ratio if ratio is None else round(ratio, 4)}", flush=True)
+    best, met, ratio = select_best(record, cache, fp, seed_scores, instances)
+    write_generator(ROOT / args.out, best["config"], len(record), args.seed, ratio)
     scratch.unlink(missing_ok=True)
-    print(f"best: {best['name']} ratio {best['ratio']:.4f} -> {args.out}")
+    print(f"best: {best['name']} met {met}/{len(instances)}, ratio over met {ratio:.4f} -> {args.out}")
     return 0
 
 
