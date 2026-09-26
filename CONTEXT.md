@@ -171,6 +171,10 @@ for the fault-tolerant view. **[agreed]**
 - **[agreed]** Ladder: 11 rungs, `2^(k/2) × cap_i` for k = −4..6 (x0.25 to x8, ratio √2).
   The candidate is called once per rung with `cz_budget` set; each call yields one measured
   point `(cz_count, rmse)`. An over-budget call is recorded but invalid at that rung.
+  **[agreed]** The sweep is adaptive: rungs are evaluated cheapest first and the sweep stops
+  at the first rung that meets the target error, never below x1 (so the Google-comparable
+  cell is always measured); rungs above are skipped, since they cannot change either metric.
+  The top three rungs are two thirds of a full ladder's cost. `--full` evaluates them all.
 - **Primary metric (ranks the board): cost at the target error.** Per instance, the CZ
   count of the cheapest valid point with `rmse ≤ target_rmse = 0.05`, reported with its
   ratio to the seed's own cost at the same target; entries are ranked by the geometric mean
