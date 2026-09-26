@@ -16,3 +16,5 @@ isolation/wheels/
 results.jsonl
 venv/
 .dev_cache.json
+.control_cache.json
+.control_candidate.py
