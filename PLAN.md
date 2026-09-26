@@ -37,7 +37,7 @@ before that.
   "terms": [[i, j, "XX"|"YY"|"ZZ", coeff]],   # database convention, see harness/vendor/gen_orderings.py
   "measurement_site": 0, "butterfly_site": 1,
   "times": [float]*8,                    # k*tmax/8
-  "cz_budget": int }
+  "cz_budget": int, "target_rmse": 0.05 }
 ```
 
 **artifact** (dict, JSON-serialisable)
@@ -55,7 +55,7 @@ else is invalid.
 **score(spec, artifact) → {"times", "reference_otoc" (development tiers only, else null),
 "otoc", "signed_errors", "rmse", "mean_abs", "max_abs", "cz_per_time", "cz_count" (the
 largest, which the budget applies to), "two_qubit_per_time", "two_qubit_count",
-"over_budget", "sampling_se", "regime"}** — a vector, never combined.
+"over_budget", "target_rmse", "met_target", "sampling_se", "regime"}** — a vector, never combined.
 
 **Instance ids**: database names, e.g. `instance_4_d_5`. `parse_instances` accepts a
 comma-separated list, `N=12`, or a tier name (`tier0`).

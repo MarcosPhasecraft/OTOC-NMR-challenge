@@ -18,8 +18,8 @@ subspace, and then
 
 W is built by applying the submitted gates to the 2^(n-1) basis states of that subspace (half
 the work of forming V), B W is a row permutation, and the last step is one BLAS product. Cost
-is O(gates * 4^n / 2) for the gates plus O(8^n / 4) for the product: 0.3 s at n = 10 and
-~13 s at n = 12 per time point on one core. `MAX_EXACT_QUBITS` keeps it where that is sane.
+is O(gates * 4^n / 2) for the gates plus O(8^n / 4) for the product: ~0.1 s at n = 10 and
+a few seconds at n = 12 per seed step and time point on one core. `MAX_EXACT_QUBITS` keeps it where that is sane.
 
 `_dense_reference` is the plain M(t) = V M V^dagger route, kept for the tests: two
 formulations of the same trace that agree to floating point.
@@ -37,14 +37,21 @@ MAX_EXACT_QUBITS = 13
 
 def apply_gate(state: np.ndarray, gate: Gate, n: int) -> np.ndarray:
     """Apply a gate to a batch of column states `state` of shape (2^n, cols); qubit 0 is the
-    most significant index. Returns a new array."""
+    most significant index. Returns a new array.
+
+    For a gate on positions (p, p+1) the state reshapes to (2^p, 4, rest) and the gate is one
+    batched 4x4 matmul over the leading axis (BLAS, 5-10x faster than the equivalent einsum
+    at n = 12). The general einsum path is kept for non-adjacent positions, which `verify`
+    never lets through but the tests may use."""
     cols = state.shape[1]
     if len(gate.positions) == 1:
         p = gate.positions[0]
-        view = state.reshape(2 ** p, 2, 2 ** (n - p - 1), cols)
-        out = np.einsum("ij,ajcX->aicX", gate.unitary, view, optimize=True)
-        return out.reshape(2 ** n, cols)
+        view = state.reshape(2 ** p, 2, -1)
+        return np.matmul(gate.unitary, view).reshape(2 ** n, cols)
     p, q = gate.positions
+    if q == p + 1:
+        view = state.reshape(2 ** p, 4, -1)
+        return np.matmul(gate.unitary, view).reshape(2 ** n, cols)
     view = state.reshape(2 ** p, 2, 2 ** (q - p - 1), 2, 2 ** (n - q - 1), cols)
     unitary = gate.unitary.reshape(2, 2, 2, 2)
     out = np.einsum("ijkl,akblcX->aibjcX", unitary, view, optimize=True)

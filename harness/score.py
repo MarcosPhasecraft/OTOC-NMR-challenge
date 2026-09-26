@@ -86,10 +86,11 @@ def score(spec: dict[str, Any], artifact: Any, workers: int | None = None) -> di
     # §3), where a candidate is scored but the agent must not see the answer.
     tier = reference.get("tier") or _tier_of(n)
     show_reference = tier in ("tier0", "tier1")
+    rmse = float(np.sqrt(np.mean(signed ** 2)))
     return {
         "times": [float(t) for t in spec["times"]],
         "reference_otoc": [float(v) for v in reference["otoc"]] if show_reference else None,
-        "rmse": float(np.sqrt(np.mean(signed ** 2))),
+        "rmse": rmse,
         "mean_abs": float(np.mean(np.abs(signed))),
         "max_abs": float(np.max(np.abs(signed))),
         "signed_errors": [float(x) for x in signed],
@@ -99,6 +100,8 @@ def score(spec: dict[str, Any], artifact: Any, workers: int | None = None) -> di
         "two_qubit_count": int(max(c["two_qubit_count"] for c in counts)),
         "two_qubit_per_time": [int(c["two_qubit_count"]) for c in counts],
         "over_budget": bool(budget is not None and max_cz > int(budget)),
+        "target_rmse": float(spec["target_rmse"]) if spec.get("target_rmse") is not None else None,
+        "met_target": bool(spec.get("target_rmse") is not None and rmse <= float(spec["target_rmse"])),
         "sampling_se": 0.0,
         "regime": "exact",
     }

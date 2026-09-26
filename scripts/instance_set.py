@@ -1,6 +1,6 @@
 """The scored instance sets (CONTEXT.md §3): which (instance, budget) cells the leaderboard
 shows. Phase 0 = the tier-0 development subset: 12 instances, four per size at N = 10, 11,
-12, the first of each size in manifest order, times the four-rung budget ladder.
+12, the first of each size in manifest order, times the budget ladder (`spec.LADDER`).
 
     python scripts/instance_set.py          # prints the claim string for a submission manifest
 """

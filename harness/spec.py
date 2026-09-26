@@ -26,7 +26,13 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__
 MANIFEST_PATH = os.path.join(DATA_DIR, "manifest.json")
 BUDGETS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "budgets.json")
 #: The budget ladder (CONTEXT.md §8), as multipliers of the seed-calibrated cap.
-LADDER = (0.5, 1.0, 2.0, 4.0)
+# The budget ladder, as multiples of each instance's seed-calibrated cap (CONTEXT.md §8): a
+# geometric ladder with ratio sqrt(2) from 1/4 to 8 times the cap. Fine enough that the
+# cheapest rung meeting the target error is a usable "cost at target"; the x1 rung is the
+# Google-comparable one (where the plain seed sits at 10 % error).
+LADDER = tuple(round(2.0 ** (k / 2), 4) for k in range(-4, 7))
+# The target error that ranks entries: the cheapest measured point with rmse <= TARGET_RMSE.
+TARGET_RMSE = 0.05
 NUM_TIMES = 8
 MEASUREMENT_SITE = 0
 BUTTERFLY_SITE = 1
@@ -154,6 +160,7 @@ def build_spec(instance_id: str, cz_budget: int | None = None) -> dict[str, Any]
         "butterfly_site": BUTTERFLY_SITE,
         "times": time_grid(entry["tmax"]),
         "cz_budget": cz_budget,
+        "target_rmse": TARGET_RMSE,
     }
 
 
@@ -163,7 +170,8 @@ _SIZE = re.compile(r"^N=(\d+)$")
 def parse_instances(claim: str) -> list[str]:
     """The sizes grammar: a comma-separated mix of `<instance>[@<mult>]`, `N=<int>[@<mult>]`
     and `<tier>[@<mult>]`. Without `@<mult>` a token expands to the whole budget ladder
-    (`@0.5, @1, @2, @4`), so `tier0` names every scored (instance, budget) cell of tier 0.
+    (`LADDER`, 11 rungs from @0.25 to @8), so `tier0` names every scored (instance, budget)
+    cell of tier 0.
 
     Returns ids in manifest order, ladder order within an instance, deduplicated. Unknown
     tokens raise, so a typo cannot look like an empty claim.

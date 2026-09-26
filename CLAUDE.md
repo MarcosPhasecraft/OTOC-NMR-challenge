@@ -40,11 +40,14 @@ the helper raises; do not work around it.
 
 ## Scoring rules
 
-- Budgets are a ladder `{0.5, 1, 2, 4} × cap_i` per instance; the candidate is called once
-  per budget with `cz_budget` set. Never interpolate between budgets.
+- Budgets are a ladder `2^(k/2) × cap_i`, k = −4..6, per instance; the candidate is called
+  once per rung with `cz_budget` set. Never interpolate between rungs.
+- Ranking: primary = cost at the target error (cheapest measured point with RMSE ≤ 0.05,
+  as a ratio to the seed's, geometric mean over instances); secondary = RMSE at the x1 rung
+  (the Google-comparable budget). The frontier of all measured points is always logged.
 - Two scores differ only if the gap exceeds 2σ (σ = 0 in the exact regime).
-- Keep-or-revert: one champion per budget bin; a candidate is kept if it beats a champion in
-  any bin by more than the noise.
+- Keep-or-revert: a candidate is kept if it improves the primary metric, or the secondary
+  at equal primary, by more than the noise.
 - Every kept candidate gets the rediscovery checklist (`CONTEXT.md` §13).
 
 ## Conventions

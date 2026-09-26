@@ -275,6 +275,15 @@ def test_steps_per_time_evolves_each_point_for_its_own_time():
     assert [s for s, _ in circuits.steps_per_time(times, 8)] == list(range(1, 9))
 
 
+def test_score_reports_the_target(instance_spec):
+    result = score(instance_spec, seed_artifact(instance_spec, 2), workers=1)
+    assert result["target_rmse"] == spec.TARGET_RMSE == 0.05
+    assert result["met_target"] is (result["rmse"] <= 0.05)
+    assert result["rmse"] > 0.05 and result["met_target"] is False       # two seed steps are not enough
+    loose = score({**instance_spec, "target_rmse": 1.0}, seed_artifact(instance_spec, 2), workers=1)
+    assert loose["met_target"] is True
+
+
 def test_score_is_deterministic(instance_spec):
     a = score(instance_spec, seed_artifact(instance_spec, 2), workers=1)
     b = score(instance_spec, seed_artifact(instance_spec, 2), workers=2)

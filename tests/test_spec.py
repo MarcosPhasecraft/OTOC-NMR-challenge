@@ -25,6 +25,7 @@ def test_spec_is_complete_and_json_serialisable():
     assert len(instance_spec["times"]) == spec.NUM_TIMES
     assert instance_spec["times"][-1] == pytest.approx(spec.load_manifest()["instance_4_d_5"]["tmax"])
     assert instance_spec["cz_budget"] == 600
+    assert instance_spec["target_rmse"] == spec.TARGET_RMSE
     json.dumps(instance_spec)  # must cross the sandbox boundary as JSON
     assert "instance" not in instance_spec  # the candidate is not told which instance it is
 
@@ -52,6 +53,7 @@ def test_parse_instances_grammar():
     tier0 = [k for k, v in manifest.items() if v["tier"] == "tier0"]
     assert spec.parse_instances("tier0") == [f"{k}@{m:g}" for k in tier0 for m in spec.LADDER]
     assert len(spec.parse_instances("N=10")) == 5 * len(spec.LADDER)
+    assert len(spec.LADDER) == 11 and spec.LADDER[4] == 1.0 and spec.LADDER[0] == 0.25 and spec.LADDER[-1] == 8.0
     assert spec.parse_instances("N=10@1") == [f"{k}@1" for k, v in manifest.items() if v["num_qubits"] == 10]
     assert spec.parse_instances("instance_4_d_5@inf, instance_4_d_5@inf") == ["instance_4_d_5"]
     assert spec.parse_instances("instance_4_d_5@2,instance_4_d_5@0.5") == ["instance_4_d_5@0.5", "instance_4_d_5@2"]

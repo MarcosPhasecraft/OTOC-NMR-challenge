@@ -83,9 +83,12 @@ loop starts at first order.
 ```
 num_qubits, chain (qubit order, measurement qubit at one end),
 terms: [(i, j, "XX"|"YY"|"ZZ", coeff)], measurement_site=0, butterfly_site=1,
-times: [t_1..t_8], cz_budget
+times: [t_1..t_8], cz_budget, target_rmse
 ```
-No instance id, no reference values, no hardness metadata.
+No instance id, no reference values, no hardness metadata. `cz_budget` is the input the
+candidate optimises against, exactly as in Google's setup; `target_rmse` (0.05) is
+informational, the error the board ranks cost at (§8): the candidate is never asked to
+estimate its own error, the referee sweeps budgets and reads the cost off the frontier.
 
 `artifact`: one forward circuit per time `t_k`, serialised as a cirq circuit (JSON):
 single-qubit unitaries and two-qubit unitaries on **chain-adjacent** qubits only; plus a
@@ -157,23 +160,31 @@ for the fault-tolerant view. **[agreed]**
 - Noise floor: a sampled score is reported with its standard error; two scores differ only
   if the gap exceeds 2σ.
 
-## 8. Budget ladder and frontier
+## 8. Budget ladder, ranking and frontier
 
 - Per instance, the **seed-calibrated cap** `cap_i` = CZ count of the plain seed baseline
   (§9: first order, no pruning, no rescaling) at the smallest step count at which its mean
-  error on the grid is ≤ 0.10. **This fixes the cost axis, not an accuracy target**: the x1
-  rung is the cost at which vanilla Trotter sits at the 10 % error Google's seed started
-  from (10.4 %), so a candidate's error at x1 is directly comparable to their 10.4 % → 0.82 %.
-  The referee scores whatever error the candidate achieves at that cost; lower is the point.
-  **[agreed]** ladder `{0.5, 1, 2, 4} × cap_i`. The calibration is stored in
-  `harness/data/budgets.json`, frozen with the referee.
-- The candidate is called once per budget with `cz_budget` set. Each call yields one point
-  `(cz_count, rmse)`.
-- Leaderboard: per-budget table plus the nondominated set of measured points. No
-  interpolation between budgets. Dominance judged with error bars.
-- Search rule (AutoCraft `keep or revert`): one champion per budget bin; a candidate is kept
-  if it beats the champion in any bin by more than the noise (MAP-Elites with cost as the
-  single axis).
+  error on the grid is ≤ 0.10. **This fixes the cost axis, not an accuracy target**: it is
+  the cost at which vanilla Trotter sits at the 10 % error Google's seed started from
+  (10.4 %), so error at `1 × cap_i` is directly comparable to their 10.4 % → 0.82 %. The
+  calibration is stored in `harness/data/budgets.json`, frozen with the referee.
+- **[agreed]** Ladder: 11 rungs, `2^(k/2) × cap_i` for k = −4..6 (x0.25 to x8, ratio √2).
+  The candidate is called once per rung with `cz_budget` set; each call yields one measured
+  point `(cz_count, rmse)`. An over-budget call is recorded but invalid at that rung.
+- **Primary metric (ranks the board): cost at the target error.** Per instance, the CZ
+  count of the cheapest valid point with `rmse ≤ target_rmse = 0.05`, reported with its
+  ratio to the seed's own cost at the same target; entries are ranked by the geometric mean
+  of that ratio over the development instances (lower is better). An entry that never meets
+  the target on some instance ranks below every entry that meets it everywhere. Resolution
+  is the ladder's √2; no interpolation, a cost at target is always a measured point.
+- **Secondary metric: error at the Google-comparable budget.** `rmse` at the x1 rung and
+  the improvement factor over the seed (AlphaEvolve: 12.7× in mean error at fixed budget).
+- Per instance: the nondominated set of all measured points (the Pareto frontier), each with
+  the entry and rung that produced it. Dominance judged with error bars on sampled tiers.
+- Search rule (AutoCraft `keep or revert`): a candidate is kept if it improves the primary
+  metric, or, at equal primary, the secondary; the full frontier is logged either way so a
+  later change of primary metric (e.g. another target, or error at budget) is a change to
+  the leaderboard script, not to the referee or to any candidate.
 
 ## 9. Baselines (frozen reference solutions)
 
@@ -207,13 +218,14 @@ Sign-off before anything is editable (Sagecraft Step 3):
 
 ## 11. Success criteria
 
-Stage R: on the development subset, the loop produces a readable policy whose frontier
-dominates the seed's and the control's; headline = error at `1 × cap_i`, where the seed sits
-at ≈ 0.10 mean error by construction — Google's reference ratio is 10.4 % → 0.82 % mean
-(≈ 12×), ≈ 5× in RMS. Handover S1 floor: halve RMSE.
+Stage R: on the development subset, the loop produces a readable policy that beats the seed
+and the control on the primary metric (§8): cost at RMSE 0.05, geometric-mean ratio to the
+seed below 1 with margin, and a frontier that dominates theirs. The Google comparison is the
+secondary column: error at `1 × cap_i`, where the seed sits at ≈ 0.10 mean error by
+construction; Google's reference ratio is 10.4 % → 0.82 % mean (≈ 12×), ≈ 5× in RMS.
+Handover S1 floor: halve RMSE there.
 Gain must survive fresh seeds and tier-2 validation.
-Stage G: frozen policy run on tier 2 and 3; report gain vs N and vs hardness; then the
-target-error objective (min cost at ε = 0.05) as a slice of the same frontier.
+Stage G: frozen policy run on tier 2 and 3; report gain vs N and vs hardness on both metrics.
 
 ## 12. Departures from Google, recorded
 
