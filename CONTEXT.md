@@ -90,9 +90,11 @@ candidate optimises against, exactly as in Google's setup; `target_rmse` (0.05) 
 informational, the error the board ranks cost at (§8): the candidate is never asked to
 estimate its own error, the referee sweeps budgets and reads the cost off the frontier.
 
-`artifact`: one forward circuit per time `t_k`, serialised as a cirq circuit (JSON):
-single-qubit unitaries and two-qubit unitaries on **chain-adjacent** qubits only; plus a
-short method note. Freedoms (all of Google's): term and qubit ordering, fused SWAP+interaction
+`artifact`: one forward circuit per time `t_k` as a gate list (`{"gates": [[positions,
+matrix], ...]}`, the matrix row-major as [re, im] pairs; cirq JSON is accepted too but is
+2-3x larger and slow to parse): single-qubit unitaries and two-qubit unitaries on
+**chain-adjacent** qubits only; `initial_mapping`, `butterfly_positions`; plus a short
+method note. Freedoms (all of Google's): term and qubit ordering, fused SWAP+interaction
 gates, coupling rescaling, non-uniform and modulated step sizes, higher-order or split
 layers, dropping gates, arbitrary two-qubit unitaries. Prohibited: gates on non-adjacent
 qubits, non-unitary or non-finite entries, ancillas, mid-circuit measurement, any output

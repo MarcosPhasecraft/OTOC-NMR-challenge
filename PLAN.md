@@ -43,7 +43,7 @@ before that.
 **artifact** (dict, JSON-serialisable)
 ```
 { "initial_mapping": [int],            # spin -> chain position, a permutation
-  "circuits": { "<time index>": <cirq circuit JSON> },   # forward V(t_k), gates on chain positions
+  "circuits": { "<time index>": {"gates": [[positions, matrix], ...]} },   # forward V(t_k); cirq JSON also accepted
   "butterfly_positions": [int],        # optional: where spin 1 sits after each V(t_k); default initial_mapping[1]
   "note": str }
 ```

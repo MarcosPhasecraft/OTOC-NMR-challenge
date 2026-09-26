@@ -244,6 +244,22 @@ def time_of_flight_mapping(terms: Sequence[Sequence], num_qubits: int,
 
 # ------------------------------------------------------------------ artifact assembly
 def circuit_json(circuit: cirq.Circuit) -> Any:
+    """A cirq circuit as the artifact's gate list (harness/artifact.py): [[positions, matrix]]
+    with the matrix row-major as [re, im] pairs in ascending-position order."""
+    gates = []
+    for operation in circuit.all_operations():
+        qubits = operation.qubits
+        positions = sorted(q.x for q in qubits)
+        matrix = np.asarray(cirq.unitary(operation), dtype=complex)
+        if len(positions) == 2 and qubits[0].x > qubits[1].x:
+            matrix = SWAP @ matrix @ SWAP
+        flat = matrix.reshape(-1)
+        gates.append([positions, [float(v) for pair in zip(flat.real, flat.imag) for v in pair]])
+    return {"gates": gates}
+
+
+def cirq_circuit_json(circuit: cirq.Circuit) -> Any:
+    """The cirq JSON form, also accepted by the referee (tests; 2-3x larger, slower to parse)."""
     return json.loads(cirq.to_json(circuit))
 
 

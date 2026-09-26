@@ -27,11 +27,11 @@ HARNESS_DIR = os.path.join(os.path.dirname(__file__), "..", "harness")
 
 DEFAULTS = dict(
     timeout_s=30,
-    memory="512m",
+    memory="2g",              # CONTEXT.md §4: 2 GB per generate call
     cpus="1",
     pids=64,
-    tmp_size="64m",
-    max_output_bytes=10_000_000,
+    tmp_size="256m",
+    max_output_bytes=200_000_000,   # ~500 bytes per gate: 400k gates; the x8 rung at tier 1 is ~100k
 )
 
 

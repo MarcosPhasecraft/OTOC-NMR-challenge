@@ -127,11 +127,7 @@ def test_initial_mapping_is_free_and_basis_independent(instance_spec):
     # Trotter error; what must agree is the count, and the identity-mapped circuit under a
     # relabelling of positions must reproduce itself exactly:
     assert a["cz_count"] == b["cz_count"]
-    relabelled = copy.deepcopy(seed_artifact(instance_spec, 2))
-    relabelled["initial_mapping"] = [(p + 3) % n for p in range(n)]   # cyclic relabel of positions
-    circ = cirq.read_json(json_text=json.dumps(relabelled["circuits"]["0"]))
-    shifted = circ.transform_qubits(lambda q: cirq.LineQubit((q.x + 3) % n))
-    # a cyclic shift breaks adjacency at the wrap-around, so only check the engine directly:
+    # a cyclic shift of positions breaks adjacency at the wrap-around, so check the engine directly:
     gates_a, _ = parse_circuit(seed_artifact(instance_spec, 2)["circuits"]["0"], n)
     from harness.artifact import Gate
     gates_b = [Gate(tuple(sorted((p + 3) % n for p in g.positions)),
@@ -153,11 +149,30 @@ def test_rejections(instance_spec):
     good = identity_artifact(instance_spec, n)
     assert verify(instance_spec, good)["passed"]
 
+    def cirq_artifact(circuit):     # the cirq JSON form, also accepted
+        return {"initial_mapping": list(range(n)), "circuits": {str(k): circuits.cirq_circuit_json(circuit) for k in range(8)},
+                "note": ""}
+
+    def gate_list_artifact(gate):   # one gate in the gate-list form, at every time
+        return {"initial_mapping": list(range(n)), "circuits": {str(k): {"gates": [gate]} for k in range(8)}, "note": ""}
+
+    eye4 = [float(v) for pair in zip(np.eye(4).reshape(-1), np.zeros(16)) for v in pair]
     cases = {
-        "non-adjacent": circuits.make_artifact(list(range(n)), [cirq.Circuit(cirq.CZ(q(0), q(5)))] * 8, ""),
-        "three-qubit": circuits.make_artifact(list(range(n)), [cirq.Circuit(cirq.CCZ(q(0), q(1), q(2)))] * 8, ""),
-        "out-of-range": circuits.make_artifact(list(range(n)), [cirq.Circuit(cirq.X(q(n)))] * 8, ""),
-        "measurement": circuits.make_artifact(list(range(n)), [cirq.Circuit(cirq.measure(q(0)))] * 8, ""),
+        "cirq non-adjacent": cirq_artifact(cirq.Circuit(cirq.CZ(q(0), q(5)))),
+        "cirq three-qubit": cirq_artifact(cirq.Circuit(cirq.CCZ(q(0), q(1), q(2)))),
+        "cirq out-of-range": cirq_artifact(cirq.Circuit(cirq.X(q(n)))),
+        "cirq measurement": cirq_artifact(cirq.Circuit(cirq.measure(q(0)))),
+        "cirq not-a-circuit": tamper(good, lambda a: a["circuits"].__setitem__("0", {"cirq_type": "Nonsense"})),
+        "list non-adjacent": gate_list_artifact([[0, 5], eye4]),
+        "list descending positions": gate_list_artifact([[1, 0], eye4]),
+        "list three-qubit": gate_list_artifact([[0, 1, 2], eye4 * 4]),
+        "list out-of-range": gate_list_artifact([[n], [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0]]),
+        "list wrong-length": gate_list_artifact([[0, 1], eye4[:-2]]),
+        "list not-numbers": gate_list_artifact([[0, 1], ["a"] * 32]),
+        "list not-finite": gate_list_artifact([[0, 1], [float("inf")] + eye4[1:]]),
+        "list non-unitary": gate_list_artifact([[0, 1], [1.001] + eye4[1:]]),
+        "list malformed entry": gate_list_artifact([0, 1]),
+        "list not-a-list": tamper(good, lambda a: a["circuits"].__setitem__("0", {"gates": "x"})),
         "not-a-permutation": tamper(good, lambda a: a.__setitem__("initial_mapping", [0] * n)),
         "mapping-wrong-length": tamper(good, lambda a: a.__setitem__("initial_mapping", list(range(n - 1)))),
         "butterfly-out-of-range": tamper(good, lambda a: a.__setitem__("butterfly_positions", [n] * 8)),
@@ -165,7 +180,6 @@ def test_rejections(instance_spec):
         "butterfly-not-int": tamper(good, lambda a: a.__setitem__("butterfly_positions", [1.0] * 8)),
         "missing-time": tamper(good, lambda a: a["circuits"].pop("7")),
         "extra-time": tamper(good, lambda a: a["circuits"].__setitem__("8", a["circuits"]["0"])),
-        "not-json-circuit": tamper(good, lambda a: a["circuits"].__setitem__("0", {"cirq_type": "Nonsense"})),
         "garbage": "hello",
         "none": None,
     }
@@ -173,18 +187,15 @@ def test_rejections(instance_spec):
         result = verify(instance_spec, bad)
         assert result["passed"] is False, name
         assert result["reason"], name
+    assert "not unitary" in verify(instance_spec, cases["list non-unitary"])["reason"]   # rejected, never re-projected
 
-    # a non-unitary matrix: cirq refuses to build one, so tamper with the serialised JSON
-    unitary = circuits.make_artifact(list(range(n)), [cirq.Circuit(cirq.MatrixGate(np.eye(4)).on(q(0), q(1)))] * 8, "")
-    text = json.dumps(unitary["circuits"]["0"]).replace("1.0", "1.001", 1)
-    nonunitary = tamper(unitary, lambda a: a["circuits"].__setitem__("0", json.loads(text)))
-    result = verify(instance_spec, nonunitary)
-    # cirq's own parser already refuses a non-unitary MatrixGate; the referee's per-gate check
-    # is the second line of defence for gate types cirq accepts. Either way: rejected.
-    assert result["passed"] is False and ("not unitary" in result["reason"] or "does not parse" in result["reason"])
-    # and the referee's own check, exercised directly on a matrix cirq never sees:
-    from harness.artifact import Gate
-    assert np.linalg.norm((np.eye(4) * 1.001).conj().T @ (np.eye(4) * 1.001) - np.eye(4)) > 1e-8
+    # the two forms of the same circuit parse to the same gates
+    circuit = cirq.Circuit(cirq.CZ(q(1), q(0)), cirq.X(q(2)), cirq.MatrixGate(cirq.unitary(cirq.ISWAP)).on(q(3), q(2)))
+    a, _ = parse_circuit(circuits.circuit_json(circuit), n)
+    b, _ = parse_circuit(circuits.cirq_circuit_json(circuit), n)
+    assert [g.positions for g in a] == [g.positions for g in b] == [(0, 1), (2,), (2, 3)]
+    for ga, gb in zip(a, b):
+        assert np.allclose(ga.unitary, gb.unitary)
 
 
 def test_verify_never_raises_on_adversarial_input(instance_spec):
