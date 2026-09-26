@@ -275,4 +275,9 @@ static look at the code. "Recovered Google's ideas" is then a table row, not an 
 - **Phase 1**: tier 1 (24 instances at 13–15, sampled scoring with qsim), the rediscovery
   table, fresh-seed re-checks.
 - **Phase 2**: tiers 2–3 once references exist; Stage G.
-- Nothing remains open except creating the repository.
+- **Open, the author's call, to be raised again at Phase 0 sign-off:** whether to build a
+  Google-style baseline (our own implementation of the six ideas in arXiv:2510.19550's
+  evolved program) as the visible target line before the agent loop runs. For: a target and a
+  check that the setup admits those gains. Against: a cleaner rediscovery test if no agent
+  has seen such an implementation. Not to be built without that decision.
+- Compute for the agent loop: 16-32 cores recommended (§8 costs); the design does not change.
