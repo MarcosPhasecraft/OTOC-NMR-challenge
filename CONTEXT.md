@@ -191,6 +191,10 @@ for the fault-tolerant view. **[agreed]**
   metric, or, at equal primary, the secondary; the full frontier is logged either way so a
   later change of primary metric (e.g. another target, or error at budget) is a change to
   the leaderboard script, not to the referee or to any candidate.
+- **[agreed] Two-stage evaluation.** A candidate is scored on the N = 10 development
+  instances first (about a minute) and promoted to the full set only if it beats the seed
+  there on the primary metric; the loop enforces this (`scripts/evaluate_candidate.py`), so
+  most ideas are settled at the cost of the cheap stage.
 - **[agreed] Fresh-instance validation.** Tier 0 has 46 instances; 12 are on the board, 26
   more of the same regime form the validation pool (`scripts/instance_set.py`) and are never
   optimised on. A candidate that would be kept is re-scored, next to the seed, on a fresh

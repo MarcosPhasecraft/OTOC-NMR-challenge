@@ -1,6 +1,6 @@
 # Leaderboard
 
-Generated 2026-09-26 08:36 UTC by `scripts/render_leaderboard.py` from `baselines/registry.json` and `.score_cache.json` (referee fingerprint `9628f1f14ff7`). Do not edit by hand.
+Generated 2026-09-26 11:53 UTC by `scripts/render_leaderboard.py` from `baselines/registry.json` and `.score_cache.json` (referee fingerprint `4c8615512ea7`). Do not edit by hand.
 
 Development set: 12 tier-0 instances (N = 10-12), exact scoring. Each entry is called once per instance and budget rung (11 rungs, x0.25 to x8 of the seed-calibrated cap, ratio sqrt 2); every call is one measured (CZ, RMSE) point (CONTEXT.md §8).
 
@@ -174,3 +174,17 @@ Nondominated (CZ, RMSE) points over every entry and rung; lower is better on bot
 | 1584 | 0.2463 | seed: first-order fused swap network | x0.25 |
 | 3168 | 0.1319 | seed: first-order fused swap network | x0.5 |
 | 6336 | 0.0195 | second-order fused swap network | x1 |
+
+## 4. Validation on unseen instances
+
+Each kept entry is re-scored, next to the seed, on a fresh draw of four instances from the validation pool (tier-0 instances never on the board; `scripts/validation.py`). `holds` means it beats the seed there and its cost ratio is within 25 % of its development-set ratio. Baselines are exempt: they are the reference, not candidates.
+
+| entry | generation | draw | dev ratio | validation ratio | holds |
+|---|---:|---|---:|---:|---|
+| (none yet) | | | | | |
+
+## 5. Hard set (unranked)
+
+Tier-0 instances with long tmax and a weakly coupled carbon, where the seed needs 70-300 steps for 10 % error. Nobody optimises on them; cost at the target and error at x1 are reported for every entry that has been run there, as a second generalisation axis. Empty until calibrated.
+
+_no hard-set cells scored yet_

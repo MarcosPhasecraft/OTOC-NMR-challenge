@@ -91,3 +91,12 @@ def test_failures_are_reported_not_cached_and_do_not_stop_the_sweep():
     assert [f["cell"].split("@")[1] for f in r["failed"]] == ["1", "2"]
     assert len(r["evaluated"]) == len(spec.LADDER) - 2 and len(calls) == len(spec.LADDER)
     assert cache.get("fp", "e", "instance_4_d_5@1") is None
+
+
+def test_promotion_rule():
+    import evaluate_candidate as ec
+    assert ec.decide_promotion(0.8, 1.0, []) is True
+    assert ec.decide_promotion(1.0, 1.0, []) is False          # must beat the seed, not tie it
+    assert ec.decide_promotion(None, 1.0, []) is False         # missed the target somewhere
+    assert ec.decide_promotion(0.5, 1.0, [{"cell": "x"}]) is False   # a failed cell is never promoted
+    assert ec.decide_promotion(1.1, 1.2, []) is True           # a looser threshold, if the loop wants one

@@ -80,5 +80,7 @@ on a quantum processor with no reference. So:
   that fits the curve is spoofing, and it will fail validation, tier 1 and the hard set.
 - Say what the rule is. Every kept candidate is read against the rediscovery checklist
   (CONTEXT.md §13); a gain nobody can state in words is treated as a fit until shown otherwise.
-- Develop on N = 10 (seconds per call), confirm on the development set
-  (`python scripts/evaluate_candidate.py generate.py --name X`, ~20 min on 4 cores), then submit.
+- Develop on N = 10 (seconds per call), then `python scripts/evaluate_candidate.py generate.py
+  --name X`: it screens on the three N = 10 instances first (~1 min) and only a candidate that
+  beats the seed there is scored on the full development set (~20 min on 4 cores). The loop
+  uses the same command, so the screen cannot be skipped. Then submit.
