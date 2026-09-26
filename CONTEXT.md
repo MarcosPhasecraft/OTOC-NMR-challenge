@@ -191,6 +191,16 @@ for the fault-tolerant view. **[agreed]**
   metric, or, at equal primary, the secondary; the full frontier is logged either way so a
   later change of primary metric (e.g. another target, or error at budget) is a change to
   the leaderboard script, not to the referee or to any candidate.
+- **[agreed] Fresh-instance validation.** Tier 0 has 46 instances; 12 are on the board, 26
+  more of the same regime form the validation pool (`scripts/instance_set.py`) and are never
+  optimised on. A candidate that would be kept is re-scored, next to the seed, on a fresh
+  draw of four pool instances (deterministic per generation of the loop, at least one per
+  size). It is kept only if it beats the seed there and its cost ratio on the draw is within
+  25 % of its development-set ratio (`scripts/validation.py`); the verdict is on the board.
+- **[agreed] Hard set.** The 8 tier-0 instances the seed cannot bring to 10 % within 16
+  steps (tmax 1.8-20, weakly coupled carbon, fast bath) are a separate, unranked table:
+  caps from a geometric search seeded by the error-bounds repo's step counts, every kept
+  entry reported there, nobody optimising on them. A second generalisation axis.
 
 ## 9. Baselines (frozen reference solutions)
 

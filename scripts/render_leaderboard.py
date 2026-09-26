@@ -22,11 +22,12 @@ gave one measured (CZ, RMSE) point. Three views of those points:
 Nothing is interpolated between rungs; a cost at target is always a measured point.
 """
 import datetime as dt
+import json
 import math
 import sys
 
 from _common import ROOT, load
-from instance_set import LEADERBOARD_INSTANCES, phase0_instances
+from instance_set import HARD_INSTANCES, LEADERBOARD_INSTANCES, phase0_instances
 
 from harness import spec
 from toolkit.cache import fingerprint
@@ -35,17 +36,21 @@ OUT_MD = ROOT / "LEADERBOARD.md"
 SEED = "seed_p1"
 
 
-def collect(registry, cache, fp):
+def collect(registry, cache, fp, cells_wanted=None):
     """entry -> {cell id -> score dict}, cached under the current fingerprint only."""
     scores = {}
     for name in registry.names():
         cells = {}
-        for cell in LEADERBOARD_INSTANCES:
+        for cell in (LEADERBOARD_INSTANCES if cells_wanted is None else cells_wanted):
             hit = cache.get(fp, name, cell)
             if hit is not None:
                 cells[cell] = hit
         scores[name] = cells
     return scores
+
+
+def rungs(instance):
+    return [f"{instance}@{spec.format_multiplier(m)}" for m in spec.LADDER]
 
 
 def valid_points(cell_scores, instance):
@@ -151,6 +156,43 @@ def frontier_tables(registry, scores, instances) -> str:
     return "\n".join(lines)
 
 
+def validation_table(registry) -> str:
+    path = ROOT / "validation.json"
+    lines = ["\n## 4. Validation on unseen instances\n",
+             "Each kept entry is re-scored, next to the seed, on a fresh draw of four instances from the "
+             "validation pool (tier-0 instances never on the board; `scripts/validation.py`). `holds` "
+             "means it beats the seed there and its cost ratio is within 25 % of its development-set "
+             "ratio. Baselines are exempt: they are the reference, not candidates.\n",
+             "| entry | generation | draw | dev ratio | validation ratio | holds |", "|---|---:|---|---:|---:|---|"]
+    if not path.exists():
+        lines.append("| (none yet) | | | | | |")
+        return "\n".join(lines)
+    data = json.loads(path.read_text())
+    for name, v in sorted(data.items()):
+        label = registry.get(name).get("label", name) if name in registry.names() else name
+        dev = "—" if v.get("dev_ratio") is None else f"{v['dev_ratio']:.3f}"
+        val = "—" if v.get("validation_ratio") is None else f"{v['validation_ratio']:.3f}"
+        lines.append(f"| {label} | {v.get('generation')} | {', '.join(v.get('draw', []))} | {dev} | {val} | "
+                     f"{'yes' if v.get('holds') else 'no'} |")
+    return "\n".join(lines)
+
+
+def hard_table(registry, cache, fp) -> str:
+    cells = [c for i in HARD_INSTANCES for c in rungs(i)]
+    scores = collect(registry, cache, fp, cells)
+    lines = ["\n## 5. Hard set (unranked)\n",
+             "Tier-0 instances with long tmax and a weakly coupled carbon, where the seed needs 70-300 steps "
+             "for 10 % error. Nobody optimises on them; cost at the target and error at x1 are reported for "
+             "every entry that has been run there, as a second generalisation axis. Empty until calibrated.\n"]
+    budgets = spec.load_budgets()
+    calibrated = [i for i in HARD_INSTANCES if i in budgets]
+    if not calibrated or not any(scores.values()):
+        lines.append("_no hard-set cells scored yet_")
+        return "\n".join(lines)
+    return "\n".join(lines) + target_table(registry, scores, calibrated).replace("## 1. Cost at the target error", "### Cost at the target error") \
+        .replace("-- ranks the board", "-- hard set, not ranked")
+
+
 def main(argv=None) -> int:
     problem, registry, cache = load()
     fp = fingerprint(problem)
@@ -167,7 +209,8 @@ def main(argv=None) -> int:
             f"x{spec.format_multiplier(spec.LADDER[-1])} of the seed-calibrated cap, ratio sqrt 2); every call is one "
             f"measured (CZ, RMSE) point (CONTEXT.md §8).\n"]
     body = target_table(registry, scores, instances) + "\n" + google_table(registry, scores, instances) + "\n" \
-        + frontier_tables(registry, scores, instances) + "\n"
+        + frontier_tables(registry, scores, instances) + "\n" + validation_table(registry) + "\n" \
+        + hard_table(registry, cache, fp) + "\n"
     OUT_MD.write_text("\n".join(head) + body)
     print(f"wrote {OUT_MD}")
     return 0

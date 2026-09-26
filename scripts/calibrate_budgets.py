@@ -35,15 +35,51 @@ def seed_error_at(instance_id: str, steps: int) -> dict:
     return result
 
 
+# Hard instances (scripts/instance_set.py): the seed needs 70-300 steps, so a search from one
+# step would cost hours per instance. Start from the error-bounds repo's swapnet first-order
+# step count for RMS 0.1 (r_targets.csv, `r_interp_0.1`; identity layout, 20-sample Haar, so
+# only a guide) rounded to a power of two, and search geometrically: halve while the target is
+# met, double until it is. Resolution is a factor of two, recorded in `search`.
+HARD_START = {"instance_148_d_8": 64, "instance_167_d_7": 128, "instance_175_d_8": 128, "instance_68_d_13": 64,
+              "instance_179_d_9": 128, "instance_27_d_14": 16, "instance_57_d_14": 64, "instance_59_d_8": 32}
+MAX_HARD_STEPS = 2048
+
+
 def calibrate(instance_id: str) -> dict:
+    if instance_id in HARD_START:
+        return calibrate_geometric(instance_id, HARD_START[instance_id])
     steps = 1
     while steps <= MAX_STEPS:
         result = seed_error_at(instance_id, steps)
         if result["mean_abs"] <= TARGET_MEAN_ERROR:
-            return {"cap": result["cz_count"], "seed_steps": steps,
+            return {"cap": result["cz_count"], "seed_steps": steps, "search": "linear-then-doubling",
                     "seed_mean_abs": result["mean_abs"], "seed_rmse": result["rmse"]}
         steps = steps + 1 if steps < 8 else steps * 2
     raise RuntimeError(f"{instance_id}: the seed never reaches mean error {TARGET_MEAN_ERROR} by {MAX_STEPS} steps")
+
+
+def calibrate_geometric(instance_id: str, start: int) -> dict:
+    probes = {}
+
+    def met(steps):
+        if steps not in probes:
+            probes[steps] = seed_error_at(instance_id, steps)
+            print(f"  {instance_id} @ {steps} steps: mean_abs={probes[steps]['mean_abs']:.4f}", flush=True)
+        return probes[steps]["mean_abs"] <= TARGET_MEAN_ERROR
+
+    steps = start
+    if met(steps):
+        while steps > 1 and met(steps // 2):
+            steps //= 2
+    else:
+        while not met(steps):
+            steps *= 2
+            if steps > MAX_HARD_STEPS:
+                raise RuntimeError(f"{instance_id}: the seed never reaches mean error {TARGET_MEAN_ERROR} by {MAX_HARD_STEPS} steps")
+    result = probes[steps]
+    return {"cap": result["cz_count"], "seed_steps": steps, "search": f"geometric from {start}",
+            "seed_mean_abs": result["mean_abs"], "seed_rmse": result["rmse"],
+            "probes": {str(k): round(v["mean_abs"], 4) for k, v in sorted(probes.items())}}
 
 
 def main() -> None:

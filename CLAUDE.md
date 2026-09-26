@@ -62,3 +62,23 @@ the helper raises; do not work around it.
 ## Traps
 
 (empty until one is hit; each entry points at the fuller story in NOTES.md)
+
+
+## Rules for candidates (what generalises)
+
+The board scores 12 instances at N = 10-12, but the point is a policy that works at N = 25
+on a quantum processor with no reference. So:
+
+- No instance identifiers, no per-instance constants, no lookup tables keyed on the
+  Hamiltonian. A rule must be a function of what the spec gives: coupling magnitudes, the
+  interaction graph, distance to the measurement and butterfly spins, time over the local
+  coupling scale, the budget.
+- A candidate that would be kept is re-scored on instances it has never seen (the
+  validation pool, `scripts/instance_set.py`) next to the seed; a fit to the development set
+  loses there. `python scripts/validation.py generate.py --name X --generation G` runs it.
+- The reference curve is visible on tier 0 for diagnosis, never as an input: a generator
+  that fits the curve is spoofing, and it will fail validation, tier 1 and the hard set.
+- Say what the rule is. Every kept candidate is read against the rediscovery checklist
+  (CONTEXT.md §13); a gain nobody can state in words is treated as a fit until shown otherwise.
+- Develop on N = 10 (seconds per call), confirm on the development set
+  (`python scripts/evaluate_candidate.py generate.py --name X`, ~20 min on 4 cores), then submit.
