@@ -1,15 +1,12 @@
+# registry.json and .score_cache.json are the project's record of what actually passed:
+# commit them (the leaderboard is rendered from them). Scratch files from the
+# write-then-rename in cache.py and registry.py only survive a crash between the write
+# and the rename; the per-run attempt log and the dev/control caches are personal.
 
-# .score_cache.json are the opposite -- they're the project's record of
-# Scratch files from the write-then-rename in cache.py and registry.py.
-# The per-run attempt log is a personal working record, and several
-# These only survive a crash between the write and the rename.
-# people sharing a fork would conflict on every line. registry.json and
-# what actually passed, so commit those.
 *.pyc
 *.tmp
 .DS_Store
 .pytest_cache/
-.score_cache.json
 .venv/
 __pycache__/
 isolation/wheels/
