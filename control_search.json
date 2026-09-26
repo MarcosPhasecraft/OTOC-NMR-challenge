@@ -1,0 +1,38 @@
+[
+ {
+  "name": "control:0:0",
+  "config": {
+   "layout": "identity",
+   "layout_seed": 794772,
+   "scale": 1.078,
+   "order": 1,
+   "spend": 0.75
+  },
+  "ratio": null,
+  "failed": []
+ },
+ {
+  "name": "control:0:1",
+  "config": {
+   "layout": "random",
+   "layout_seed": 509532,
+   "scale": 0.981,
+   "order": 2,
+   "spend": 0.5
+  },
+  "ratio": null,
+  "failed": []
+ },
+ {
+  "name": "control:0:2",
+  "config": {
+   "layout": "identity",
+   "layout_seed": 611720,
+   "scale": 1.0783,
+   "order": 1,
+   "spend": 1.0
+  },
+  "ratio": null,
+  "failed": []
+ }
+]
