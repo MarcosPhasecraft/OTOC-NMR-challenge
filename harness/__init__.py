@@ -16,7 +16,7 @@ FROZEN_GLOBS = [
     "harness/*.py",
     "harness/vendor/*.py",
     "harness/data/references/*.json",
-    "harness/data/*.json",
+    "harness/data/budgets.json",          # the ranked set's caps; budgets_hard.json is not frozen (spec.load_budgets)
     "data/manifest.json",
 ]
 

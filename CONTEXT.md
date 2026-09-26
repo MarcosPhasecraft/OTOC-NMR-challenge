@@ -199,8 +199,10 @@ for the fault-tolerant view. **[agreed]**
   25 % of its development-set ratio (`scripts/validation.py`); the verdict is on the board.
 - **[agreed] Hard set.** The 8 tier-0 instances the seed cannot bring to 10 % within 16
   steps (tmax 1.8-20, weakly coupled carbon, fast bath) are a separate, unranked table:
-  caps from a geometric search seeded by the error-bounds repo's step counts, every kept
-  entry reported there, nobody optimising on them. A second generalisation axis.
+  caps from a geometric search seeded by the error-bounds repo's step counts (stored in
+  `harness/data/budgets_hard.json`, deliberately outside the frozen set so that adding a
+  hard instance does not invalidate the board), every kept entry reported there, nobody
+  optimising on them. A second generalisation axis.
 
 ## 9. Baselines (frozen reference solutions)
 

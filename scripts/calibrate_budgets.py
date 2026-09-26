@@ -86,19 +86,22 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("claim")
     args = parser.parse_args()
-    budgets = spec.load_budgets()
-    details_path = spec.BUDGETS_PATH.replace("budgets.json", "budgets_detail.json")
-    details = json.load(open(details_path)) if os.path.exists(details_path) else {}
+    known = spec.load_budgets()
     instances = sorted({spec.split_instance_id(i)[0] for i in spec.parse_instances(args.claim)},
                        key=list(spec.load_manifest()).index)
     for instance_id in instances:
-        if instance_id in budgets:
+        if instance_id in known:
             continue
+        # hard instances go to the unfrozen file (harness/spec.py load_budgets)
+        path = spec.HARD_BUDGETS_PATH if instance_id in HARD_START else spec.BUDGETS_PATH
+        details_path = path.replace(".json", "_detail.json")
+        budgets = json.load(open(path)) if os.path.exists(path) else {}
+        details = json.load(open(details_path)) if os.path.exists(details_path) else {}
         entry = calibrate(instance_id)
         budgets[instance_id] = entry["cap"]
         details[instance_id] = entry
-        os.makedirs(os.path.dirname(spec.BUDGETS_PATH), exist_ok=True)
-        json.dump(dict(sorted(budgets.items())), open(spec.BUDGETS_PATH, "w"), indent=1)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        json.dump(dict(sorted(budgets.items())), open(path, "w"), indent=1)
         json.dump(dict(sorted(details.items())), open(details_path, "w"), indent=1)
         print(f"{instance_id}: cap={entry['cap']} (seed {entry['seed_steps']} steps, "
               f"mean_abs={entry['seed_mean_abs']:.4f}, rmse={entry['seed_rmse']:.4f})", flush=True)

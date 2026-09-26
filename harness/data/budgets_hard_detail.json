@@ -1,0 +1,36 @@
+{
+ "instance_148_d_8": {
+  "cap": 69120,
+  "seed_steps": 256,
+  "search": "geometric from 64",
+  "seed_mean_abs": 0.04076679088313463,
+  "seed_rmse": 0.0456852518186935,
+  "probes": {
+   "64": 0.1456,
+   "128": 0.1028,
+   "256": 0.0408
+  }
+ },
+ "instance_167_d_7": {
+  "cap": 69120,
+  "seed_steps": 256,
+  "search": "geometric from 128",
+  "seed_mean_abs": 0.02986116804705404,
+  "seed_rmse": 0.033417961002670846,
+  "probes": {
+   "128": 0.1357,
+   "256": 0.0299
+  }
+ },
+ "instance_175_d_8": {
+  "cap": 42240,
+  "seed_steps": 128,
+  "search": "geometric from 128",
+  "seed_mean_abs": 0.09000517681360337,
+  "seed_rmse": 0.10159464318478272,
+  "probes": {
+   "64": 0.1968,
+   "128": 0.09
+  }
+ }
+}

@@ -25,6 +25,7 @@ from harness.vendor.gen_orderings import base_terms
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 MANIFEST_PATH = os.path.join(DATA_DIR, "manifest.json")
 BUDGETS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "budgets.json")
+HARD_BUDGETS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "budgets_hard.json")
 #: The budget ladder (CONTEXT.md §8), as multipliers of the seed-calibrated cap.
 # The budget ladder, as multiples of each instance's seed-calibrated cap (CONTEXT.md §8): a
 # geometric ladder with ratio sqrt(2) from 1/4 to 8 times the cap. Fine enough that the
@@ -104,11 +105,16 @@ def time_grid(tmax: float, num_times: int = NUM_TIMES) -> list[float]:
 
 def load_budgets() -> dict[str, int]:
     """Seed-calibrated caps `cap_i` per instance (CONTEXT.md §8), written by
-    `scripts/calibrate_budgets.py`; frozen with the referee."""
-    if not os.path.isfile(BUDGETS_PATH):
-        return {}
-    with open(BUDGETS_PATH) as handle:
-        return json.load(handle)
+    `scripts/calibrate_budgets.py`. Two files: `budgets.json` for the ranked development set,
+    frozen with the referee (FROZEN_GLOBS), and `budgets_hard.json` for the unranked hard
+    set, which is not frozen so that calibrating one more hard instance does not invalidate
+    every cached score on the board."""
+    budgets: dict[str, int] = {}
+    for path in (BUDGETS_PATH, HARD_BUDGETS_PATH):
+        if os.path.isfile(path):
+            with open(path) as handle:
+                budgets.update(json.load(handle))
+    return budgets
 
 
 def split_instance_id(instance_id: str) -> tuple[str, float | None]:
