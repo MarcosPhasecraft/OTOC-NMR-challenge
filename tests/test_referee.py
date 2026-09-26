@@ -10,8 +10,10 @@ import pytest
 from openfermion import QubitOperator
 
 from harness import circuits, cost, engines, spec
-from harness.artifact import parse_circuit, verify
+from harness.artifact import parse_artifact, parse_circuit, verify
 from harness.score import score
+
+DOUBLE = np.complex128   # the analytic checks pin the algorithm at full precision
 
 INSTANCE = "instance_4_d_5"   # N = 10
 
@@ -37,7 +39,7 @@ def test_identity_circuit_gives_otoc_one(instance_spec):
     """No evolution: M(t) = M commutes with B, so C = 1 at every time."""
     n = instance_spec["num_qubits"]
     result = score(instance_spec, identity_artifact(instance_spec, n), workers=1)
-    assert result["otoc"] == pytest.approx([1.0] * 8, abs=1e-12)
+    assert result["otoc"] == pytest.approx([1.0] * 8, abs=1e-6)
     assert result["cz_count"] == 0 and result["regime"] == "exact" and result["sampling_se"] == 0.0
 
 
@@ -49,7 +51,7 @@ def test_single_bond_closed_form():
     circuit = cirq.Circuit(cirq.MatrixGate(gate).on(cirq.LineQubit(0), cirq.LineQubit(1)))
     gates, err = parse_circuit(circuits.circuit_json(circuit), n)
     assert err is None
-    assert engines.exact_otoc(gates, n, 0, 1) == pytest.approx(np.cos(4 * c * t), abs=1e-12)
+    assert engines.exact_otoc(gates, n, 0, 1, dtype=DOUBLE) == pytest.approx(np.cos(4 * c * t), abs=1e-12)
 
 
 def test_commuting_hamiltonian_is_exact_in_one_step():
@@ -68,7 +70,7 @@ def test_commuting_hamiltonian_is_exact_in_one_step():
     Mt = U @ X0 @ U.conj().T
     expected = np.real(np.trace(X1 @ Mt @ X1 @ Mt) / 2 ** n)
     gates = [__import__("harness.artifact", fromlist=["Gate"]).Gate(tuple(sorted(q.x for q in op.qubits)), cirq.unitary(op)) for op in ops]
-    assert engines.exact_otoc(gates, n, 0, 1) == pytest.approx(expected, abs=1e-12)
+    assert engines.exact_otoc(gates, n, 0, 1, dtype=DOUBLE) == pytest.approx(expected, abs=1e-12)
 
 
 def test_two_exact_formulations_agree(instance_spec):
@@ -76,9 +78,41 @@ def test_two_exact_formulations_agree(instance_spec):
     circuit = circuits.swap_network_circuit(instance_spec["terms"], instance_spec["times"][-1], 1, list(range(n)))
     gates, err = parse_circuit(circuits.circuit_json(circuit), n)
     assert err is None
-    fast = engines.exact_otoc(gates, n, 0, 1)
+    fast = engines.exact_otoc(gates, n, 0, 1, dtype=DOUBLE)
     dense = engines._dense_reference(gates, n, 0, 1)
     assert fast == pytest.approx(dense, abs=1e-12)
+
+
+def test_single_precision_gate_pass_matches_double(instance_spec):
+    """The gate pass runs in complex64 (engines.GATE_DTYPE); on thousands of gates it must agree
+    with the double-precision pass far below the 1e-3 level the score reads."""
+    n = instance_spec["num_qubits"]
+    artifact = seed_artifact(instance_spec, 24)
+    parsed, _ = parse_artifact(instance_spec, artifact)
+    gates = parsed.circuits[7]
+    assert len(gates) > 1000
+    single = engines.exact_otoc(gates, n, 0, parsed.butterfly_positions[7])
+    double = engines.exact_otoc(gates, n, 0, parsed.butterfly_positions[7], dtype=np.complex128, fuse=False)
+    assert single == pytest.approx(double, abs=1e-5)
+
+
+def test_fuse_gates_is_exact_and_merges_runs():
+    rng = np.random.default_rng(1)
+    def u(d):
+        return np.linalg.qr(rng.normal(size=(d, d)) + 1j * rng.normal(size=(d, d)))[0]
+    from harness.artifact import Gate
+    gates = [Gate((0, 1), u(4)), Gate((0, 1), u(4)), Gate((1,), u(2)), Gate((1, 2), u(4)), Gate((2,), u(2)),
+             Gate((3, 4), u(4)), Gate((3,), u(2)), Gate((3, 4), u(4))]
+    fused = engines.fuse_gates(gates)
+    assert [g.positions for g in fused] == [(0, 1), (1, 2), (3, 4)]
+    n = 5
+    v_plain = np.eye(2 ** n, dtype=complex)
+    v_fused = np.eye(2 ** n, dtype=complex)
+    for g in gates:
+        v_plain = engines.apply_gate(v_plain, g, n)
+    for g in fused:
+        v_fused = engines.apply_gate(v_fused, g, n)
+    assert np.allclose(v_plain, v_fused, atol=1e-12)
 
 
 def test_initial_mapping_is_free_and_basis_independent(instance_spec):
@@ -103,7 +137,7 @@ def test_initial_mapping_is_free_and_basis_independent(instance_spec):
     gates_b = [Gate(tuple(sorted((p + 3) % n for p in g.positions)),
                     g.unitary if (g.positions[0] + 3) % n < (g.positions[-1] + 3) % n or len(g.positions) == 1
                     else circuits.SWAP @ g.unitary @ circuits.SWAP) for g in gates_a]
-    assert engines.exact_otoc(gates_a, n, 0, 1) == pytest.approx(engines.exact_otoc(gates_b, n, 3, 4), abs=1e-12)
+    assert engines.exact_otoc(gates_a, n, 0, 1, dtype=DOUBLE) == pytest.approx(engines.exact_otoc(gates_b, n, 3, 4, dtype=DOUBLE), abs=1e-12)
 
 
 # ----------------------------------------------------------------------------- rejection
@@ -215,7 +249,7 @@ def test_engine_matches_otoc_core_parity_sector(instance_spec):
             if len(pos) == 2 and op.qubits[0].x > op.qubits[1].x:
                 u = circuits.SWAP @ u @ circuits.SWAP
             gates.append(Gate(pos, u))
-        assert engines.exact_otoc(gates, n, 0, 1) == pytest.approx(float(np.real(core[k])), abs=1e-10)
+        assert engines.exact_otoc(gates, n, 0, 1, dtype=DOUBLE) == pytest.approx(float(np.real(core[k])), abs=1e-10)
 
 
 def test_seed_converges_to_reference(instance_spec):
